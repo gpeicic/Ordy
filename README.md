@@ -1,3 +1,4 @@
+## ORDY
 Backend za praćenje cijena dobavljača namijenjen ugostiteljskim objektima. 
 Aplikacija se spaja na hrvatski e-invoicing sustav moj-e-račun, automatski 
 dohvaća ulazne račune i omogućuje usporedbu cijena po dobavljačima kroz vrijeme.
