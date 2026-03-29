@@ -36,62 +36,66 @@ public class PdfGeneratorService {
     private final CompanyMapper companyMapper;
     private final SupplierMapper supplierMapper;
     private final OrderItemMapper orderItemMapper;
-    private final InvoiceItemMapper itemMapper;
+    private final InvoiceItemMapper invoiceItemMapper;
 
     public PdfGeneratorService(CompanyMapper companyMapper, SupplierMapper supplierMapper,
-                               OrderItemMapper orderItemMapper, InvoiceItemMapper itemMapper) {
+                               OrderItemMapper orderItemMapper, InvoiceItemMapper invoiceItemMapper) {
         this.companyMapper = companyMapper;
         this.supplierMapper = supplierMapper;
         this.orderItemMapper = orderItemMapper;
-        this.itemMapper = itemMapper;
+        this.invoiceItemMapper = invoiceItemMapper;
     }
-
 
     public byte[] generateOrderPdf(Order order) throws IOException {
         Company company = companyMapper.findById(order.getCompanyId());
         Supplier supplier = supplierMapper.findById(order.getSupplierId());
         List<OrderItem> items = orderItemMapper.findByOrderId(order.getId());
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+        Document document = buildDocument();
+        PdfFont bold = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
+        PdfFont regular = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+
+        document.add(buildHeaderTable(order, supplier, bold, regular));
+        document.add(new Paragraph("\n"));
+        document.add(buildCompanyTable(company, bold));
+        document.add(new Paragraph("\n"));
+        document.add(buildProductTable(order, items, bold, regular));
+
+        ByteArrayOutputStream baos = (ByteArrayOutputStream) ((PdfWriter) document.getPdfDocument().getWriter()).getOutputStream();
+        document.close();
+
+        return baos.toByteArray();
+    }
+
+    private Document buildDocument() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PdfWriter writer = new PdfWriter(baos);
         PdfDocument pdf = new PdfDocument(writer);
         Document document = new Document(pdf, PageSize.A4);
         document.setMargins(40, 40, 40, 40);
+        return document;
+    }
 
-        // font
-        PdfFont bold = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
-        PdfFont regular = PdfFontFactory.createFont(StandardFonts.HELVETICA);
-
-        // --- SUPPLIER INFO (gore desno) ---
+    private Table buildHeaderTable(Order order, Supplier supplier, PdfFont bold, PdfFont regular) {
         Table headerTable = new Table(UnitValue.createPercentArray(new float[]{50, 50}))
                 .setWidth(UnitValue.createPercentValue(100));
 
-        // lijevo prazno ili naziv dokumenta
         Cell titleCell = new Cell().setBorder(Border.NO_BORDER);
-        titleCell.add(new Paragraph("NARUDŽBENICA")
-                .setFont(bold)
-                .setFontSize(20));
-        titleCell.add(new Paragraph("Broj narudžbe: #" + order.getId())
-                .setFont(regular)
-                .setFontSize(10)
-                .setFontColor(ColorConstants.GRAY));
-        titleCell.add(new Paragraph("Datum: " + order.getCreatedAt().toLocalDate())
-                .setFont(regular)
-                .setFontSize(10)
-                .setFontColor(ColorConstants.GRAY));
+        titleCell.add(new Paragraph("NARUDŽBENICA").setFont(bold).setFontSize(20));
+        titleCell.add(new Paragraph("Broj narudžbe: #" + order.getId()).setFont(regular).setFontSize(10).setFontColor(ColorConstants.GRAY));
+        titleCell.add(new Paragraph("Datum: " + order.getCreatedAt().toLocalDate()).setFont(regular).setFontSize(10).setFontColor(ColorConstants.GRAY));
         headerTable.addCell(titleCell);
 
-        // desno supplier info
         Cell supplierCell = new Cell().setBorder(Border.NO_BORDER).setTextAlignment(TextAlignment.RIGHT);
-        supplierCell.add(new Paragraph("Dobavljac").setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
+        supplierCell.add(new Paragraph("Dobavljač").setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
         supplierCell.add(new Paragraph(supplier.getName()).setFont(bold).setFontSize(12));
         supplierCell.add(new Paragraph("OIB: " + supplier.getOib()).setFont(regular).setFontSize(10));
         headerTable.addCell(supplierCell);
 
-        document.add(headerTable);
-        document.add(new Paragraph("\n"));
+        return headerTable;
+    }
 
-        // --- COMPANY INFO ---
+    private Table buildCompanyTable(Company company, PdfFont bold) {
         Table companyTable = new Table(UnitValue.createPercentArray(new float[]{100}))
                 .setWidth(UnitValue.createPercentValue(50));
 
@@ -99,68 +103,48 @@ public class PdfGeneratorService {
                 .setBackgroundColor(new DeviceRgb(245, 245, 245))
                 .setBorder(Border.NO_BORDER)
                 .setPadding(10);
-        companyCell.add(new Paragraph("Narucitelj").setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
+        companyCell.add(new Paragraph("Naručitelj").setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
         companyCell.add(new Paragraph(company.getName()).setFont(bold).setFontSize(12));
         companyTable.addCell(companyCell);
 
-        document.add(companyTable);
-        document.add(new Paragraph("\n"));
+        return companyTable;
+    }
 
-     /*   // --- TABLICA PROIZVODA ---
-        Table productTable = new Table(UnitValue.createPercentArray(new float[]{50, 25, 25}))
-                .setWidth(UnitValue.createPercentValue(100));
-
-        // header
-        Stream.of("Naziv proizvoda", "Interna šifra", "Kolicina").forEach(col -> productTable.addHeaderCell(
-                new Cell()
-                        .setBackgroundColor(new DeviceRgb(50, 50, 50))
-                        .add(new Paragraph(col)
-                                .setFont(bold)
-                                .setFontSize(10)
-                                .setFontColor(ColorConstants.WHITE))
-        ));
-*/
+    private Table buildProductTable(Order order, List<OrderItem> items, PdfFont bold, PdfFont regular) {
         Table productTable = new Table(UnitValue.createPercentArray(new float[]{75, 25}))
                 .setWidth(UnitValue.createPercentValue(100));
 
-        Stream.of("Naziv proizvoda", "Kolicina").forEach(col -> productTable.addHeaderCell(
+        Stream.of("Naziv proizvoda", "Količina").forEach(col -> productTable.addHeaderCell(
                 new Cell()
                         .setBackgroundColor(new DeviceRgb(50, 50, 50))
-                        .add(new Paragraph(col)
-                                .setFont(bold)
-                                .setFontSize(10)
-                                .setFontColor(ColorConstants.WHITE))
+                        .add(new Paragraph(col).setFont(bold).setFontSize(10).setFontColor(ColorConstants.WHITE))
         ));
 
         for (int i = 0; i < items.size(); i++) {
-            OrderItem item = items.get(i);
-            String productName = itemMapper.findLatestProductNameBySupplier(
-                    item.getProductId(),
-                    order.getSupplierId()
-            );
-            DeviceRgb rowColor = i % 2 == 0
-                    ? new DeviceRgb(255, 255, 255)
-                    : new DeviceRgb(250, 250, 250);
-
-            productTable.addCell(new Cell()
-                    .setBackgroundColor(rowColor)
-                    .add(new Paragraph(productName != null ? productName : "N/A")
-                            .setFont(regular).setFontSize(10)));
-/*
-            productTable.addCell(new Cell()
-                    .setBackgroundColor(rowColor)
-                    .add(new Paragraph(product != null && product.getInternalCode() != null ? product.getInternalCode() : "-")
-                            .setFont(regular).setFontSize(10)));
-*/
-            productTable.addCell(new Cell()
-                    .setBackgroundColor(rowColor)
-                    .add(new Paragraph(item.getQuantity().stripTrailingZeros().toPlainString())
-                            .setFont(regular).setFontSize(10)));
+            addProductRow(productTable, order, items.get(i), i, regular);
         }
 
-        document.add(productTable);
-        document.close();
+        return productTable;
+    }
 
-        return baos.toByteArray();
+    private void addProductRow(Table productTable, Order order, OrderItem item, int index, PdfFont regular) {
+        String productName = invoiceItemMapper.findLatestProductNameBySupplier(
+                item.getProductId(),
+                order.getSupplierId()
+        );
+
+        DeviceRgb rowColor = index % 2 == 0
+                ? new DeviceRgb(255, 255, 255)
+                : new DeviceRgb(250, 250, 250);
+
+        productTable.addCell(new Cell()
+                .setBackgroundColor(rowColor)
+                .add(new Paragraph(productName != null ? productName : "N/A")
+                        .setFont(regular).setFontSize(10)));
+
+        productTable.addCell(new Cell()
+                .setBackgroundColor(rowColor)
+                .add(new Paragraph(item.getQuantity().stripTrailingZeros().toPlainString())
+                        .setFont(regular).setFontSize(10)));
     }
 }
