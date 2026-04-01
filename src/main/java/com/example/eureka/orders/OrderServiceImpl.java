@@ -1,5 +1,6 @@
 package com.example.eureka.orders;
 
+import com.example.eureka.orders.dto.OrderWithSupplierNameDTO;
 import com.example.eureka.orders.pdfGenerator.MailService;
 import com.example.eureka.orders.pdfGenerator.PdfGeneratorService;
 import org.springframework.stereotype.Service;
@@ -57,6 +58,11 @@ public class OrderServiceImpl implements OrderService {
         byte[] pdfBytes = pdfGeneratorService.generateOrderPdf(order);
         mailService.sendOrderPdf(order, pdfBytes);
         orderMapper.updateStatus(orderId, String.valueOf(OrderStatus.POSLANO));
+    }
+
+    @Override
+    public OrderWithSupplierNameDTO findLatestByCompanyId(Long companyId) {
+        return orderMapper.findLatestByCompanyId(companyId);
     }
 
     @Override

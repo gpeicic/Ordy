@@ -9,6 +9,7 @@ import com.example.eureka.supplier.SupplierMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -51,6 +52,11 @@ public class InvoiceServiceImpl implements  InvoiceService {
         Invoice invoice = createAndSaveInvoice(parsed, externalDocumentId, companyId, supplier.getId());
 
         saveInvoiceItems(parsed.getItems(), invoice.getId());
+    }
+
+    @Override
+    public BigDecimal getMonthlySpending(Long companyId) {
+        return itemMapper.getMonthlySpending(companyId);
     }
 
     private Supplier findOrCreateSupplier(ParsedInvoice parsed) {

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Mapper
@@ -17,6 +18,15 @@ public interface InvoiceItemMapper {
         (#{invoiceId}, #{productName}, #{unitPrice}, #{discount}, #{amount}, #{productId})
     """)
     void insert(InvoiceItem item);
+
+    @Select("""
+    SELECT COALESCE(SUM(ii.amount * ii.unit_price), 0)
+    FROM invoice_items ii
+    JOIN invoices i ON ii.invoice_id = i.id
+    WHERE i.company_id = #{companyId}
+      AND DATE_TRUNC('month', i.created_at) = DATE_TRUNC('month', CURRENT_DATE)
+""")
+    BigDecimal getMonthlySpending(@Param("companyId") Long companyId);
 
     @Select("""
         SELECT ii.*

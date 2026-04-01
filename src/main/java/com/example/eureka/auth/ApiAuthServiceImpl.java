@@ -42,8 +42,8 @@ public class ApiAuthServiceImpl implements ApiAuthService {
         }
 
         Role role = roleMapper.findById(user.getRole_id());
-        String token = jwtService.generateToken(user, role);
-
+        Long companyId = userCompaniesMapper.getFirstCompanyIdByUserId(user.getId());
+        String token = jwtService.generateToken(user, role, companyId);
         return new ApiLoginResponse(token);
     }
 
@@ -64,7 +64,8 @@ public class ApiAuthServiceImpl implements ApiAuthService {
         userCompaniesMapper.insertUserCompany(user.getId(), company.getId());
 
         Role role = roleMapper.findById(user.getRole_id());
-        String token = jwtService.generateToken(user, role);
+        Long companyId = userCompaniesMapper.getFirstCompanyIdByUserId(user.getId());
+        String token = jwtService.generateToken(user, role, companyId);
 
         return new ApiRegisterResponse(token);
     }

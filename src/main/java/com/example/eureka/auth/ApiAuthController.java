@@ -17,6 +17,7 @@ public class ApiAuthController {
 
     @PostMapping("/login")
     public ApiLoginResponse login(@RequestBody ApiLoginRequest request) {
+
         return authService.login(request);
     }
 

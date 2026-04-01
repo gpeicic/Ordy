@@ -1,5 +1,6 @@
 package com.example.eureka.orders;
 
+import com.example.eureka.orders.dto.OrderWithSupplierNameDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +52,17 @@ public class OrderController {
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Order>> getOrdersByUser(@PathVariable Long userId) {
         return ResponseEntity.ok(orderService.getOrdersByUser(userId));
+    }
+
+    @GetMapping("/lastOrder/{companyId}")
+    public ResponseEntity<OrderWithSupplierNameDTO> getLastOrder(@PathVariable Long companyId) {
+        OrderWithSupplierNameDTO order = orderService.findLatestByCompanyId(companyId);
+
+        if (order == null) {
+            return ResponseEntity.notFound().build(); // Vraća 404, ne 406
+        }
+
+        return ResponseEntity.ok(order); // Vraća 200 sa JSON-om
     }
 
     @GetMapping("/company/{companyId}")
