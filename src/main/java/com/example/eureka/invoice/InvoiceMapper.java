@@ -1,9 +1,6 @@
 package com.example.eureka.invoice;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface InvoiceMapper {
@@ -26,5 +23,16 @@ public interface InvoiceMapper {
     """)
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Invoice invoice);
+
+    @Select("""
+    SELECT i.supplier_id
+    FROM invoices i
+    JOIN invoice_items ii ON ii.invoice_id = i.id
+    WHERE i.company_id = #{companyId}
+    GROUP BY i.supplier_id
+    ORDER BY SUM(ii.amount * ii.unit_price) DESC
+    LIMIT 1
+""")
+    Long findTopSupplierBySpending(@Param("companyId") Long companyId);
 
 }

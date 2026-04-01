@@ -1,5 +1,6 @@
 package com.example.eureka.invoice;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,10 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
+    @GetMapping("/{companyId}/top-supplier")
+    public ResponseEntity<Long> getTopSupplier(@PathVariable Long companyId) {
+        return ResponseEntity.ok(invoiceService.getTopSupplierId(companyId));
+    }
     @GetMapping("/{companyId}")
     public BigDecimal getMonthlySpending(@PathVariable Long companyId) {
         return invoiceService.getMonthlySpending(companyId);

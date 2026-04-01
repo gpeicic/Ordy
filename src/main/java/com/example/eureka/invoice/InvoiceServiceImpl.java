@@ -58,6 +58,10 @@ public class InvoiceServiceImpl implements  InvoiceService {
     public BigDecimal getMonthlySpending(Long companyId) {
         return itemMapper.getMonthlySpending(companyId);
     }
+    @Override
+    public Long getTopSupplierId(Long companyId) {
+        return invoiceMapper.findTopSupplierBySpending(companyId);
+    }
 
     private Supplier findOrCreateSupplier(ParsedInvoice parsed) {
         Supplier supplier = supplierMapper.findByOib(parsed.getOib());
