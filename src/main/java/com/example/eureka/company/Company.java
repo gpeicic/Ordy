@@ -9,12 +9,6 @@ public class Company {
     public Company() {
     }
 
-    public Company(Long id, String name, String merEmail, String merPassword) {
-        this.id = id;
-        this.name = name;
-        this.merEmail = merEmail;
-        this.merPassword = merPassword;
-    }
 
     public Long getId() {
         return id;

@@ -65,10 +65,11 @@ public class InvoiceServiceImpl implements  InvoiceService {
 
     private Supplier findOrCreateSupplier(ParsedInvoice parsed) {
         Supplier supplier = supplierMapper.findByOib(parsed.getOib());
-        if (supplier != null) {
-            return supplier;
-        }
-        supplier = new Supplier();
+        return supplier != null ? supplier : createSupplier(parsed);
+    }
+
+    private Supplier createSupplier(ParsedInvoice parsed) {
+        Supplier supplier = new Supplier();
         supplier.setOib(parsed.getOib());
         supplier.setName(parsed.getSupplierName());
         supplierMapper.insert(supplier);
@@ -99,18 +100,21 @@ public class InvoiceServiceImpl implements  InvoiceService {
 
     private void saveInvoiceItems(List<ParsedInvoiceItem> parsedItems, Long invoiceId) {
         for (ParsedInvoiceItem parsedItem : parsedItems) {
-            String rawName = parsedItem.getProductName();
-            Long productId = productService.resolveProductId(rawName);
-
-            InvoiceItem item = new InvoiceItem();
-            item.setInvoiceId(invoiceId);
-            item.setProductName(rawName);
-            item.setProductId(productId);
-            item.setUnitPrice(parsedItem.getUnitPrice());
-            item.setDiscount(parsedItem.getDiscount());
-            item.setAmount(parsedItem.getAmount());
-
+            InvoiceItem item = buildInvoiceItem(parsedItem, invoiceId);
             itemMapper.insert(item);
         }
+    }
+
+    private InvoiceItem buildInvoiceItem(ParsedInvoiceItem parsedItem, Long invoiceId) {
+        Long productId = productService.resolveProductId(parsedItem.getProductName());
+
+        InvoiceItem item = new InvoiceItem();
+        item.setInvoiceId(invoiceId);
+        item.setProductName(parsedItem.getProductName());
+        item.setProductId(productId);
+        item.setUnitPrice(parsedItem.getUnitPrice());
+        item.setDiscount(parsedItem.getDiscount());
+        item.setAmount(parsedItem.getAmount());
+        return item;
     }
 }

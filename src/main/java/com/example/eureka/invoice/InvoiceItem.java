@@ -13,18 +13,6 @@ public class InvoiceItem {
 
     public InvoiceItem(){}
 
-    public InvoiceItem(Long id, Long invoiceId, String productName,
-                       BigDecimal unitPrice, BigDecimal discount, BigDecimal amount,
-                       Long product_id) {
-        this.id = id;
-        this.invoiceId = invoiceId;
-        this.productName = productName;
-        this.unitPrice = unitPrice;
-        this.discount = discount;
-        this.amount = amount;
-        this.productId = product_id;
-    }
-
     public Long getId() {
         return id;
     }

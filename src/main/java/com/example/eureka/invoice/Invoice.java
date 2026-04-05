@@ -12,17 +12,6 @@ public class Invoice {
 
     public Invoice(){}
 
-    public Invoice(Long id, Long supplierId, String invoiceNumber,
-                   LocalDateTime invoiceDatetime, Long externalDocumentId,
-                   Long companyId) {
-        this.id = id;
-        this.supplierId = supplierId;
-        this.invoiceNumber = invoiceNumber;
-        this.invoiceDatetime = invoiceDatetime;
-        this.externalDocumentId = externalDocumentId;
-        this.companyId = companyId;
-    }
-
     public Long getId() {
         return id;
     }
