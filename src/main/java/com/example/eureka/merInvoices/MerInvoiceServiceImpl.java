@@ -7,6 +7,7 @@ import com.example.eureka.merInvoices.parsedInvoice.MerUblinvoiceParser;
 import com.example.eureka.merInvoices.parsedInvoice.dto.ParsedInvoice;
 import com.example.eureka.sessionToken.SessionToken;
 import com.example.eureka.sessionToken.SessionTokenMapper;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -19,15 +20,18 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
     private final MerInvoiceClient merInvoiceClient;
     private final MerUblinvoiceParser ublInvoiceParser;
     private final InvoiceService invoiceService;
+    private final TextEncryptor encryptor;
 
     public MerInvoiceServiceImpl(SessionTokenMapper sessionTokenMapper,
                                  MerInvoiceClient merInvoiceClient,
                                  MerUblinvoiceParser ublInvoiceParser,
-                                 InvoiceService invoiceService) {
+                                 InvoiceService invoiceService,
+                                 TextEncryptor encryptor) {
         this.sessionTokenMapper = sessionTokenMapper;
         this.merInvoiceClient = merInvoiceClient;
         this.ublInvoiceParser = ublInvoiceParser;
         this.invoiceService = invoiceService;
+        this.encryptor = encryptor;
     }
 
     @Override
@@ -51,6 +55,7 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
         if (token == null) {
             throw new RuntimeException("MER token not found for company " + companyId);
         }
+        token.setAccessToken(encryptor.decrypt(token.getAccessToken()));
         return token;
     }
 
