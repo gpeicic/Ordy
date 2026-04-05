@@ -1,7 +1,10 @@
 package com.example.eureka.orders;
 
+import com.example.eureka.orders.command.OrderCommandService;
+import com.example.eureka.orders.dispatch.OrderDispatchService;
 import com.example.eureka.orders.dto.OrderSummary;
 import com.example.eureka.orders.dto.OrderWithSupplierNameDTO;
+import com.example.eureka.orders.query.OrderQueryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +16,14 @@ import java.util.List;
 @RequestMapping("/orders")
 public class OrderController {
 
-    private final OrderService orderService;
+    private final OrderDispatchService orderDispatchService;
+    private final OrderQueryService orderQueryService;
+    private final OrderCommandService orderCommandService;
 
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+    public OrderController(OrderDispatchService orderDispatchService, OrderQueryService orderQueryService, OrderCommandService orderCommandService) {
+        this.orderDispatchService = orderDispatchService;
+        this.orderQueryService = orderQueryService;
+        this.orderCommandService = orderCommandService;
     }
 
     @PostMapping
@@ -25,7 +32,7 @@ public class OrderController {
             @RequestParam Long supplierId,
             @RequestParam Long userId
     ) {
-        return ResponseEntity.ok(orderService.createOrder(companyId, supplierId, userId));
+        return ResponseEntity.ok(orderCommandService.createOrder(companyId, supplierId, userId));
     }
 
     @PostMapping("/{orderId}/items")
@@ -34,30 +41,30 @@ public class OrderController {
             @RequestParam Long productId,
             @RequestParam BigDecimal quantity
     ) {
-        orderService.addItem(orderId, productId, quantity);
+        orderCommandService.addItem(orderId, productId, quantity);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/items/{itemId}")
     public ResponseEntity<Void> removeItem(@PathVariable Long itemId) {
-        orderService.removeItem(itemId);
+        orderCommandService.removeItem(itemId);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{orderId}/send")
     public ResponseEntity<Void> sendOrder(@PathVariable Long orderId) throws IOException {
-        orderService.sendOrder(orderId);
+        orderDispatchService.sendOrder(orderId);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Order>> getOrdersByUser(@PathVariable Long userId) {
-        return ResponseEntity.ok(orderService.getOrdersByUser(userId));
+        return ResponseEntity.ok(orderQueryService.getOrdersByUser(userId));
     }
 
     @GetMapping("/lastOrder/{companyId}")
     public ResponseEntity<OrderWithSupplierNameDTO> getLastOrder(@PathVariable Long companyId) {
-        OrderWithSupplierNameDTO order = orderService.findLatestByCompanyId(companyId);
+        OrderWithSupplierNameDTO order = orderQueryService.findLatestByCompanyId(companyId);
 
         if (order == null) {
             return ResponseEntity.notFound().build();
@@ -68,11 +75,11 @@ public class OrderController {
 
     @GetMapping("/company/{companyId}")
     public ResponseEntity<List<OrderSummary>> getOrdersByCompany(@PathVariable Long companyId) {
-        return ResponseEntity.ok(orderService.getOrderSummariesByCompany(companyId));
+        return ResponseEntity.ok(orderQueryService.getOrderSummariesByCompany(companyId));
     }
 
     @GetMapping("/{orderId}/items")
     public ResponseEntity<List<OrderItem>> getOrderItems(@PathVariable Long orderId) {
-        return ResponseEntity.ok(orderService.getOrderItems(orderId));
+        return ResponseEntity.ok(orderQueryService.getOrderItems(orderId));
     }
 }
