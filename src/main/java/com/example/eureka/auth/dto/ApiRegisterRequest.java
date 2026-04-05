@@ -1,4 +1,4 @@
-package com.example.eureka.auth;
+package com.example.eureka.auth.dto;
 
 public class ApiRegisterRequest {
 

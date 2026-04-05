@@ -1,5 +1,9 @@
 package com.example.eureka.auth;
 
+import com.example.eureka.auth.dto.ApiLoginRequest;
+import com.example.eureka.auth.dto.ApiLoginResponse;
+import com.example.eureka.auth.dto.ApiRegisterRequest;
+import com.example.eureka.auth.dto.ApiRegisterResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

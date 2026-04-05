@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface SupplierMapper {
 
@@ -19,6 +21,10 @@ public interface SupplierMapper {
         WHERE id = #{id}
     """)
     Supplier findById(Long id);
+    @Select("""
+        SELECT * FROM suppliers
+        """)
+    List<Supplier> findAll();
 
     @Insert("""
         INSERT INTO suppliers (oib, name)

@@ -1,5 +1,6 @@
 package com.example.eureka.orders;
 
+import com.example.eureka.orders.dto.OrderSummary;
 import com.example.eureka.orders.dto.OrderWithSupplierNameDTO;
 
 import java.io.IOException;
@@ -15,4 +16,5 @@ public interface OrderService {
     List<Order> getOrdersByCompany(Long companyId);
     List<OrderItem> getOrderItems(Long orderId);
     OrderWithSupplierNameDTO findLatestByCompanyId(Long companyId);
+    List<OrderSummary> getOrderSummariesByCompany(Long companyId);
 }

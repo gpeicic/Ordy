@@ -17,14 +17,23 @@ public class PriceComparisonController {
     public PriceComparisonController(PriceComparisonService priceComparisonService) {
         this.priceComparisonService = priceComparisonService;
     }
-
-    @GetMapping("/supplier")
-    public ResponseEntity<List<PriceComparisonItem>> getSupplierComparison(
+    @GetMapping("/allProducts")
+    public ResponseEntity<List<PriceComparisonItem>> getSupplierComparisonForAllProducts(
             @RequestParam Long companyId,
             @RequestParam Long supplierId
     ) {
         return ResponseEntity.ok(
-                priceComparisonService.getSupplierPriceComparison(companyId, supplierId)
+                priceComparisonService.getSupplierPriceComparisonForAllProducts(companyId, supplierId)
+        );
+    }
+
+    @GetMapping("/supplier")
+    public ResponseEntity<List<PriceComparisonItem>> getSupplierComparisonForTopFive(
+            @RequestParam Long companyId,
+            @RequestParam Long supplierId
+    ) {
+        return ResponseEntity.ok(
+                priceComparisonService.getSupplierPriceComparisonForTopFive(companyId, supplierId)
         );
     }
 

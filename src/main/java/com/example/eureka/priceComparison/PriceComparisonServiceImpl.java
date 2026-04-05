@@ -12,10 +12,14 @@ public class PriceComparisonServiceImpl implements PriceComparisonService {
     public PriceComparisonServiceImpl(PriceComparisonMapper priceComparisonMapper) {
         this.priceComparisonMapper = priceComparisonMapper;
     }
+    @Override
+    public List<PriceComparisonItem> getSupplierPriceComparisonForAllProducts(Long companyId, Long supplierId){
+        return priceComparisonMapper.getPriceComparisonForAllProducts(companyId, supplierId);
+    }
 
     @Override
-    public List<PriceComparisonItem> getSupplierPriceComparison(Long companyId, Long supplierId) {
-        return priceComparisonMapper.getPriceComparison(companyId, supplierId);
+    public List<PriceComparisonItem> getSupplierPriceComparisonForTopFive(Long companyId, Long supplierId) {
+        return priceComparisonMapper.getPriceComparisonForTopFive(companyId, supplierId);
     }
 
     @Override

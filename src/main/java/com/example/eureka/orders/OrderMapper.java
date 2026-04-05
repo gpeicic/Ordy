@@ -1,5 +1,6 @@
 package com.example.eureka.orders;
 
+import com.example.eureka.orders.dto.OrderSummary;
 import com.example.eureka.orders.dto.OrderWithSupplierNameDTO;
 import org.apache.ibatis.annotations.*;
 
@@ -51,6 +52,21 @@ public interface OrderMapper {
             @Result(property="supplierName", column="supplier_name")
     })
     OrderWithSupplierNameDTO findLatestByCompanyId(@Param("companyId") Long companyId);
+
+    @Results(value = {
+            @Result(property = "id", column = "id"),
+            @Result(property = "supplierName", column = "supplier_name"),
+            @Result(property = "createdAt", column = "created_at"),
+            @Result(property = "status", column = "status")
+    })
+    @Select("""
+    SELECT o.id, s.name AS supplier_name, o.created_at, o.status
+    FROM orders o
+    JOIN suppliers s ON o.supplier_id = s.id
+    WHERE o.company_id = #{companyId}
+    ORDER BY o.created_at DESC
+""")
+    List<OrderSummary> findSummariesByCompanyId(@Param("companyId") Long companyId);
 
     @Select("SELECT * FROM orders WHERE company_id = #{companyId}")
     List<Order> findByCompanyId(@Param("companyId") Long companyId);

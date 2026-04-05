@@ -3,6 +3,7 @@ package com.example.eureka.priceComparison;
 import java.util.List;
 
 public interface PriceComparisonService {
-    List<PriceComparisonItem> getSupplierPriceComparison(Long companyId, Long supplierId);
+    List<PriceComparisonItem> getSupplierPriceComparisonForAllProducts(Long companyId, Long supplierId);
+    List<PriceComparisonItem> getSupplierPriceComparisonForTopFive(Long companyId, Long supplierId);
     List<PriceComparisonItem> getProductPriceAcrossSuppliers(Long productId);
 }

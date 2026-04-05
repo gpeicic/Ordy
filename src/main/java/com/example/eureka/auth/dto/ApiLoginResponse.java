@@ -1,10 +1,9 @@
-package com.example.eureka.auth;
+package com.example.eureka.auth.dto;
 
-public class ApiRegisterResponse {
-
+public class ApiLoginResponse {
     private String accessToken;
 
-    public ApiRegisterResponse(String accessToken) {
+    public ApiLoginResponse(String accessToken) {
         this.accessToken = accessToken;
     }
 

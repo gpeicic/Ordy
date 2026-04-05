@@ -1,5 +1,7 @@
 package com.example.eureka.orders;
 
+import com.example.eureka.orders.dto.OrderItemDetail;
+import com.example.eureka.orders.dto.OrderSummary;
 import com.example.eureka.orders.dto.OrderWithSupplierNameDTO;
 import com.example.eureka.orders.pdfGenerator.MailService;
 import com.example.eureka.orders.pdfGenerator.PdfGeneratorService;
@@ -10,6 +12,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -63,6 +66,28 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderWithSupplierNameDTO findLatestByCompanyId(Long companyId) {
         return orderMapper.findLatestByCompanyId(companyId);
+    }
+
+    @Override
+    public List<OrderSummary> getOrderSummariesByCompany(Long companyId) {
+        List<OrderSummary> summaries = orderMapper.findSummariesByCompanyId(companyId);
+
+        summaries.forEach(summary -> {
+            List<OrderItem> items = orderItemMapper.findByOrderId(summary.getId());
+            List<OrderItemDetail> details = items.stream()
+                    .map(item -> {
+                        String name = orderItemMapper.findProductNameByProductId(item.getProductId());
+                        OrderItemDetail detail = new OrderItemDetail();
+                        detail.setId(item.getId());
+                        detail.setProductName(name != null ? name : "Nepoznat artikl");
+                        detail.setQuantity(item.getQuantity());
+                        return detail;
+                    })
+                    .collect(Collectors.toList());
+            summary.setItems(details);
+        });
+
+        return summaries;
     }
 
     @Override

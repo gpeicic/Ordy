@@ -1,7 +1,6 @@
 package com.example.eureka.invoice;
 
 import com.example.eureka.merInvoices.parsedInvoice.dto.ParsedInvoice;
-import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
 

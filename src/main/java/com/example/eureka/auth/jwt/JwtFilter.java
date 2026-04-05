@@ -1,7 +1,8 @@
-package com.example.eureka.auth;
+package com.example.eureka.auth.jwt;
 
 
 import java.io.IOException;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

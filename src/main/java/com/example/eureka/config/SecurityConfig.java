@@ -1,6 +1,6 @@
 package com.example.eureka.config;
 
-import com.example.eureka.auth.JwtFilter;
+import com.example.eureka.auth.jwt.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
