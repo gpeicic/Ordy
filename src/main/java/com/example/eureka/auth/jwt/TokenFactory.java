@@ -1,6 +1,5 @@
-package com.example.eureka.auth;
+package com.example.eureka.auth.jwt;
 
-import com.example.eureka.auth.jwt.JwtService;
 import com.example.eureka.company.UserCompaniesMapper;
 import com.example.eureka.user.User;
 import com.example.eureka.user.role.Role;
