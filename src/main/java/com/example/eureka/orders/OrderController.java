@@ -38,10 +38,10 @@ public class OrderController {
     @PostMapping("/{orderId}/items")
     public ResponseEntity<Void> addItem(
             @PathVariable Long orderId,
-            @RequestParam Long productId,
+            @RequestParam Long catalogueItemId,
             @RequestParam BigDecimal quantity
     ) {
-        orderCommandService.addItem(orderId, productId, quantity);
+        orderCommandService.addItem(orderId, catalogueItemId, quantity);
         return ResponseEntity.ok().build();
     }
 

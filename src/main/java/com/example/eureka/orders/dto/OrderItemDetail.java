@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 
 public class OrderItemDetail {
     private Long id;
-    private String productName;
+    private String name;
     private BigDecimal quantity;
 
-    public OrderItemDetail(Long id, String productName, BigDecimal quantity) {
+    public OrderItemDetail(Long id, String name, BigDecimal quantity) {
         this.id = id;
-        this.productName = productName;
+        this.name = name;
         this.quantity = quantity;
     }
     public OrderItemDetail(){}
@@ -22,12 +22,12 @@ public class OrderItemDetail {
         this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BigDecimal getQuantity() {

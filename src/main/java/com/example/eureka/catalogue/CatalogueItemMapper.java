@@ -29,6 +29,9 @@ public interface CatalogueItemMapper {
     })
     List<CatalogueItem> findBySupplierId(Long supplierId);
 
+    @Select("SELECT name, code FROM catalogue_items WHERE id = #{id}")
+    CatalogueItem findNameCodeById(Long id);
+
     @Select("""
     SELECT id, name, code
     FROM catalogue_items

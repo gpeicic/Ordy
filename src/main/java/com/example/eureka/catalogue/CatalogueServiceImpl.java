@@ -40,9 +40,6 @@ public class CatalogueServiceImpl implements CatalogueService {
     public List<SearchItemForOrderDTO> fuzzySearchByName(Long supplierId, String name) {
         Long millis = System.currentTimeMillis();
         List<SearchItemForOrderDTO> result = catalogueItemMapper.fuzzySearchByName(supplierId, name);
-        for(SearchItemForOrderDTO dto : result){
-            System.out.println(dto.getName());
-        }
         System.out.println("Time: " + (System.currentTimeMillis() - millis));
         return catalogueItemMapper.fuzzySearchByName(supplierId, name);
     }

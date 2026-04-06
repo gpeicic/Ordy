@@ -29,10 +29,10 @@ public class OrderCommandServiceImpl implements OrderCommandService {
     }
 
     @Override
-    public void addItem(Long orderId, Long productId, BigDecimal quantity) {
+    public void addItem(Long orderId, Long catalogueItemId, BigDecimal quantity) {
         OrderItem item = new OrderItem();
         item.setOrderId(orderId);
-        item.setProductId(productId);
+        item.setCatalogueItemId(catalogueItemId);
         item.setQuantity(quantity);
         orderItemMapper.insert(item);
     }

@@ -61,10 +61,10 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 
 
     static OrderItemDetail getOrderItemDetail(OrderItem item, OrderItemMapper orderItemMapper) {
-        String name = orderItemMapper.findProductNameByProductId(item.getProductId());
+        String name = orderItemMapper.findProductNameByCatalogueItemId(item.getCatalogueItemId());
         OrderItemDetail detail = new OrderItemDetail();
         detail.setId(item.getId());
-        detail.setProductName(name != null ? name : "Nepoznat artikl");
+        detail.setName(name != null ? name : "Nepoznat artikl");
         detail.setQuantity(item.getQuantity());
         return detail;
     }
