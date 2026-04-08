@@ -10,6 +10,7 @@ import com.example.eureka.orders.OrderItem;
 import com.example.eureka.orders.OrderItemMapper;
 import com.example.eureka.supplier.Supplier;
 import com.example.eureka.supplier.SupplierMapper;
+import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.colors.DeviceRgb;
@@ -59,8 +60,14 @@ public class PdfGeneratorService {
         Document document = new Document(pdfDocument, PageSize.A4);
         document.setMargins(40, 40, 40, 40);
 
-        PdfFont bold = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
-        PdfFont regular = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+        PdfFont bold = PdfFontFactory.createFont(
+                "src/main/resources/fonts/DejaVuSans-Bold.ttf",
+                PdfEncodings.IDENTITY_H
+        );
+        PdfFont regular = PdfFontFactory.createFont(
+                "src/main/resources/fonts/DejaVuSans.ttf",
+                PdfEncodings.IDENTITY_H
+        );
 
         document.add(buildHeaderTable(order, supplier, bold, regular));
         document.add(new Paragraph("\n"));
@@ -120,7 +127,7 @@ public class PdfGeneratorService {
         Table productTable = new Table(UnitValue.createPercentArray(new float[]{50, 30, 20}))
                 .setWidth(UnitValue.createPercentValue(100));
 
-        Stream.of("Naziv proizvoda", "Sifra", "Kolicina").forEach(col -> productTable.addHeaderCell(
+        Stream.of("Naziv proizvoda", "Šifra", "Količina").forEach(col -> productTable.addHeaderCell(
                 new Cell()
                         .setBackgroundColor(new DeviceRgb(50, 50, 50))
                         .add(new Paragraph(col).setFont(bold).setFontSize(10).setFontColor(ColorConstants.WHITE))

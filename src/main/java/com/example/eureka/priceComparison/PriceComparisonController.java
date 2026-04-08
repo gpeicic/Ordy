@@ -1,6 +1,7 @@
 package com.example.eureka.priceComparison;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +39,7 @@ public class PriceComparisonController {
     }
 
     @GetMapping("/product")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<List<PriceComparisonItem>> getProductComparison(
             @RequestParam Long productId
     ) {

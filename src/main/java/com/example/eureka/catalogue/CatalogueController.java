@@ -2,6 +2,7 @@ package com.example.eureka.catalogue;
 
 import com.example.eureka.catalogue.dto.SearchItemForOrderDTO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,7 @@ public class CatalogueController {
     }
 
     @PostMapping("/import/{supplierId}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<String> importCatalogue(
             @PathVariable Long supplierId,
             @RequestParam("file") MultipartFile file) throws IOException {
@@ -32,11 +34,13 @@ public class CatalogueController {
     }
 
     @GetMapping("/{supplierId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<List<CatalogueItem>> getCatalogue(@PathVariable Long supplierId) {
         return ResponseEntity.ok(catalogueService.getBySupplier(supplierId));
     }
 
     @GetMapping("/search/{supplierId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<List<SearchItemForOrderDTO>> fuzzySearch(@PathVariable Long supplierId, @RequestParam String name) {
         return ResponseEntity.ok(catalogueService.fuzzySearchByName(supplierId, name));
     }
