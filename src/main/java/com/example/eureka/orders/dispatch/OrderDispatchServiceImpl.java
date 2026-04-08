@@ -3,7 +3,7 @@ package com.example.eureka.orders.dispatch;
 import com.example.eureka.orders.Order;
 import com.example.eureka.orders.OrderMapper;
 import com.example.eureka.orders.OrderStatus;
-import com.example.eureka.orders.pdfGenerator.MailService;
+import com.example.eureka.orders.mail.MailService;
 import com.example.eureka.orders.pdfGenerator.PdfGeneratorService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,5 +29,22 @@ public class OrderDispatchServiceImpl implements OrderDispatchService{
         byte[] pdfBytes = pdfGeneratorService.generateOrderPdf(order);
         mailService.sendOrderPdf(order, pdfBytes);
         orderMapper.updateStatus(orderId, String.valueOf(OrderStatus.POSLANO));
+    }
+
+    @Override
+    @Transactional
+    public String confirmOrder(Long orderId) {
+        Order order = orderMapper.findById(orderId);
+
+        if (order == null) {
+            return "NOT_FOUND";
+        }
+
+        if (OrderStatus.POTVRĐENO.name().equals(order.getStatus())) {
+            return "ALREADY_CONFIRMED";
+        }
+
+        orderMapper.updateStatus(orderId, String.valueOf(OrderStatus.POTVRĐENO));
+        return "CONFIRMED";
     }
 }

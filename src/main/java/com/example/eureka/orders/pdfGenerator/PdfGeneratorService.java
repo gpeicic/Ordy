@@ -68,7 +68,7 @@ public class PdfGeneratorService {
         document.add(new Paragraph("\n"));
         document.add(buildProductTable(order, items, bold, regular));
 
-        document.close(); // nakon close, baos sadrži cijeli PDF
+        document.close();
 
         return baos.toByteArray();
     }

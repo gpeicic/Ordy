@@ -82,4 +82,17 @@ public class OrderController {
     public ResponseEntity<List<OrderItem>> getOrderItems(@PathVariable Long orderId) {
         return ResponseEntity.ok(orderQueryService.getOrderItems(orderId));
     }
+
+    @GetMapping(value = "/confirm/{id}", produces = "text/html")
+    public ResponseEntity<String> confirmOrder(@PathVariable Long id) {
+        String status = orderDispatchService.confirmOrder(id);
+
+        String html = switch (status) {
+            case "NOT_FOUND" -> "<html>...<h2>❌ Narudžba nije pronađena</h2>...</html>";
+            case "ALREADY_CONFIRMED" -> "<html>...<h2>⚠️ Već potvrđeno</h2>...</html>";
+            default -> "<html>...<h1>✅ Potvrđeno!</h1><script>setTimeout(() => window.close(), 2000);</script>...</html>";
+        };
+
+        return ResponseEntity.ok(html);
+    }
 }
