@@ -7,7 +7,14 @@ public class ApiRegisterRequest {
     private String companyName;
     private String merEmail;
     private String merPassword;
+    private String address;
 
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
     public String getUsername() {
         return username;
     }

@@ -35,6 +35,7 @@ public class RegistrationService {
         company.setName(request.getCompanyName());
         company.setMerEmail(request.getMerEmail());
         company.setMerPassword(request.getMerPassword());
+        company.setAddress(request.getAddress());
         companyMapper.insert(company);
         return company;
     }

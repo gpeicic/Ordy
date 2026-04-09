@@ -4,10 +4,8 @@ import com.example.eureka.auth.dto.ApiLoginRequest;
 import com.example.eureka.auth.dto.ApiLoginResponse;
 import com.example.eureka.auth.dto.ApiRegisterRequest;
 import com.example.eureka.auth.dto.ApiRegisterResponse;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -28,5 +26,10 @@ public class ApiAuthController {
     @PostMapping("/register")
     public ApiRegisterResponse register(@RequestBody ApiRegisterRequest request) {
         return authService.register(request);
+    }
+    @PostMapping("/switch-company/{companyId}")
+    public ApiLoginResponse switchCompany(@PathVariable Long companyId, HttpServletRequest request) {
+        String token = request.getHeader("Authorization").substring(7);
+        return authService.switchCompany(companyId, token);
     }
 }

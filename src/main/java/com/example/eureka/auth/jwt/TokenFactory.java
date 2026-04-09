@@ -24,4 +24,9 @@ public class TokenFactory {
         Long companyId = userCompaniesMapper.getFirstCompanyIdByUserId(user.getId());
         return jwtService.generateToken(user, role, companyId);
     }
+
+    public String generateFor(User user, Long companyId) {
+        Role role = roleMapper.findById(user.getRole_id());
+        return jwtService.generateToken(user, role, companyId);
+    }
 }

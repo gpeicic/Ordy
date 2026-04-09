@@ -8,4 +8,5 @@ import com.example.eureka.auth.dto.ApiRegisterResponse;
 public interface ApiAuthService {
     ApiLoginResponse login(ApiLoginRequest request);
     ApiRegisterResponse register(ApiRegisterRequest request);
+    public ApiLoginResponse switchCompany(Long companyId, String token);
 }
