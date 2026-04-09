@@ -1,4 +1,4 @@
-package com.example.eureka.company;
+package com.example.eureka.supplier;
 
 import org.apache.ibatis.annotations.*;
 
@@ -22,12 +22,14 @@ public interface CompanySuppliersMapper {
     void delete(@Param("companyId") Long companyId,
                 @Param("supplierId") Long supplierId);
 
+
     @Select("""
-        SELECT supplier_id
-        FROM company_suppliers
-        WHERE company_id = #{companyId}
-    """)
-    List<Long> findSupplierIdsByCompanyId(@Param("companyId") Long companyId);
+    SELECT s.*
+    FROM suppliers s
+    INNER JOIN company_suppliers cs ON s.id = cs.supplier_id
+    WHERE cs.company_id = #{companyId}
+""")
+    List<Supplier> findSuppliersFromCompany(Long companyId);
 
     @Select("""
         SELECT COUNT(*)

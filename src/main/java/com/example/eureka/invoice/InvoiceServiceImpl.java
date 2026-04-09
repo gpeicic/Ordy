@@ -1,6 +1,6 @@
 package com.example.eureka.invoice;
 
-import com.example.eureka.company.CompanySuppliersMapper;
+import com.example.eureka.supplier.CompanySuppliersMapper;
 import com.example.eureka.merInvoices.parsedInvoice.dto.ParsedInvoice;
 import com.example.eureka.merInvoices.parsedInvoice.dto.ParsedInvoiceItem;
 import com.example.eureka.products.ProductService;

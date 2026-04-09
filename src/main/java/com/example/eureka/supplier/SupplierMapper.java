@@ -1,9 +1,6 @@
 package com.example.eureka.supplier;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,15 +22,6 @@ public interface SupplierMapper {
         SELECT * FROM suppliers
         """)
     List<Supplier> findAll();
-
-    @Select("""
-    SELECT s.*
-    FROM suppliers s
-    INNER JOIN company_suppliers cs ON s.id = cs.supplier_id
-    WHERE cs.company_id = #{companyId}
-""")
-    List<Supplier> findSuppliersFromCompany(Long companyId);
-
 
     @Insert("""
         INSERT INTO suppliers (oib, name)
