@@ -11,7 +11,9 @@ public interface CompanyMapper {
         SELECT id,
                name,
                mer_email AS merEmail,
-               mer_password AS merPassword
+               mer_password AS merPassword,
+               address
+        
         FROM companies
         WHERE id = #{id}
     """)
@@ -21,14 +23,15 @@ public interface CompanyMapper {
         SELECT id,
                name,
                mer_email AS merEmail,
-               mer_password AS merPassword
+               mer_password AS merPassword,
+               address
         FROM companies
     """)
     List<Company> findAll();
 
     @Insert("""
-        INSERT INTO companies(name, mer_email, mer_password)
-        VALUES(#{name}, #{merEmail}, #{merPassword})
+        INSERT INTO companies(name, mer_email, mer_password, address)
+        VALUES(#{name}, #{merEmail}, #{merPassword}, #{address})
     """)
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Company company);
@@ -37,7 +40,8 @@ public interface CompanyMapper {
         UPDATE companies
         SET name = #{name},
             mer_email = #{merEmail},
-            mer_password = #{merPassword}
+            mer_password = #{merPassword},
+            address = #{address}
         WHERE id = #{id}
     """)
     void update(Company company);

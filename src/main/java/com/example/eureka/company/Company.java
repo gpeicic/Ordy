@@ -1,14 +1,27 @@
 package com.example.eureka.company;
 
+import com.example.eureka.supplier.Supplier;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+
 public class Company {
     private Long id;
     private String name;
     private String merEmail;
     private String merPassword;
+    private String address;
 
     public Company() {
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public Long getId() {
         return id;
