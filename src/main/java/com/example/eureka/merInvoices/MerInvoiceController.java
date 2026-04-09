@@ -22,7 +22,7 @@ public class MerInvoiceController {
     }
 
     @GetMapping("/{companyId}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    //@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public List<InvoiceSummary> getInvoices(@PathVariable Long companyId) {
         return merInvoiceService.getReceivedInvoices(companyId);
     }

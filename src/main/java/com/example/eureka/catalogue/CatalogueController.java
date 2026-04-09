@@ -34,13 +34,13 @@ public class CatalogueController {
     }
 
     @GetMapping("/{supplierId}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+   // @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<List<CatalogueItem>> getCatalogue(@PathVariable Long supplierId) {
         return ResponseEntity.ok(catalogueService.getBySupplier(supplierId));
     }
 
     @GetMapping("/search/{supplierId}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+  //  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<List<SearchItemForOrderDTO>> fuzzySearch(@PathVariable Long supplierId, @RequestParam String name) {
         return ResponseEntity.ok(catalogueService.fuzzySearchByName(supplierId, name));
     }
