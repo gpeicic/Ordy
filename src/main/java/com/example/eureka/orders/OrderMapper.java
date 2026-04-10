@@ -18,6 +18,7 @@ public interface OrderMapper {
             @Result(property = "companyId", column = "company_id"),
             @Result(property = "supplierId", column = "supplier_id"),
             @Result(property = "userId", column = "user_id"),
+            @Result(property = "venueId", column = "venue_id"),
             @Result(property = "createdAt", column = "created_at"),
             @Result(property = "status", column = "status")
     })
@@ -53,19 +54,23 @@ public interface OrderMapper {
     })
     OrderWithSupplierNameDTO findLatestByCompanyId(@Param("companyId") Long companyId);
 
-    @Results(value = {
-            @Result(property = "id", column = "id"),
-            @Result(property = "supplierName", column = "supplier_name"),
-            @Result(property = "createdAt", column = "created_at"),
-            @Result(property = "status", column = "status")
-    })
     @Select("""
-    SELECT o.id, s.name AS supplier_name, o.created_at, o.status
+    SELECT o.id, o.supplier_id, o.venue_id, s.name AS supplier_name, o.created_at, o.status, v.name AS venue_name
     FROM orders o
     JOIN suppliers s ON o.supplier_id = s.id
+    LEFT JOIN venues v ON o.venue_id = v.id
     WHERE o.company_id = #{companyId}
     ORDER BY o.created_at DESC
 """)
+    @Results(id = "orderWithVenueName", value = {
+            @Result(property = "id", column = "id"),
+            @Result(property = "supplierId", column = "supplier_id"),
+            @Result(property = "venueId", column = "venue_id"),
+            @Result(property = "supplierName", column = "supplier_name"),
+            @Result(property = "createdAt", column = "created_at"),
+            @Result(property = "status", column = "status"),
+            @Result(property = "venueName", column = "venue_name")
+    })
     List<OrderSummary> findSummariesByCompanyId(@Param("companyId") Long companyId);
 
     @Select("SELECT * FROM orders WHERE company_id = #{companyId}")

@@ -5,19 +5,38 @@ import java.util.List;
 
 public class OrderSummary {
     private Long id;
+    private Long supplierId;
+    private Long venueId;
     private String supplierName;
+    private String venueName;
     private LocalDateTime createdAt;
     private String status;
     private List<OrderItemDetail> items;
 
     public OrderSummary(){}
 
-    public OrderSummary(Long id, String supplierName, LocalDateTime createdAt, String status, List<OrderItemDetail> items) {
-        this.id = id;
-        this.supplierName = supplierName;
-        this.createdAt = createdAt;
-        this.status = status;
-        this.items = items;
+    public Long getVenueId() {
+        return venueId;
+    }
+
+    public void setVenueId(Long venueId) {
+        this.venueId = venueId;
+    }
+
+    public Long getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(Long supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public String getVenueName() {
+        return venueName;
+    }
+
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
     }
 
     public Long getId() {

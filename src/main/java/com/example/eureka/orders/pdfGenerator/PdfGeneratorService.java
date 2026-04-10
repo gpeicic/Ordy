@@ -124,7 +124,6 @@ public class PdfGeneratorService {
                 .setPadding(10);
         companyCell.add(new Paragraph("Naručitelj").setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
         companyCell.add(new Paragraph(company.getName()).setFont(bold).setFontSize(12));
-
         if (venue != null) {
             companyCell.add(new Paragraph(venue.getName()).setFont(bold).setFontSize(10));
             companyCell.add(new Paragraph(venue.getAddress()).setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
