@@ -10,6 +10,8 @@ import com.example.eureka.orders.OrderItem;
 import com.example.eureka.orders.OrderItemMapper;
 import com.example.eureka.supplier.Supplier;
 import com.example.eureka.supplier.SupplierMapper;
+import com.example.eureka.venue.Venue;
+import com.example.eureka.venue.VenueMapper;
 import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.colors.ColorConstants;
@@ -40,18 +42,22 @@ public class PdfGeneratorService {
     private final SupplierMapper supplierMapper;
     private final OrderItemMapper orderItemMapper;
     private final CatalogueItemMapper catalogueItemMapper;
+    private final VenueMapper venueMapper;
 
     public PdfGeneratorService(CompanyMapper companyMapper, SupplierMapper supplierMapper,
-                               OrderItemMapper orderItemMapper, CatalogueItemMapper catalogueItemMapper) {
+                               OrderItemMapper orderItemMapper, CatalogueItemMapper catalogueItemMapper,
+                               VenueMapper venueMapper) {
         this.companyMapper = companyMapper;
         this.supplierMapper = supplierMapper;
         this.orderItemMapper = orderItemMapper;
         this.catalogueItemMapper = catalogueItemMapper;
+        this.venueMapper = venueMapper;
     }
 
     public byte[] generateOrderPdf(Order order) throws IOException {
         Company company = companyMapper.findById(order.getCompanyId());
         Supplier supplier = supplierMapper.findById(order.getSupplierId());
+        Venue venue = venueMapper.findById(order.getVenueId());
         List<OrderItem> items = orderItemMapper.findByOrderId(order.getId());
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -71,7 +77,7 @@ public class PdfGeneratorService {
 
         document.add(buildHeaderTable(order, supplier, bold, regular));
         document.add(new Paragraph("\n"));
-        document.add(buildCompanyTable(company, bold));
+        document.add(buildCompanyTable(company, venue, bold));
         document.add(new Paragraph("\n"));
         document.add(buildProductTable(order, items, bold, regular));
 
@@ -108,7 +114,7 @@ public class PdfGeneratorService {
         return headerTable;
     }
 
-    private Table buildCompanyTable(Company company, PdfFont bold) {
+    private Table buildCompanyTable(Company company, Venue venue, PdfFont bold) {
         Table companyTable = new Table(UnitValue.createPercentArray(new float[]{100}))
                 .setWidth(UnitValue.createPercentValue(50));
 
@@ -118,8 +124,14 @@ public class PdfGeneratorService {
                 .setPadding(10);
         companyCell.add(new Paragraph("Naručitelj").setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
         companyCell.add(new Paragraph(company.getName()).setFont(bold).setFontSize(12));
-        companyTable.addCell(companyCell);
 
+        if (venue != null) {
+            companyCell.add(new Paragraph(venue.getName()).setFont(bold).setFontSize(10));
+            companyCell.add(new Paragraph(venue.getAddress()).setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
+            companyCell.add(new Paragraph(venue.getPostalCode() + " " + venue.getCity()).setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
+        }
+
+        companyTable.addCell(companyCell);
         return companyTable;
     }
 

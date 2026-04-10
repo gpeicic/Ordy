@@ -19,7 +19,7 @@ public interface UserCompaniesMapper {
     void insertUserCompany(@Param("userId") Long userId, @Param("companyId") Long companyId);
 
     @Select("""
-    SELECT c.id, c.name, c.mer_email AS merEmail, c.mer_password AS merPassword, c.address
+    SELECT c.id, c.name, c.mer_email AS merEmail, c.mer_password AS merPassword
     FROM companies c
     INNER JOIN user_companies uc ON c.id = uc.company_id
     WHERE uc.user_id = #{userId}

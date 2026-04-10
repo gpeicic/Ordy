@@ -7,17 +7,18 @@ public class Order {
     private Long companyId;
     private Long supplierId;
     private Long userId;
+    private Long venueId;
     private LocalDateTime createdAt;
     private String status;
 
     public Order(){}
-    public Order(Long id, Long companyId, Long supplierId, Long userId, LocalDateTime createdAt, String status) {
-        this.id = id;
-        this.companyId = companyId;
-        this.supplierId = supplierId;
-        this.userId = userId;
-        this.createdAt = createdAt;
-        this.status = status;
+
+    public Long getVenueId() {
+        return venueId;
+    }
+
+    public void setVenueId(Long venueId) {
+        this.venueId = venueId;
     }
 
     public Long getId() {

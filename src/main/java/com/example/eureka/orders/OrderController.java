@@ -30,9 +30,10 @@ public class OrderController {
     public ResponseEntity<Order> createOrder(
             @RequestParam Long companyId,
             @RequestParam Long supplierId,
-            @RequestParam Long userId
+            @RequestParam Long userId,
+            @RequestParam Long venueId
     ) {
-        return ResponseEntity.ok(orderCommandService.createOrder(companyId, supplierId, userId));
+        return ResponseEntity.ok(orderCommandService.createOrder(companyId, supplierId, userId,venueId));
     }
 
     @PostMapping("/{orderId}/items")

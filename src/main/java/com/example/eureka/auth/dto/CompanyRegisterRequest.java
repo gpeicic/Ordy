@@ -1,0 +1,21 @@
+package com.example.eureka.auth.dto;
+
+import java.util.List;
+
+public class CompanyRegisterRequest {
+    private String companyName;
+    private String merEmail;
+    private String merPassword;
+    private List<VenueRegisterRequest> venues;
+
+
+
+    public String getCompanyName() { return companyName; }
+    public void setCompanyName(String companyName) { this.companyName = companyName; }
+    public String getMerEmail() { return merEmail; }
+    public void setMerEmail(String merEmail) { this.merEmail = merEmail; }
+    public String getMerPassword() { return merPassword; }
+    public void setMerPassword(String merPassword) { this.merPassword = merPassword; }
+    public List<VenueRegisterRequest> getVenues() { return venues; }
+    public void setVenues(List<VenueRegisterRequest> venues) { this.venues = venues; }
+}

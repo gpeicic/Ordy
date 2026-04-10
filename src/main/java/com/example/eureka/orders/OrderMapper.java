@@ -8,8 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface OrderMapper {
-    @Insert("INSERT INTO orders (company_id, supplier_id, user_id, created_at, status) " +
-            "VALUES (#{companyId}, #{supplierId}, #{userId}, NOW(), #{status})")
+    @Insert("INSERT INTO orders (company_id, supplier_id, user_id, venue_id, created_at, status) " +
+            "VALUES (#{companyId}, #{supplierId}, #{userId}, #{venueId}, NOW(), #{status})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Order order);
 

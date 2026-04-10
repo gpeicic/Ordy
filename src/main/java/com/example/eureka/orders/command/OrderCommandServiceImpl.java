@@ -17,11 +17,12 @@ public class OrderCommandServiceImpl implements OrderCommandService {
     }
 
     @Override
-    public Order createOrder(Long companyId, Long supplierId, Long userId) {
+    public Order createOrder(Long companyId, Long supplierId, Long userId,Long venueId) {
         Order order = new Order();
         order.setCompanyId(companyId);
         order.setSupplierId(supplierId);
         order.setUserId(userId);
+        order.setVenueId(venueId);
         order.setCreatedAt(LocalDateTime.now());
         order.setStatus(String.valueOf(OrderStatus.KREIRANO));
         orderMapper.insert(order);
