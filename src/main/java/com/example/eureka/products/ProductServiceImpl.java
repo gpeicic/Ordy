@@ -1,5 +1,6 @@
 package com.example.eureka.products;
 
+import com.example.eureka.exception.ValidationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -21,7 +22,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Long resolveProductId(String rawName) {
+        if (rawName == null || rawName.isBlank()) {
+            throw new ValidationException("Naziv proizvoda je obavezan");
+        }
         String normalized = normalize(rawName);
+        if (normalized == null || normalized.isBlank()) {
+            throw new ValidationException("Naziv proizvoda nije validan nakon normalizacije: " + rawName);
+        }
 
         Product exact = productMapper.findByCanonicalName(normalized);
         if (exact != null) {

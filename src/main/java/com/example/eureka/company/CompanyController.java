@@ -1,5 +1,7 @@
 package com.example.eureka.company;
 
+import com.example.eureka.company.dto.CompanyResponseDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,7 @@ public class CompanyController {
     }
 
     @GetMapping("/{userId}")
-    public List<Company> findCompaniesByUserId(@PathVariable Long userId) {
-        return companyService.findCompaniesByUserId(userId);
+    public ResponseEntity<List<CompanyResponseDTO>> findCompaniesByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(companyService.findCompaniesByUserId(userId));
     }
 }

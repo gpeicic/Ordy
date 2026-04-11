@@ -1,5 +1,6 @@
 package com.example.eureka.merInvoices;
 
+import com.example.eureka.exception.ResourceNotFoundException;
 import com.example.eureka.invoice.InvoiceService;
 import com.example.eureka.merInvoices.dto.InvoiceSummary;
 import com.example.eureka.merInvoices.dto.SearchReceivedRequest;
@@ -53,7 +54,7 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
     private SessionToken findTokenOrThrow(Long companyId) {
         SessionToken token = sessionTokenMapper.findByCompanyId(companyId);
         if (token == null) {
-            throw new RuntimeException("MER token not found for company " + companyId);
+            throw new ResourceNotFoundException("MER token nije pronađen za kompaniju: " + companyId);
         }
         token.setAccessToken(encryptor.decrypt(token.getAccessToken()));
         return token;

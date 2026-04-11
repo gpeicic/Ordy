@@ -6,6 +6,8 @@ import com.example.eureka.auth.dto.ApiRegisterRequest;
 import com.example.eureka.auth.dto.ApiRegisterResponse;
 import com.example.eureka.exception.UnauthorizedException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,22 +21,21 @@ public class ApiAuthController {
     }
 
     @PostMapping("/login")
-    public ApiLoginResponse login(@RequestBody ApiLoginRequest request) {
-
-        return authService.login(request);
+    public ResponseEntity<ApiLoginResponse> login(@Valid @RequestBody ApiLoginRequest request) {
+       return ResponseEntity.ok(authService.login(request));
     }
 
     @PostMapping("/register")
-    public ApiRegisterResponse register(@RequestBody ApiRegisterRequest request) {
-        return authService.register(request);
+    public ResponseEntity<ApiRegisterResponse> register(@Valid @RequestBody ApiRegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request));
     }
     @PostMapping("/switch-company/{companyId}")
-    public ApiLoginResponse switchCompany(@PathVariable Long companyId, HttpServletRequest request) {
+    public ResponseEntity<ApiLoginResponse> switchCompany(@PathVariable Long companyId, HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new UnauthorizedException("Neispravan token");
         }
         String token = authHeader.substring(7);
-        return authService.switchCompany(companyId, token);
+        return ResponseEntity.ok(authService.switchCompany(companyId, token));
     }
 }

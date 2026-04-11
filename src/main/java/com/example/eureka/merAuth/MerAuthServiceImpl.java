@@ -2,6 +2,8 @@ package com.example.eureka.merAuth;
 
 import com.example.eureka.company.Company;
 import com.example.eureka.company.CompanyMapper;
+import com.example.eureka.exception.ResourceNotFoundException;
+import com.example.eureka.exception.ValidationException;
 import com.example.eureka.sessionToken.SessionToken;
 import com.example.eureka.sessionToken.SessionTokenMapper;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
@@ -28,7 +30,16 @@ public class MerAuthServiceImpl implements MerAuthService {
     @Override
     public void loginCompany(Long companyId) {
         Company company = companyMapper.findById(companyId);
+        if (company == null) {
+            throw new ResourceNotFoundException("Kompanija nije pronađena: " + companyId);
+        }
+        if (company.getMerEmail() == null || company.getMerPassword() == null) {
+            throw new ValidationException("MER kredencijali nisu postavljeni za kompaniju: " + companyId);
+        }
         MerLoginResponse response = merClient.login(buildLoginRequest(company));
+        if (response == null || response.getAccessToken() == null) {
+            throw new ValidationException("MER login nije uspio za kompaniju: " + companyId);
+        }
         tokenMapper.upsert(buildSessionToken(companyId, response));
     }
 

@@ -1,5 +1,6 @@
 package com.example.eureka.orders.command;
 
+import com.example.eureka.exception.ValidationException;
 import com.example.eureka.orders.*;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,10 @@ public class OrderCommandServiceImpl implements OrderCommandService {
     }
 
     @Override
-    public Order createOrder(Long companyId, Long supplierId, Long userId,Long venueId) {
+    public Order createOrder(Long companyId, Long supplierId, Long userId, Long venueId) {
+        if (companyId == null || supplierId == null || userId == null || venueId == null) {
+            throw new ValidationException("companyId, supplierId, userId i venueId su obavezni");
+        }
         Order order = new Order();
         order.setCompanyId(companyId);
         order.setSupplierId(supplierId);
@@ -31,10 +35,13 @@ public class OrderCommandServiceImpl implements OrderCommandService {
 
     @Override
     public void addItem(Long orderId, Long catalogueItemId, BigDecimal quantity) {
+        if (orderId == null || catalogueItemId == null) {
+            throw new ValidationException("orderId i catalogueItemId su obavezni");
+        }
         OrderItem item = new OrderItem();
         item.setOrderId(orderId);
         item.setCatalogueItemId(catalogueItemId);
-        item.setQuantity(quantity);
+        item.setQuantity(quantity != null ? quantity : BigDecimal.ONE);
         orderItemMapper.insert(item);
     }
 

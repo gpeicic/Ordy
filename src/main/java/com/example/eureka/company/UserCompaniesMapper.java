@@ -1,5 +1,6 @@
 package com.example.eureka.company;
 
+import com.example.eureka.company.dto.CompanyResponseDTO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -19,11 +20,11 @@ public interface UserCompaniesMapper {
     void insertUserCompany(@Param("userId") Long userId, @Param("companyId") Long companyId);
 
     @Select("""
-    SELECT c.id, c.name, c.mer_email AS merEmail, c.mer_password AS merPassword
+    SELECT c.id, c.name
     FROM companies c
     INNER JOIN user_companies uc ON c.id = uc.company_id
     WHERE uc.user_id = #{userId}
 """)
-    List<Company> findCompaniesByUserId(@Param("userId") Long userId);
+    List<CompanyResponseDTO> findCompaniesByUserId(@Param("userId") Long userId);
 
 }

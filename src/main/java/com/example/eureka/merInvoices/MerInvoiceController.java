@@ -23,8 +23,8 @@ public class MerInvoiceController {
 
     @GetMapping("/{companyId}")
     //@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public List<InvoiceSummary> getInvoices(@PathVariable Long companyId) {
-        return merInvoiceService.getReceivedInvoices(companyId);
+    public ResponseEntity<List<InvoiceSummary>> getInvoices(@PathVariable Long companyId) {
+        return ResponseEntity.ok(merInvoiceService.getReceivedInvoices(companyId));
     }
     @GetMapping("/{companyId}/{documentId}")
     public ResponseEntity<String> downloadXml(

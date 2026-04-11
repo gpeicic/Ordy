@@ -1,9 +1,18 @@
 package com.example.eureka.auth.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class VenueRegisterRequest {
+    @NotBlank(message = "Naziv objekta je obavezan")
     private String name;
+
+    @NotBlank(message = "Adresa je obavezna")
     private String address;
+
+    @NotBlank(message = "Grad je obavezan")
     private String city;
+
+    @NotBlank(message = "Poštanski broj je obavezan")
     private String postalCode;
 
     public String getName() { return name; }

@@ -24,11 +24,6 @@ public class CatalogueController {
     public ResponseEntity<String> importCatalogue(
             @PathVariable Long supplierId,
             @RequestParam("file") MultipartFile file) throws IOException {
-
-        if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body("Fajl je prazan");
-        }
-
         int count = catalogueService.importFromPdf(supplierId, file.getBytes());
         return ResponseEntity.ok("Uvezeno " + count + " artikala");
     }

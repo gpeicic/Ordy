@@ -36,7 +36,6 @@ public class RegistrationService {
     }
 
     public User register(ApiRegisterRequest request) {
-        validateRegisterRequest(request);
 
         if (userMapper.findByUsername(request.getUsername()) != null) {
             throw new ValidationException("Korisničko ime već postoji");
@@ -81,23 +80,5 @@ public class RegistrationService {
             venueMapper.insert(venue);
         }
     }
-    private void validateRegisterRequest(ApiRegisterRequest request) {
-        if (request.getUsername() == null || request.getUsername().isBlank()) {
-            throw new ValidationException("Korisničko ime je obavezno");
-        }
-        if (request.getPassword() == null || request.getPassword().length() < 8) {
-            throw new ValidationException("Lozinka mora imati najmanje 8 znakova");
-        }
-        if (request.getCompanies() == null || request.getCompanies().isEmpty()) {
-            throw new ValidationException("Potrebna je najmanje jedna kompanija");
-        }
-        for (CompanyRegisterRequest company : request.getCompanies()) {
-            if (company.getMerEmail() == null || !company.getMerEmail().matches("^[\\w.-]+@[\\w.-]+\\.[a-z]{2,}$")) {
-                throw new ValidationException("Neispravan email format: " + company.getMerEmail());
-            }
-            if (company.getVenues() == null || company.getVenues().isEmpty()) {
-                throw new ValidationException("Kompanija mora imati najmanje jedan objekt");
-            }
-        }
-    }
+
 }

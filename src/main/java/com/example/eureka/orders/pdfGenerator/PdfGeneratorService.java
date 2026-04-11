@@ -4,6 +4,8 @@ import com.example.eureka.catalogue.CatalogueItem;
 import com.example.eureka.catalogue.CatalogueItemMapper;
 import com.example.eureka.company.Company;
 import com.example.eureka.company.CompanyMapper;
+import com.example.eureka.exception.ResourceNotFoundException;
+import com.example.eureka.exception.ValidationException;
 import com.example.eureka.invoice.InvoiceItemMapper;
 import com.example.eureka.orders.Order;
 import com.example.eureka.orders.OrderItem;
@@ -55,10 +57,22 @@ public class PdfGeneratorService {
     }
 
     public byte[] generateOrderPdf(Order order) throws IOException {
+        if (order == null) {
+            throw new ValidationException("Order je null");
+        }
         Company company = companyMapper.findById(order.getCompanyId());
+        if (company == null) {
+            throw new ResourceNotFoundException("Kompanija nije pronađena: " + order.getCompanyId());
+        }
         Supplier supplier = supplierMapper.findById(order.getSupplierId());
+        if (supplier == null) {
+            throw new ResourceNotFoundException("Dobavljač nije pronađen: " + order.getSupplierId());
+        }
         Venue venue = venueMapper.findById(order.getVenueId());
         List<OrderItem> items = orderItemMapper.findByOrderId(order.getId());
+        if (items == null || items.isEmpty()) {
+            throw new ValidationException("Narudžba nema artikala: " + order.getId());
+        }
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PdfWriter writer = new PdfWriter(baos);

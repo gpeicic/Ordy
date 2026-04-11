@@ -1,5 +1,6 @@
 package com.example.eureka.invoice;
 
+import com.example.eureka.exception.ValidationException;
 import com.example.eureka.supplier.CompanySuppliersMapper;
 import com.example.eureka.merInvoices.parsedInvoice.dto.ParsedInvoice;
 import com.example.eureka.merInvoices.parsedInvoice.dto.ParsedInvoiceItem;
@@ -38,7 +39,13 @@ public class InvoiceServiceImpl implements  InvoiceService {
     @Override
     public void saveParsedInvoice(ParsedInvoice parsed, Long externalDocumentId, Long companyId) {
         if (parsed == null) {
-            return;
+            throw new ValidationException("Parsed invoice je null");
+        }
+        if (parsed.getOib() == null || parsed.getOib().isBlank()) {
+            throw new ValidationException("OIB dobavljača nedostaje u računu");
+        }
+        if (parsed.getItems() == null || parsed.getItems().isEmpty()) {
+            throw new ValidationException("Račun nema stavki");
         }
 
         Supplier supplier = findOrCreateSupplier(parsed);
@@ -48,9 +55,7 @@ public class InvoiceServiceImpl implements  InvoiceService {
         }
 
         linkSupplierToCompanyIfMissing(companyId, supplier.getId());
-
         Invoice invoice = createAndSaveInvoice(parsed, externalDocumentId, companyId, supplier.getId());
-
         saveInvoiceItems(parsed.getItems(), invoice.getId());
     }
 

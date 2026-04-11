@@ -1,5 +1,6 @@
 package com.example.eureka.orders.dispatch;
 
+import com.example.eureka.exception.ResourceNotFoundException;
 import com.example.eureka.orders.Order;
 import com.example.eureka.orders.OrderMapper;
 import com.example.eureka.orders.OrderStatus;
@@ -26,6 +27,9 @@ public class OrderDispatchServiceImpl implements OrderDispatchService{
     @Transactional
     public void sendOrder(Long orderId) throws IOException {
         Order order = orderMapper.findById(orderId);
+        if (order == null) {
+            throw new ResourceNotFoundException("Narudžba nije pronađena: " + orderId);
+        }
         byte[] pdfBytes = pdfGeneratorService.generateOrderPdf(order);
         mailService.sendOrderPdf(order, pdfBytes);
         orderMapper.updateStatus(orderId, String.valueOf(OrderStatus.POSLANO));

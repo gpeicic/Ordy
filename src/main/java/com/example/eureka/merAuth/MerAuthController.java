@@ -2,6 +2,7 @@ package com.example.eureka.merAuth;
 
 
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +16,8 @@ public class MerAuthController {
     }
 
     @PostMapping("/login/{companyId}")
-    public void loginCompany(@PathVariable Long companyId) {
+    public ResponseEntity<Void> loginCompany(@PathVariable Long companyId) {
         merAuthService.loginCompany(companyId);
+        return ResponseEntity.ok().build();
     }
 }

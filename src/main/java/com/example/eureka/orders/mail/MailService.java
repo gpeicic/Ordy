@@ -2,6 +2,8 @@ package com.example.eureka.orders.mail;
 
 import com.example.eureka.company.Company;
 import com.example.eureka.company.CompanyMapper;
+import com.example.eureka.exception.ResourceNotFoundException;
+import com.example.eureka.exception.ValidationException;
 import com.example.eureka.orders.Order;
 import com.example.eureka.supplier.Supplier;
 import com.example.eureka.supplier.SupplierMapper;
@@ -29,7 +31,16 @@ public class MailService {
 
     public void sendOrderPdf(Order order, byte[] pdfBytes) {
         Supplier supplier = supplierMapper.findById(order.getSupplierId());
+        if (supplier == null) {
+            throw new ResourceNotFoundException("Dobavljač nije pronađen: " + order.getSupplierId());
+        }
+        if (supplier.getMail() == null || supplier.getMail().isBlank()) {
+            throw new ValidationException("Dobavljač nema email adresu: " + supplier.getName());
+        }
         Company company = companyMapper.findById(order.getCompanyId());
+        if (company == null) {
+            throw new ResourceNotFoundException("Kompanija nije pronađena: " + order.getCompanyId());
+        }
 
         String confirmUrl = baseUrl + "/orders/confirm/" + order.getId();
 
@@ -53,7 +64,7 @@ public class MailService {
             helper.addAttachment("narudzbenica_" + order.getId() + ".pdf", new ByteArrayResource(pdfBytes));
 
         } catch (MessagingException e) {
-            throw new RuntimeException("Greška pri slanju maila", e);
+            throw new RuntimeException("Greška pri slanju maila dobavljaču: " + supplier.getMail(), e);
         }
 
         mailSender.send(message);

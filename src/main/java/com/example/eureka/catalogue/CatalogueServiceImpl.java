@@ -2,6 +2,7 @@ package com.example.eureka.catalogue;
 
 import com.example.eureka.catalogue.dto.SearchItemForOrderDTO;
 import com.example.eureka.catalogue.pdfParser.SupplierCataloguePdfParser;
+import com.example.eureka.exception.ValidationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,13 @@ public class CatalogueServiceImpl implements CatalogueService {
     @Override
     @Transactional
     public int importFromPdf(Long supplierId, byte[] pdfBytes) throws IOException {
+        if (pdfBytes == null || pdfBytes.length == 0) {
+            throw new ValidationException("PDF je prazan");
+        }
         List<CatalogueItem> items = parser.parse(pdfBytes);
+        if (items.isEmpty()) {
+            throw new ValidationException("Nije moguće parsirati artikle iz PDF-a");
+        }
         items.forEach(item -> {
             item.setSupplierId(supplierId);
             catalogueItemMapper.upsert(item);
@@ -38,9 +45,9 @@ public class CatalogueServiceImpl implements CatalogueService {
 
     @Override
     public List<SearchItemForOrderDTO> fuzzySearchByName(Long supplierId, String name) {
-        Long millis = System.currentTimeMillis();
-        List<SearchItemForOrderDTO> result = catalogueItemMapper.fuzzySearchByName(supplierId, name);
-        System.out.println("Time: " + (System.currentTimeMillis() - millis));
+        if (name == null || name.isBlank()) {
+            throw new ValidationException("Naziv za pretragu je obavezan");
+        }
         return catalogueItemMapper.fuzzySearchByName(supplierId, name);
     }
 }

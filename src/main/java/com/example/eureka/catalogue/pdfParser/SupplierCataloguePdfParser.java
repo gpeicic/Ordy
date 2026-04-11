@@ -1,6 +1,7 @@
 package com.example.eureka.catalogue.pdfParser;
 
 import com.example.eureka.catalogue.CatalogueItem;
+import com.example.eureka.exception.ValidationException;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -17,6 +18,10 @@ import java.util.regex.Pattern;
 public class SupplierCataloguePdfParser {
 
     public List<CatalogueItem> parse(byte[] pdfBytes) throws IOException {
+        if (pdfBytes == null || pdfBytes.length == 0) {
+            throw new ValidationException("PDF bytes su prazni");
+        }
+
         List<CatalogueItem> items = new ArrayList<>();
 
         try (PDDocument doc = Loader.loadPDF(pdfBytes)) {

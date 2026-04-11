@@ -1,5 +1,6 @@
 package com.example.eureka.supplier;
 
+import com.example.eureka.exception.ValidationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,9 @@ public class SupplierServiceImpl implements SupplierService {
     }
     @Override
     public List<Supplier> getSuppliersByCompany(Long companyId) {
+        if (companyId == null) {
+            throw new ValidationException("companyId je obavezan");
+        }
         return companySuppliersMapper.findSuppliersFromCompany(companyId);
     }
 }

@@ -1,7 +1,12 @@
 package com.example.eureka.auth.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class ApiLoginRequest {
+    @NotBlank(message = "Korisničko ime je obavezno")
     private String username;
+
+    @NotBlank(message = "Lozinka je obavezna")
     private String password;
 
     public ApiLoginRequest() {}

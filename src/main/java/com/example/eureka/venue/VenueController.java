@@ -1,5 +1,7 @@
 package com.example.eureka.venue;
 
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,22 +22,23 @@ public class VenueController {
     }
 
     @GetMapping("/company/{companyId}")
-    public List<Venue> getByCompanyId(@PathVariable Long companyId) {
-        return venueService.getByCompanyId(companyId);
+    public ResponseEntity<List<Venue>> getByCompanyId(@PathVariable Long companyId) {
+        return ResponseEntity.ok(venueService.getByCompanyId(companyId));
     }
 
     @PostMapping
-    public Venue create(@RequestBody Venue venue) {
-        return venueService.create(venue);
+    public ResponseEntity<Venue> create(@RequestBody Venue venue) {
+        return ResponseEntity.ok(venueService.create(venue));
     }
 
     @PutMapping("/{id}")
-    public Venue update(@PathVariable Long id, @RequestBody Venue venue) {
-        return venueService.update(id, venue);
+    public ResponseEntity<Venue> update(@PathVariable Long id, @RequestBody Venue venue) {
+        return ResponseEntity.ok(venueService.update(id, venue));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         venueService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

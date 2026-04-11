@@ -22,11 +22,16 @@ public class InvoiceController {
     @GetMapping("/{companyId}/top-supplier")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     public ResponseEntity<Long> getTopSupplier(@PathVariable Long companyId) {
-        return ResponseEntity.ok(invoiceService.getTopSupplierId(companyId));
+        Long supplierId = invoiceService.getTopSupplierId(companyId);
+        if (supplierId == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(supplierId);
     }
+
     @GetMapping("/{companyId}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    public BigDecimal getMonthlySpending(@PathVariable Long companyId) {
-        return invoiceService.getMonthlySpending(companyId);
+    public ResponseEntity<BigDecimal> getMonthlySpending(@PathVariable Long companyId) {
+        return ResponseEntity.ok(invoiceService.getMonthlySpending(companyId));
     }
 }

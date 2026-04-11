@@ -1,5 +1,6 @@
 package com.example.eureka.merInvoices.parsedInvoice;
 
+import com.example.eureka.exception.ValidationException;
 import com.example.eureka.merInvoices.parsedInvoice.dto.ParsedInvoice;
 import com.example.eureka.merInvoices.parsedInvoice.dto.ParsedInvoiceItem;
 import com.example.eureka.supplier.BlockedSupplierKeyword;
@@ -30,9 +31,11 @@ public class MerUblinvoiceParser implements InvoiceParser {
     }
     @Override
     public ParsedInvoice parse(byte[] xmlBytes) {
+        if (xmlBytes == null || xmlBytes.length == 0) {
+            throw new ValidationException("XML bytes su prazni");
+        }
         try {
             Document doc = buildDocument(xmlBytes);
-
             String oib = extractOib(doc);
             String supplierName = extractSupplierName(doc);
 
@@ -46,8 +49,10 @@ public class MerUblinvoiceParser implements InvoiceParser {
 
             return new ParsedInvoice(supplierName, invoiceDateTime, items, oib, interniBroj);
 
+        } catch (ValidationException e) {
+            throw e;
         } catch (Exception e) {
-            throw new RuntimeException("Error parsing invoice XML", e);
+            throw new RuntimeException("Greška pri parsiranju XML računa: " + e.getMessage(), e);
         }
     }
 
