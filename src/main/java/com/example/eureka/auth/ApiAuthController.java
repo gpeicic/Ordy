@@ -4,6 +4,7 @@ import com.example.eureka.auth.dto.ApiLoginRequest;
 import com.example.eureka.auth.dto.ApiLoginResponse;
 import com.example.eureka.auth.dto.ApiRegisterRequest;
 import com.example.eureka.auth.dto.ApiRegisterResponse;
+import com.example.eureka.exception.UnauthorizedException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,11 @@ public class ApiAuthController {
     }
     @PostMapping("/switch-company/{companyId}")
     public ApiLoginResponse switchCompany(@PathVariable Long companyId, HttpServletRequest request) {
-        String token = request.getHeader("Authorization").substring(7);
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new UnauthorizedException("Neispravan token");
+        }
+        String token = authHeader.substring(7);
         return authService.switchCompany(companyId, token);
     }
 }

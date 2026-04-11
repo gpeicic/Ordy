@@ -6,9 +6,18 @@ import java.math.RoundingMode;
 public class PriceComparisonItem {
     private String canonicalName;
     private String supplierName;
+    private Long companyId;
     private BigDecimal totalAmount;
     private BigDecimal latestPrice;
     private BigDecimal previousPrice;
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
 
     public BigDecimal getPriceDifference() {
         if (latestPrice == null || previousPrice == null) return null;

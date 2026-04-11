@@ -6,6 +6,7 @@ import com.example.eureka.auth.dto.VenueRegisterRequest;
 import com.example.eureka.company.Company;
 import com.example.eureka.company.CompanyMapper;
 import com.example.eureka.company.UserCompaniesMapper;
+import com.example.eureka.exception.ValidationException;
 import com.example.eureka.user.User;
 import com.example.eureka.user.UserMapper;
 import com.example.eureka.venue.Venue;
@@ -35,6 +36,12 @@ public class RegistrationService {
     }
 
     public User register(ApiRegisterRequest request) {
+        validateRegisterRequest(request);
+
+        if (userMapper.findByUsername(request.getUsername()) != null) {
+            throw new ValidationException("Korisničko ime već postoji");
+        }
+
         User user = createUser(request);
         for (CompanyRegisterRequest companyReq : request.getCompanies()) {
             Company company = createCompany(companyReq);
@@ -72,6 +79,25 @@ public class RegistrationService {
             venue.setCompanyId(companyId);
             venue.setUserId(userId);
             venueMapper.insert(venue);
+        }
+    }
+    private void validateRegisterRequest(ApiRegisterRequest request) {
+        if (request.getUsername() == null || request.getUsername().isBlank()) {
+            throw new ValidationException("Korisničko ime je obavezno");
+        }
+        if (request.getPassword() == null || request.getPassword().length() < 8) {
+            throw new ValidationException("Lozinka mora imati najmanje 8 znakova");
+        }
+        if (request.getCompanies() == null || request.getCompanies().isEmpty()) {
+            throw new ValidationException("Potrebna je najmanje jedna kompanija");
+        }
+        for (CompanyRegisterRequest company : request.getCompanies()) {
+            if (company.getMerEmail() == null || !company.getMerEmail().matches("^[\\w.-]+@[\\w.-]+\\.[a-z]{2,}$")) {
+                throw new ValidationException("Neispravan email format: " + company.getMerEmail());
+            }
+            if (company.getVenues() == null || company.getVenues().isEmpty()) {
+                throw new ValidationException("Kompanija mora imati najmanje jedan objekt");
+            }
         }
     }
 }

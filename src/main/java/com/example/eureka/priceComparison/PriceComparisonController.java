@@ -47,5 +47,13 @@ public class PriceComparisonController {
                 priceComparisonService.getProductPriceAcrossSuppliers(productId)
         );
     }
-
+    @GetMapping("/acrossCompanies")
+    public ResponseEntity<List<PriceComparisonItem>> getPriceComparisonAcrossCompanies(
+            @RequestParam List<Long> companyIds,
+            @RequestParam Long supplierId
+    ) {
+        return ResponseEntity.ok(
+                priceComparisonService.getPriceComparisonAcrossCompanies(companyIds, supplierId)
+        );
+    }
 }

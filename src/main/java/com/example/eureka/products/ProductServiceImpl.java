@@ -40,9 +40,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = new Product();
         product.setCanonicalName(normalizedName);
         productMapper.insert(product);
-        Long newId = productMapper.getLastInsertId();
-        product.setId(newId);
-        return newId;
+        return product.getId();
     }
 
     private String normalize(String name) {

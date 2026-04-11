@@ -8,6 +8,8 @@ import com.example.eureka.auth.jwt.JwtService;
 import com.example.eureka.auth.jwt.TokenFactory;
 import com.example.eureka.auth.jwt.UserValidator;
 import com.example.eureka.company.UserCompaniesMapper;
+import com.example.eureka.exception.ResourceNotFoundException;
+import com.example.eureka.exception.UnauthorizedException;
 import com.example.eureka.user.User;
 import com.example.eureka.user.UserMapper;
 import org.springframework.stereotype.Service;
@@ -55,8 +57,12 @@ public class ApiAuthServiceImpl implements ApiAuthService {
         String username = jwtService.extractUsername(token);
         User user = userMapper.findByUsername(username);
 
+        if (user == null) {
+            throw new ResourceNotFoundException("User nije pronađen");
+        }
+
         if (!userCompaniesMapper.existsByUserIdAndCompanyId(user.getId(), companyId)) {
-            throw new RuntimeException("User ne pripada toj kompaniji");
+            throw new UnauthorizedException("User ne pripada toj kompaniji");
         }
 
         String newToken = tokenFactory.generateFor(user, companyId);

@@ -3,6 +3,7 @@ package com.example.eureka.priceComparison;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PriceComparisonServiceImpl implements PriceComparisonService {
@@ -25,5 +26,12 @@ public class PriceComparisonServiceImpl implements PriceComparisonService {
     @Override
     public List<PriceComparisonItem> getProductPriceAcrossSuppliers(Long productId){
         return priceComparisonMapper.getProductPriceAcrossSuppliers(productId);
+    }
+    @Override
+    public List<PriceComparisonItem> getPriceComparisonAcrossCompanies(List<Long> companyIds, Long supplierId) {
+        String ids = companyIds.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
+        return priceComparisonMapper.getPriceComparisonAcrossCompanies(ids, supplierId);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.eureka.auth.jwt;
 
+import com.example.eureka.exception.UnauthorizedException;
 import com.example.eureka.user.User;
 import com.example.eureka.user.role.Role;
 import io.jsonwebtoken.Claims;
@@ -57,10 +58,14 @@ public class JwtService {
     }
 
     private Claims parseClaims(String token) {
-        return Jwts.parser()
-                .verifyWith(getSigningKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
+        try {
+            return Jwts.parser()
+                    .verifyWith(getSigningKey())
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+        } catch (JwtException e) {
+            throw new UnauthorizedException("Neispravan ili istekao token");
+        }
     }
 }

@@ -1,11 +1,25 @@
 package com.example.eureka.auth.dto;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
 import java.util.List;
 
 public class CompanyRegisterRequest {
+    @NotBlank(message = "Naziv kompanije je obavezan")
     private String companyName;
+
+    @Email(message = "Neispravan email format")
+    @NotBlank(message = "MER email je obavezan")
     private String merEmail;
+
+    @NotBlank(message = "MER lozinka je obavezna")
     private String merPassword;
+
+    @NotEmpty(message = "Potreban je najmanje jedan objekt")
+    @Valid
     private List<VenueRegisterRequest> venues;
 
 

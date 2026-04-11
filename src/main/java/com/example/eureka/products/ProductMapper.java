@@ -36,8 +36,7 @@ public interface ProductMapper {
 
 
     @Insert("INSERT INTO products (canonical_name) VALUES (#{canonicalName})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Product product);
 
-    @Select("SELECT CURRVAL('products_id_seq')")
-    Long getLastInsertId();
 }

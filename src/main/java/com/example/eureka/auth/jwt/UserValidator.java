@@ -1,5 +1,7 @@
 package com.example.eureka.auth.jwt;
 
+import com.example.eureka.exception.ResourceNotFoundException;
+import com.example.eureka.exception.ValidationException;
 import com.example.eureka.user.User;
 import com.example.eureka.user.UserMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,11 +21,11 @@ public class UserValidator {
         User user = userMapper.findByUsername(username);
 
         if (user == null) {
-            throw new RuntimeException("User not found");
+            throw new ResourceNotFoundException("User nije pronađen");
         }
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new RuntimeException("Invalid password");
+            throw new ValidationException("Pogrešna lozinka");
         }
 
         return user;
