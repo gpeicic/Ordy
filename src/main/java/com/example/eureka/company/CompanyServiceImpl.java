@@ -7,10 +7,17 @@ import java.util.List;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
+    private final CompanyMapper companyMapper;
     private final UserCompaniesMapper userCompaniesMapper;
 
-    public CompanyServiceImpl(UserCompaniesMapper userCompaniesMapper) {
+    public CompanyServiceImpl(CompanyMapper companyMapper,UserCompaniesMapper userCompaniesMapper) {
+        this.companyMapper = companyMapper;
         this.userCompaniesMapper = userCompaniesMapper;
+    }
+
+    @Override
+    public List<Company> getAllCompanies(){
+        return companyMapper.findAll();
     }
 
     @Override

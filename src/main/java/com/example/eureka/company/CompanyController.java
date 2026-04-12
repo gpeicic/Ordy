@@ -18,6 +18,11 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<Company>> getAllCompanies() {
+        return ResponseEntity.ok(companyService.getAllCompanies());
+    }
+
     @GetMapping("/{userId}")
     public ResponseEntity<List<CompanyResponseDTO>> findCompaniesByUserId(@PathVariable Long userId) {
         return ResponseEntity.ok(companyService.findCompaniesByUserId(userId));

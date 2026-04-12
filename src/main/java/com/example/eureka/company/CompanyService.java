@@ -6,5 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface CompanyService {
+    List<Company> getAllCompanies();
     List<CompanyResponseDTO> findCompaniesByUserId(Long userId);
 }

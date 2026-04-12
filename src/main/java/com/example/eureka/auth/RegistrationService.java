@@ -11,6 +11,8 @@ import com.example.eureka.user.User;
 import com.example.eureka.user.UserMapper;
 import com.example.eureka.venue.Venue;
 import com.example.eureka.venue.VenueMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,9 @@ import java.util.List;
 
 @Component
 public class RegistrationService {
+
+    private static final Logger log = LoggerFactory.getLogger(RegistrationService.class);
+
     private final UserMapper userMapper;
     private final CompanyMapper companyMapper;
     private final UserCompaniesMapper userCompaniesMapper;
@@ -37,14 +42,14 @@ public class RegistrationService {
 
     public User register(ApiRegisterRequest request) {
 
-        if (userMapper.findByUsername(request.getUsername()) != null) {
-            throw new ValidationException("Korisničko ime već postoji");
-        }
-
+        log.info("Registracija — kreiranje usera: {}", request.getUsername());
         User user = createUser(request);
+        log.info("User kreiran — userId: {}, username: {}", user.getId(), user.getUsername());
+
         for (CompanyRegisterRequest companyReq : request.getCompanies()) {
             Company company = createCompany(companyReq);
             userCompaniesMapper.insertUserCompany(user.getId(), company.getId());
+            log.info("Company kreirana — companyId: {}, name: {}, userId: {}", company.getId(), company.getName(), user.getId());
             createVenues(companyReq.getVenues(), company.getId(), user.getId());
         }
         return user;
@@ -78,6 +83,7 @@ public class RegistrationService {
             venue.setCompanyId(companyId);
             venue.setUserId(userId);
             venueMapper.insert(venue);
+            log.info("Venue kreiran — venueId: {}, name: {}, companyId: {}", venue.getId(), venue.getName(), companyId);
         }
     }
 

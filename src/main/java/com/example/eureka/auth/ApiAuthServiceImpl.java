@@ -10,12 +10,17 @@ import com.example.eureka.auth.jwt.UserValidator;
 import com.example.eureka.company.UserCompaniesMapper;
 import com.example.eureka.exception.ResourceNotFoundException;
 import com.example.eureka.exception.UnauthorizedException;
+import com.example.eureka.exception.ValidationException;
 import com.example.eureka.user.User;
 import com.example.eureka.user.UserMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ApiAuthServiceImpl implements ApiAuthService {
+
+    private static final Logger log = LoggerFactory.getLogger(ApiAuthServiceImpl.class);
 
     private final UserValidator userValidator;
     private final RegistrationService registrationService;
@@ -40,32 +45,44 @@ public class ApiAuthServiceImpl implements ApiAuthService {
 
     @Override
     public ApiLoginResponse login(ApiLoginRequest request) {
+        log.info("Login pokušaj za korisnika: {}", request.getUsername());
         User user = userValidator.validateCredentials(request.getUsername(), request.getPassword());
         String token = tokenFactory.generateFor(user);
+        log.info("Login uspješan za korisnika: {}", request.getUsername());
         return new ApiLoginResponse(token);
     }
 
     @Override
     public ApiRegisterResponse register(ApiRegisterRequest request) {
+        log.info("Registracija pokušaj za korisnika: {}", request.getUsername());
+        if (userMapper.findByUsername(request.getUsername()) != null) {
+            log.warn("Registracija odbijena — korisničko ime već postoji: {}", request.getUsername());
+            throw new ValidationException("Korisničko ime već postoji");
+        }
         User user = registrationService.register(request);
         String token = tokenFactory.generateFor(user);
+        log.info("Registracija uspješna za korisnika: {}, userId: {}", request.getUsername(), user.getId());
         return new ApiRegisterResponse(token);
     }
 
     @Override
     public ApiLoginResponse switchCompany(Long companyId, String token) {
         String username = jwtService.extractUsername(token);
+        log.info("Switch company pokušaj — korisnik: {}, companyId: {}", username, companyId);
         User user = userMapper.findByUsername(username);
 
         if (user == null) {
+            log.warn("Switch company odbijen — korisnik nije pronađen: {}", username);
             throw new ResourceNotFoundException("User nije pronađen");
         }
 
         if (!userCompaniesMapper.existsByUserIdAndCompanyId(user.getId(), companyId)) {
+            log.warn("Switch company odbijen — korisnik {} ne pripada kompaniji {}", username, companyId);
             throw new UnauthorizedException("User ne pripada toj kompaniji");
         }
 
         String newToken = tokenFactory.generateFor(user, companyId);
+        log.info("Switch company uspješan — korisnik: {}, companyId: {}", username, companyId);
         return new ApiLoginResponse(newToken);
     }
 }
