@@ -1,5 +1,6 @@
 package com.example.eureka.venue;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Venue", description = "Pristup ugostiteljskim objektima")
 @RequestMapping("/venues")
 public class VenueController {
 

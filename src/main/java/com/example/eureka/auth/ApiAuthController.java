@@ -5,12 +5,14 @@ import com.example.eureka.auth.dto.ApiLoginResponse;
 import com.example.eureka.auth.dto.ApiRegisterRequest;
 import com.example.eureka.auth.dto.ApiRegisterResponse;
 import com.example.eureka.exception.UnauthorizedException;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Tag(name = "Auth", description = "Autentifikacija i registracija")
 @RequestMapping("/auth")
 public class ApiAuthController {
 

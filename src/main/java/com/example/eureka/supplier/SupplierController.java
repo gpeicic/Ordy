@@ -1,5 +1,6 @@
 package com.example.eureka.supplier;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@Tag(name = "Supplier", description = "Pristup dobavljačima")
 @RequestMapping("/supplier")
 public class SupplierController {
     private final SupplierService supplierService;

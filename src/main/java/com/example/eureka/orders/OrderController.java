@@ -5,6 +5,7 @@ import com.example.eureka.orders.dispatch.OrderDispatchService;
 import com.example.eureka.orders.dto.OrderSummary;
 import com.example.eureka.orders.dto.OrderWithSupplierNameDTO;
 import com.example.eureka.orders.query.OrderQueryService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
+@Tag(name = "Order", description = "Pristup narudzbenicama")
 @RequestMapping("/orders")
 public class OrderController {
 
