@@ -22,8 +22,10 @@ import java.util.List;
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
+    private final RateLimitFilter rateLimitFilter;
     private final JwtFilter jwtFilter;
-    public SecurityConfig(JwtFilter jwtFilter) {
+    public SecurityConfig(RateLimitFilter rateLimitFilter, JwtFilter jwtFilter) {
+        this.rateLimitFilter = rateLimitFilter;
         this.jwtFilter = jwtFilter;
     }
     @Bean
@@ -44,6 +46,7 @@ public class SecurityConfig {
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
+                .addFilterBefore(rateLimitFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
