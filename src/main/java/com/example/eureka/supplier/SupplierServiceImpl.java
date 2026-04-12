@@ -1,6 +1,7 @@
 package com.example.eureka.supplier;
 
 import com.example.eureka.exception.ValidationException;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public class SupplierServiceImpl implements SupplierService {
     private final SupplierMapper supplierMapper;
     private final CompanySuppliersMapper companySuppliersMapper;
+
     public SupplierServiceImpl(SupplierMapper supplierMapper, CompanySuppliersMapper companySuppliersMapper) {
         this.supplierMapper = supplierMapper;
         this.companySuppliersMapper = companySuppliersMapper;
@@ -17,7 +19,9 @@ public class SupplierServiceImpl implements SupplierService {
     public List<Supplier> getAllSuppliers() {
         return supplierMapper.findAll();
     }
+
     @Override
+    @Cacheable(value = "suppliersByCompany", key = "#companyId")
     public List<Supplier> getSuppliersByCompany(Long companyId) {
         if (companyId == null) {
             throw new ValidationException("companyId je obavezan");

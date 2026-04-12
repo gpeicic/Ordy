@@ -3,6 +3,8 @@ package com.example.eureka.catalogue;
 import com.example.eureka.catalogue.dto.SearchItemForOrderDTO;
 import com.example.eureka.catalogue.pdfParser.SupplierCataloguePdfParser;
 import com.example.eureka.exception.ValidationException;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,7 @@ public class CatalogueServiceImpl implements CatalogueService {
         this.parser = parser;
     }
 
+    @CacheEvict(value = "catalogue", key = "#supplierId")
     @Override
     @Transactional
     public int importFromPdf(Long supplierId, byte[] pdfBytes) throws IOException {
@@ -38,6 +41,7 @@ public class CatalogueServiceImpl implements CatalogueService {
         return items.size();
     }
 
+    @Cacheable(value = "catalogue", key = "#supplierId")
     @Override
     public List<CatalogueItem> getBySupplier(Long supplierId) {
         return catalogueItemMapper.findBySupplierId(supplierId);

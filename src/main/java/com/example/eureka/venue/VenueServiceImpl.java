@@ -2,6 +2,8 @@ package com.example.eureka.venue;
 
 import com.example.eureka.exception.ResourceNotFoundException;
 import com.example.eureka.exception.ValidationException;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,6 +29,7 @@ public class VenueServiceImpl implements VenueService {
         return venue;
     }
 
+    @Cacheable(value = "venuesByCompany", key = "#companyId")
     @Override
     public List<Venue> getByCompanyId(Long companyId) {
         if (companyId == null) {
@@ -35,6 +38,7 @@ public class VenueServiceImpl implements VenueService {
         return venueMapper.findByCompanyId(companyId);
     }
 
+    @CacheEvict(value = "venuesByCompany", key = "#venue.companyId")
     @Override
     public Venue create(Venue venue) {
         if (venue == null) {
