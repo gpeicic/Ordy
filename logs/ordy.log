@@ -378,3 +378,90 @@ java.lang.NoSuchMethodError: 'void org.springframework.web.method.ControllerAdvi
 2026-04-12T18:36:11.372+02:00  INFO 18320 --- [eureka] [http-nio-8080-exec-8] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 987 ms
 2026-04-12T18:37:01.098+02:00  INFO 18320 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
 2026-04-12T18:37:01.128+02:00  INFO 18320 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-12T18:41:43.985+02:00  INFO 23804 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 23804 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-04-12T18:41:43.988+02:00  INFO 23804 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-12T18:41:46.188+02:00  INFO 23804 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-12T18:41:46.206+02:00  INFO 23804 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-12T18:41:46.207+02:00  INFO 23804 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-12T18:41:46.292+02:00  INFO 23804 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-12T18:41:46.293+02:00  INFO 23804 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2235 ms
+2026-04-12T18:41:47.300+02:00  INFO 23804 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-12T18:41:48.057+02:00  INFO 23804 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-12T18:41:48.070+02:00  INFO 23804 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 5.075 seconds (process running for 6.631)
+2026-04-12T18:41:56.440+02:00  INFO 23804 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-12T18:41:56.440+02:00  INFO 23804 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-12T18:41:56.440+02:00  INFO 23804 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-04-12T18:41:56.626+02:00  INFO 23804 --- [eureka] [http-nio-8080-exec-5] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: mic
+2026-04-12T18:41:56.643+02:00  INFO 23804 --- [eureka] [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-12T18:41:57.020+02:00  INFO 23804 --- [eureka] [http-nio-8080-exec-5] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@55e2c70e
+2026-04-12T18:41:57.022+02:00  INFO 23804 --- [eureka] [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-12T18:41:57.416+02:00  INFO 23804 --- [eureka] [http-nio-8080-exec-5] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: mic
+2026-04-12T19:38:51.407+02:00  WARN 23804 --- [eureka] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12m53s872ms927µs400ns).
+2026-04-12T19:39:01.031+02:00  INFO 23804 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-12T19:39:01.054+02:00  INFO 23804 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-12T19:39:01.102+02:00  INFO 23804 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-12T19:39:01.122+02:00  INFO 23804 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-12T20:01:37.353+02:00  INFO 19900 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 19900 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-04-12T20:01:37.357+02:00  INFO 19900 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-12T20:01:41.285+02:00  INFO 19900 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-12T20:01:41.314+02:00  INFO 19900 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-12T20:01:41.316+02:00  INFO 19900 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-12T20:01:41.441+02:00  INFO 19900 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-12T20:01:41.444+02:00  INFO 19900 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3927 ms
+2026-04-12T20:01:42.936+02:00  INFO 19900 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-12T20:01:44.075+02:00  INFO 19900 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-12T20:01:44.089+02:00  INFO 19900 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 7.787 seconds (process running for 9.837)
+2026-04-12T20:01:44.133+02:00  INFO 19900 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-12T20:01:44.133+02:00  INFO 19900 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-12T20:01:44.134+02:00  INFO 19900 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-12T20:01:44.441+02:00  INFO 19900 --- [eureka] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-12T20:01:44.699+02:00  INFO 19900 --- [eureka] [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3838a3e9
+2026-04-12T20:01:44.701+02:00  INFO 19900 --- [eureka] [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-12T20:02:35.218+02:00  INFO 19900 --- [eureka] [http-nio-8080-exec-3] c.e.e.quickList.QuickListServiceImpl     : Brza lista kreirana — id: 1, name: cocaCola + kava, companyId: 15
+2026-04-12T20:02:39.452+02:00  INFO 19900 --- [eureka] [http-nio-8080-exec-10] c.e.e.o.d.OrderDispatchServiceImpl       : Slanje narudžbe — orderId: 30
+2026-04-12T20:02:42.919+02:00  INFO 19900 --- [eureka] [http-nio-8080-exec-10] c.e.e.o.d.OrderDispatchServiceImpl       : Narudžba uspješno poslana — orderId: 30, companyId: 15, supplierId: 5
+2026-04-12T20:06:05.930+02:00  INFO 19900 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-12T20:06:05.943+02:00  INFO 19900 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-12T20:06:05.997+02:00  INFO 19900 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-12T20:06:06.016+02:00  INFO 19900 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-12T20:06:15.688+02:00  INFO 8628 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 8628 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-04-12T20:06:15.692+02:00  INFO 8628 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-12T20:06:18.068+02:00  INFO 8628 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-12T20:06:18.085+02:00  INFO 8628 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-12T20:06:18.086+02:00  INFO 8628 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-12T20:06:18.304+02:00  INFO 8628 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-12T20:06:18.307+02:00  INFO 8628 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2522 ms
+2026-04-12T20:06:19.643+02:00  INFO 8628 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-12T20:06:20.901+02:00  INFO 8628 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-12T20:06:20.912+02:00  INFO 8628 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 6.189 seconds (process running for 7.914)
+2026-04-12T20:07:49.117+02:00  INFO 8628 --- [eureka] [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-12T20:07:49.117+02:00  INFO 8628 --- [eureka] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-12T20:07:49.119+02:00  INFO 8628 --- [eureka] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-04-12T20:07:49.406+02:00  INFO 8628 --- [eureka] [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-12T20:07:49.743+02:00  INFO 8628 --- [eureka] [http-nio-8080-exec-8] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@316c3de5
+2026-04-12T20:07:49.745+02:00  INFO 8628 --- [eureka] [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-12T20:11:08.617+02:00  INFO 8628 --- [eureka] [http-nio-8080-exec-5] c.e.e.quickList.QuickListServiceImpl     : Brza lista kreirana — id: 2, name: narudzba heinekena i zuje, companyId: 15
+2026-04-12T20:11:48.351+02:00  INFO 8628 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-12T20:11:48.368+02:00  INFO 8628 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-12T20:11:48.401+02:00  INFO 8628 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-12T20:11:48.417+02:00  INFO 8628 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-12T20:11:53.469+02:00  INFO 18772 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 18772 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-04-12T20:11:53.476+02:00  INFO 18772 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-12T20:11:56.604+02:00  INFO 18772 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-12T20:11:56.617+02:00  INFO 18772 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-12T20:11:56.617+02:00  INFO 18772 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-12T20:11:56.843+02:00  INFO 18772 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-12T20:11:56.843+02:00  INFO 18772 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3259 ms
+2026-04-12T20:11:58.291+02:00  INFO 18772 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-12T20:11:59.493+02:00  INFO 18772 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-12T20:11:59.527+02:00  INFO 18772 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 7.152 seconds (process running for 8.401)
+2026-04-12T20:11:59.597+02:00  INFO 18772 --- [eureka] [http-nio-8080-exec-4] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-12T20:11:59.598+02:00  INFO 18772 --- [eureka] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-12T20:11:59.599+02:00  INFO 18772 --- [eureka] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-12T20:11:59.926+02:00  INFO 18772 --- [eureka] [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-12T20:12:00.218+02:00  INFO 18772 --- [eureka] [http-nio-8080-exec-8] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7527b69b
+2026-04-12T20:12:00.219+02:00  INFO 18772 --- [eureka] [http-nio-8080-exec-8] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-12T20:16:35.390+02:00  INFO 18772 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-12T20:16:35.405+02:00  INFO 18772 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-12T20:16:35.446+02:00  INFO 18772 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-12T20:16:35.463+02:00  INFO 18772 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
