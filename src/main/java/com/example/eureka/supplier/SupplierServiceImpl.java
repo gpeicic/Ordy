@@ -28,4 +28,12 @@ public class SupplierServiceImpl implements SupplierService {
         }
         return companySuppliersMapper.findSuppliersFromCompany(companyId);
     }
+
+    @Override
+    public List<Supplier> findSuppliersWithCatalogue(Long companyId) {
+        if (companyId == null) {
+            throw new ValidationException("companyId je obavezan");
+        }
+        return supplierMapper.findSuppliersWithCatalogue(companyId);
+    }
 }

@@ -11,7 +11,17 @@ public interface QuickListMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(QuickList quickList);
 
-    @Select("SELECT id, name, company_id AS companyId, user_id AS userId, supplier_id AS supplierId FROM quick_lists WHERE company_id = #{companyId}")
+    @Select("""
+        SELECT ql.id, 
+               ql.name, 
+               ql.company_id AS companyId, 
+               ql.user_id AS userId, 
+               ql.supplier_id AS supplierId,
+               sup.name AS supplierName
+        FROM quick_lists ql
+        JOIN suppliers sup ON sup.id = ql.supplier_id
+        WHERE ql.company_id = #{companyId}
+    """)
     List<QuickList> findByCompanyId(@Param("companyId") Long companyId);
 
     @Select("SELECT id, name, company_id AS companyId, user_id AS userId, supplier_id AS supplierId FROM quick_lists WHERE id = #{id}")

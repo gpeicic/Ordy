@@ -27,4 +27,9 @@ public class SupplierController {
     public ResponseEntity<List<Supplier>> getSuppliersByCompany(@PathVariable Long companyId) {
         return ResponseEntity.ok(supplierService.getSuppliersByCompany(companyId));
     }
+
+    @GetMapping("/company-with-catalogue/{companyId}")
+    public ResponseEntity<List<Supplier>> getSuppliersWithCatalogue(@PathVariable Long companyId){
+        return ResponseEntity.ok(supplierService.findSuppliersWithCatalogue(companyId));
+    }
 }

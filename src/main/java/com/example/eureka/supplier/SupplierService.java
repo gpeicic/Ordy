@@ -5,4 +5,5 @@ import java.util.List;
 public interface SupplierService {
     List<Supplier> getAllSuppliers();
     List<Supplier> getSuppliersByCompany(Long companyId);
+    List<Supplier> findSuppliersWithCatalogue(Long companyId);
 }

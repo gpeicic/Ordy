@@ -30,4 +30,16 @@ public interface SupplierMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Supplier supplier);
 
+    @Select("""
+    SELECT DISTINCT s.*
+        FROM suppliers s
+        JOIN company_suppliers cs ON cs.supplier_id = s.id
+        WHERE cs.company_id = #{companyId}
+          AND EXISTS (
+              SELECT 1
+              FROM catalogue_items ci
+              WHERE ci.supplier_id = s.id
+          )
+    """)
+    List<Supplier> findSuppliersWithCatalogue(Long companyId);
 }
