@@ -1,9 +1,5 @@
 package com.example.eureka.company;
 
-import com.example.eureka.supplier.Supplier;
-import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 public class Company {
     private Long id;

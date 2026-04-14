@@ -55,8 +55,9 @@ public class OrderController {
     }
 
     @PostMapping("/{orderId}/send")
-    public ResponseEntity<Void> sendOrder(@PathVariable Long orderId) throws IOException {
-        orderDispatchService.sendOrder(orderId);
+    public ResponseEntity<Void> sendOrder(@PathVariable Long orderId, @RequestParam(defaultValue = "false") boolean hideCompanyName) throws IOException {
+        System.out.println("controller " + hideCompanyName);
+        orderDispatchService.sendOrder(orderId, hideCompanyName);
         return ResponseEntity.ok().build();
     }
 

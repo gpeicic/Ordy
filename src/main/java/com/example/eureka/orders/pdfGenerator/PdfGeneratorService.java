@@ -56,7 +56,7 @@ public class PdfGeneratorService {
         this.venueMapper = venueMapper;
     }
 
-    public byte[] generateOrderPdf(Order order) throws IOException {
+    public byte[] generateOrderPdf(Order order, boolean hideCompanyName) throws IOException {
         if (order == null) {
             throw new ValidationException("Order je null");
         }
@@ -91,7 +91,7 @@ public class PdfGeneratorService {
 
         document.add(buildHeaderTable(order, supplier, bold, regular));
         document.add(new Paragraph("\n"));
-        document.add(buildCompanyTable(company, venue, bold));
+        document.add(buildCompanyTable(company, venue, bold, hideCompanyName));
         document.add(new Paragraph("\n"));
         document.add(buildProductTable(order, items, bold, regular));
 
@@ -100,14 +100,6 @@ public class PdfGeneratorService {
         return baos.toByteArray();
     }
 
-    private Document buildDocument() {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        PdfWriter writer = new PdfWriter(baos);
-        PdfDocument pdf = new PdfDocument(writer);
-        Document document = new Document(pdf, PageSize.A4);
-        document.setMargins(40, 40, 40, 40);
-        return document;
-    }
 
     private Table buildHeaderTable(Order order, Supplier supplier, PdfFont bold, PdfFont regular) {
         Table headerTable = new Table(UnitValue.createPercentArray(new float[]{50, 50}))
@@ -128,7 +120,7 @@ public class PdfGeneratorService {
         return headerTable;
     }
 
-    private Table buildCompanyTable(Company company, Venue venue, PdfFont bold) {
+    private Table buildCompanyTable(Company company, Venue venue, PdfFont bold, boolean hideCompanyName) {
         Table companyTable = new Table(UnitValue.createPercentArray(new float[]{100}))
                 .setWidth(UnitValue.createPercentValue(50));
 
@@ -137,9 +129,14 @@ public class PdfGeneratorService {
                 .setBorder(Border.NO_BORDER)
                 .setPadding(10);
         companyCell.add(new Paragraph("Naručitelj").setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
-        companyCell.add(new Paragraph(company.getName()).setFont(bold).setFontSize(12));
+        System.out.println("pdf " + hideCompanyName);
+        if (!hideCompanyName) {
+            companyCell.add(new Paragraph(company.getName()).setFont(bold).setFontSize(12));
+            if(venue != null) {
+                companyCell.add(new Paragraph(venue.getName()).setFont(bold).setFontSize(10));
+            }
+        }
         if (venue != null) {
-            companyCell.add(new Paragraph(venue.getName()).setFont(bold).setFontSize(10));
             companyCell.add(new Paragraph(venue.getAddress()).setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
             companyCell.add(new Paragraph(venue.getPostalCode() + " " + venue.getCity()).setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
         }

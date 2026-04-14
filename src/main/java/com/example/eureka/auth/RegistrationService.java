@@ -9,12 +9,14 @@ import com.example.eureka.company.UserCompaniesMapper;
 import com.example.eureka.exception.ValidationException;
 import com.example.eureka.user.User;
 import com.example.eureka.user.UserMapper;
+import com.example.eureka.user.role.RoleType;
 import com.example.eureka.venue.Venue;
 import com.example.eureka.venue.VenueMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -23,7 +25,7 @@ import java.util.List;
 public class RegistrationService {
 
     private static final Logger log = LoggerFactory.getLogger(RegistrationService.class);
-
+    private final Long DEFAULT_ROLE_ID = 2L;
     private final UserMapper userMapper;
     private final CompanyMapper companyMapper;
     private final UserCompaniesMapper userCompaniesMapper;
@@ -40,6 +42,7 @@ public class RegistrationService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     public User register(ApiRegisterRequest request) {
 
         log.info("Registracija — kreiranje usera: {}", request.getUsername());
@@ -59,7 +62,7 @@ public class RegistrationService {
         User user = new User();
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole_id(2L);
+        user.setRole_id(DEFAULT_ROLE_ID);
         userMapper.insert(user);
         return user;
     }

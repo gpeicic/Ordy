@@ -56,11 +56,6 @@ public class OrderQueryServiceImpl implements OrderQueryService {
     }
 
     private OrderItemDetail toOrderItemDetail(OrderItem item) {
-        return getOrderItemDetail(item, orderItemMapper);
-    }
-
-
-    static OrderItemDetail getOrderItemDetail(OrderItem item, OrderItemMapper orderItemMapper) {
         String name = orderItemMapper.findProductNameByCatalogueItemId(item.getCatalogueItemId());
         OrderItemDetail detail = new OrderItemDetail();
         detail.setId(item.getId());

@@ -30,14 +30,14 @@ public class OrderDispatchServiceImpl implements OrderDispatchService{
 
     @Override
     @Transactional
-    public void sendOrder(Long orderId) throws IOException {
+    public void sendOrder(Long orderId, boolean hideCompanyName) throws IOException {
         log.info("Slanje narudžbe — orderId: {}", orderId);
         Order order = orderMapper.findById(orderId);
         if (order == null) {
             log.error("Narudžba nije pronađena — orderId: {}", orderId);
             throw new ResourceNotFoundException("Narudžba nije pronađena: " + orderId);
         }
-        byte[] pdfBytes = pdfGeneratorService.generateOrderPdf(order);
+        byte[] pdfBytes = pdfGeneratorService.generateOrderPdf(order, hideCompanyName);
         mailService.sendOrderPdf(order, pdfBytes);
         orderMapper.updateStatus(orderId, String.valueOf(OrderStatus.POSLANO));
         log.info("Narudžba uspješno poslana — orderId: {}, companyId: {}, supplierId: {}", orderId, order.getCompanyId(), order.getSupplierId());
