@@ -6,8 +6,44 @@ public class Company {
     private String name;
     private String merEmail;
     private String merPassword;
+    private String oib;
+    private String address;
+    private String city;
+    private String postalCode;
 
     public Company() {
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getOib() {
+        return oib;
+    }
+
+    public void setOib(String oib) {
+        this.oib = oib;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Long getId() {

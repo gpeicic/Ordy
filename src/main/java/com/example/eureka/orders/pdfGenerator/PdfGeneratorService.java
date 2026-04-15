@@ -132,7 +132,14 @@ public class PdfGeneratorService {
         System.out.println("pdf " + hideCompanyName);
         if (!hideCompanyName) {
             companyCell.add(new Paragraph(company.getName()).setFont(bold).setFontSize(12));
+            companyCell.add(new Paragraph("OIB: " + company.getOib()).setFont(bold).setFontSize(12));
+            companyCell.add(
+                    new Paragraph(company.getAddress() + " " + company.getPostalCode() + " " + company.getCity())
+                            .setFont(bold)
+                            .setFontSize(12)
+            );
             if(venue != null) {
+                companyCell.add(new Paragraph(" ").setMarginBottom(10));
                 companyCell.add(new Paragraph(venue.getName()).setFont(bold).setFontSize(10));
             }
         }
