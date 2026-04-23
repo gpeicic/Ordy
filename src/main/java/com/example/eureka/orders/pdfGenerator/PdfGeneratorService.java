@@ -54,6 +54,7 @@ public class PdfGeneratorService {
         this.orderItemMapper = orderItemMapper;
         this.catalogueItemMapper = catalogueItemMapper;
         this.venueMapper = venueMapper;
+
     }
 
     public byte[] generateOrderPdf(Order order, boolean hideCompanyName) throws IOException {
@@ -172,8 +173,14 @@ public class PdfGeneratorService {
     private void addProductRow(Table productTable, OrderItem item, int index, PdfFont regular) {
         CatalogueItem catalogueItem = catalogueItemMapper.findNameCodeById(item.getCatalogueItemId());
 
-        String name = catalogueItem != null ? catalogueItem.getName() : "N/A";
-        String code = catalogueItem != null ? catalogueItem.getCode() : "N/A";
+        String name = item.getProductName();
+        String code = "N/A";
+        if(item.getSource().equals("CATALOGUE")){
+            code = catalogueItem != null ? catalogueItem.getCode() : "N/A";
+        }
+
+
+
 
         DeviceRgb rowColor = index % 2 == 0
                 ? new DeviceRgb(255, 255, 255)

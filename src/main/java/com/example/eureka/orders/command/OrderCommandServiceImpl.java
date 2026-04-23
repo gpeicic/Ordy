@@ -34,14 +34,19 @@ public class OrderCommandServiceImpl implements OrderCommandService {
     }
 
     @Override
-    public void addItem(Long orderId, Long catalogueItemId, BigDecimal quantity) {
-        if (orderId == null || catalogueItemId == null) {
-            throw new ValidationException("orderId i catalogueItemId su obavezni");
+    public void addItem(Long orderId, Long catalogueItemId,String productName, BigDecimal quantity) {
+        if (orderId == null) {
+            throw new ValidationException("orderId je obavezan");
+        }
+        if (catalogueItemId == null && (productName == null || productName.isBlank())) {
+            throw new ValidationException("Mora biti catalogueItemId ili productName");
         }
         OrderItem item = new OrderItem();
         item.setOrderId(orderId);
         item.setCatalogueItemId(catalogueItemId);
+        item.setProductName(productName);
         item.setQuantity(quantity != null ? quantity : BigDecimal.ONE);
+        item.setSource(catalogueItemId != null ? "CATALOGUE" : "INVOICE");
         orderItemMapper.insert(item);
     }
 

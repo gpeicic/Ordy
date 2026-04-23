@@ -30,6 +30,7 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
+    @Cacheable(value = "suppliersWithCatalogue", key = "#companyId")
     public List<Supplier> findSuppliersWithCatalogue(Long companyId) {
         if (companyId == null) {
             throw new ValidationException("companyId je obavezan");

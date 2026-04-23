@@ -1,5 +1,6 @@
 package com.example.eureka.orders;
 
+import com.example.eureka.catalogue.dto.SearchItemForOrderDTO;
 import com.example.eureka.orders.command.OrderCommandService;
 import com.example.eureka.orders.dispatch.OrderDispatchService;
 import com.example.eureka.orders.dto.OrderSummary;
@@ -41,10 +42,11 @@ public class OrderController {
     @PostMapping("/{orderId}/items")
     public ResponseEntity<Void> addItem(
             @PathVariable Long orderId,
-            @RequestParam Long catalogueItemId,
-            @RequestParam BigDecimal quantity
+            @RequestParam(required = false) Long catalogueItemId,
+            @RequestParam BigDecimal quantity,
+            @RequestParam String productName
     ) {
-        orderCommandService.addItem(orderId, catalogueItemId, quantity);
+        orderCommandService.addItem(orderId, catalogueItemId,productName, quantity);
         return ResponseEntity.ok().build();
     }
 
@@ -98,5 +100,13 @@ public class OrderController {
         };
 
         return ResponseEntity.ok(html);
+    }
+    @GetMapping("/{supplierId}/available-items")
+    public ResponseEntity<List<SearchItemForOrderDTO>> getAvailableItems(
+            @PathVariable Long supplierId,
+            @RequestParam Long companyId,
+            @RequestParam String name
+    ) {
+        return ResponseEntity.ok(orderQueryService.fuzzySearchByName(supplierId, companyId,name));
     }
 }

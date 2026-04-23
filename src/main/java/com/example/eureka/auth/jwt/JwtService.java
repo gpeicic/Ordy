@@ -58,14 +58,11 @@ public class JwtService {
     }
 
     private Claims parseClaims(String token) {
-        try {
             return Jwts.parser()
                     .verifyWith(getSigningKey())
                     .build()
                     .parseSignedClaims(token)
                     .getPayload();
-        } catch (JwtException e) {
-            throw new UnauthorizedException("Neispravan ili istekao token");
-        }
+
     }
 }

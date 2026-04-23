@@ -1,5 +1,6 @@
 package com.example.eureka.invoice;
 
+import com.example.eureka.catalogue.dto.SearchItemForOrderDTO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -42,6 +43,12 @@ public interface InvoiceItemMapper {
                                                             @Param("supplierId") Long supplierId);
 
     @Select("""
+            SELECT product_name FROM invoice_items
+                WHERE id = {id}""")
+    InvoiceItem getInvoiceItemById(@Param("id")Long id);
+
+
+    @Select("""
     SELECT DISTINCT ON (product_id) product_name
     FROM invoice_items ii
     JOIN invoices i ON ii.invoice_id = i.id
@@ -51,4 +58,23 @@ public interface InvoiceItemMapper {
 """)
     String findLatestProductNameBySupplier(@Param("productId") Long productId,
                                            @Param("supplierId") Long supplierId);
+    @Select("""
+    SELECT DISTINCT ON (ii.product_name)
+        ii.product_id as id,
+        ii.product_name as name,
+        NULL as code,
+        'INVOICE' as source
+    FROM invoice_items ii
+    JOIN invoices i ON ii.invoice_id = i.id
+    WHERE i.supplier_id = #{supplierId}
+      AND i.company_id = #{companyId}
+      AND ii.product_name ILIKE CONCAT('%', #{name}, '%')
+    ORDER BY ii.product_name, i.invoice_datetime DESC
+    LIMIT 20
+""")
+    List<SearchItemForOrderDTO> findDistinctItemsBySupplierAndCompany(
+            @Param("supplierId") Long supplierId,
+            @Param("companyId") Long companyId,
+            @Param("name") String name
+    );
 }

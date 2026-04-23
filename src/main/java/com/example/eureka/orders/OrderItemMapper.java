@@ -7,8 +7,8 @@ import java.util.List;
 @Mapper
 public interface OrderItemMapper {
 
-    @Insert("INSERT INTO order_items (order_id, catalogue_item_id, quantity) " +
-            "VALUES (#{orderId}, #{catalogueItemId}, #{quantity})")
+    @Insert("INSERT INTO order_items (order_id, catalogue_item_id, quantity,source, product_name) " +
+            "VALUES (#{orderId}, #{catalogueItemId}, #{quantity},#{source}, #{productName})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(OrderItem orderItem);
 
@@ -16,7 +16,9 @@ public interface OrderItemMapper {
             @Result(property = "id", column = "id"),
             @Result(property = "orderId", column = "order_id"),
             @Result(property = "catalogueItemId", column = "catalogue_item_id"),
-            @Result(property = "quantity", column = "quantity")
+            @Result(property = "quantity", column = "quantity"),
+            @Result(property = "source", column = "source"),
+            @Result(property = "productName", column = "product_name")
     })
     @Select("SELECT * FROM order_items WHERE order_id = #{orderId}")
     List<OrderItem> findByOrderId(@Param("orderId") Long orderId);

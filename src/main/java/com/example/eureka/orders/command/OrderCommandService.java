@@ -6,6 +6,6 @@ import java.math.BigDecimal;
 
 public interface OrderCommandService {
     Order createOrder(Long companyId, Long supplierId, Long userId, Long venueId);
-    void addItem(Long orderId, Long productId, BigDecimal quantity);
+    void addItem(Long orderId, Long productId,String productName ,BigDecimal quantity);
     void removeItem(Long itemId);
 }

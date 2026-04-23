@@ -33,7 +33,7 @@ public interface CatalogueItemMapper {
     CatalogueItem findNameCodeById(Long id);
 
     @Select("""
-    SELECT id, name, code
+    SELECT id, name, code,'CATALOGUE' as source
     FROM catalogue_items
     WHERE supplier_id = #{supplierId}
       AND name ILIKE CONCAT('%', #{name}, '%')

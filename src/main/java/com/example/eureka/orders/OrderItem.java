@@ -7,13 +7,33 @@ public class OrderItem {
     private Long orderId;
     private Long catalogueItemId;
     private BigDecimal quantity;
+    private String productName;
+    private String source;
+
 
     public OrderItem(){}
-    public OrderItem(Long id, Long orderId, Long catalogueItemId, BigDecimal quantity) {
+    public OrderItem(Long id, Long orderId, Long catalogueItemId, BigDecimal quantity, String productName) {
         this.id = id;
         this.orderId = orderId;
         this.catalogueItemId = catalogueItemId;
         this.quantity = quantity;
+        this.productName = productName;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Long getId() {
