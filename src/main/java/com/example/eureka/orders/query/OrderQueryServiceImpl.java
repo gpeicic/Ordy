@@ -75,7 +75,12 @@ public class OrderQueryServiceImpl implements OrderQueryService {
     }
 
     private OrderItemDetail toOrderItemDetail(OrderItem item) {
-        String name = orderItemMapper.findProductNameByCatalogueItemId(item.getCatalogueItemId());
+        String name;
+        if ("INVOICE".equals(item.getSource())) {
+            name = item.getProductName();
+        } else {
+            name = orderItemMapper.findProductNameByCatalogueItemId(item.getCatalogueItemId());
+        }
         OrderItemDetail detail = new OrderItemDetail();
         detail.setId(item.getId());
         detail.setName(name != null ? name : "Nepoznat artikl");

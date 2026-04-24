@@ -145,8 +145,8 @@ public class PdfGeneratorService {
             }
         }
         if (venue != null) {
-            companyCell.add(new Paragraph(venue.getAddress()).setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
-            companyCell.add(new Paragraph(venue.getPostalCode() + " " + venue.getCity()).setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
+            companyCell.add(new Paragraph("Adresa isporuke: " + venue.getAddress()).setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
+            companyCell.add(new Paragraph("Grad isporuke: " + venue.getPostalCode() + " " + venue.getCity()).setFont(bold).setFontSize(10).setFontColor(ColorConstants.GRAY));
         }
 
         companyTable.addCell(companyCell);
