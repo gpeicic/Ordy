@@ -6,9 +6,18 @@ public class QuickListItem {
     private Long id;
     private Long quickListId;
     private Long catalogueItemId;
+    private String productName;
     private BigDecimal quantity;
 
     public QuickListItem(){}
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
     public Long getId() {
         return id;

@@ -28,6 +28,7 @@ public class QuickListController {
         List<QuickListItem> items = request.getItems().stream().map(i -> {
             QuickListItem item = new QuickListItem();
             item.setCatalogueItemId(i.getCatalogueItemId());
+            item.setProductName(i.getProductName());
             item.setQuantity(i.getQuantity());
             return item;
         }).toList();

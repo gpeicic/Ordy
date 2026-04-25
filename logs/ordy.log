@@ -1,26 +1,26 @@
-2026-04-25T00:15:32.825+02:00  INFO 28644 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 28644 (C:\Ordy\target\classes started by gabi in C:\Ordy)
-2026-04-25T00:15:32.831+02:00  INFO 28644 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
-2026-04-25T00:15:34.370+02:00  INFO 28644 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-04-25T00:15:34.390+02:00  INFO 28644 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-04-25T00:15:34.390+02:00  INFO 28644 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
-2026-04-25T00:15:34.457+02:00  INFO 28644 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-04-25T00:15:34.458+02:00  INFO 28644 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1579 ms
-2026-04-25T00:15:34.658+02:00  INFO 28644 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-04-25T00:15:34.811+02:00  INFO 28644 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3a861417
-2026-04-25T00:15:34.812+02:00  INFO 28644 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-04-25T00:15:34.837+02:00  INFO 28644 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
-2026-04-25T00:15:34.843+02:00  WARN 28644 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
-2026-04-25T00:15:34.879+02:00  INFO 28644 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.026s)
-2026-04-25T00:15:34.922+02:00  INFO 28644 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
-2026-04-25T00:15:34.924+02:00  INFO 28644 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2026-04-25T00:15:35.750+02:00  INFO 28644 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-2026-04-25T00:15:36.423+02:00  WARN 28644 --- [eureka] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
-2026-04-25T00:15:36.428+02:00  INFO 28644 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-04-25T00:15:36.432+02:00  INFO 28644 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-04-25T00:15:36.457+02:00  INFO 28644 --- [eureka] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2026-04-26T00:28:33.406+02:00  INFO 11788 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 11788 (C:\Ordy\target\classes started by gabi in C:\Ordy)
+2026-04-26T00:28:33.413+02:00  INFO 11788 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-26T00:28:35.278+02:00  INFO 11788 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-26T00:28:35.298+02:00  INFO 11788 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-26T00:28:35.299+02:00  INFO 11788 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-26T00:28:35.369+02:00  INFO 11788 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-26T00:28:35.370+02:00  INFO 11788 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1903 ms
+2026-04-26T00:28:35.615+02:00  INFO 11788 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-26T00:28:35.901+02:00  INFO 11788 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3a861417
+2026-04-26T00:28:35.903+02:00  INFO 11788 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-26T00:28:35.935+02:00  INFO 11788 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-04-26T00:28:35.947+02:00  WARN 11788 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-04-26T00:28:35.983+02:00  INFO 11788 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.026s)
+2026-04-26T00:28:36.027+02:00  INFO 11788 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-04-26T00:28:36.031+02:00  INFO 11788 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-04-26T00:28:36.944+02:00  INFO 11788 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-26T00:28:37.614+02:00  WARN 11788 --- [eureka] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-04-26T00:28:37.621+02:00  INFO 11788 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-26T00:28:37.626+02:00  INFO 11788 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-26T00:28:37.646+02:00  INFO 11788 --- [eureka] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2026-04-25T00:15:36.475+02:00 ERROR 28644 --- [eureka] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+2026-04-26T00:28:37.667+02:00 ERROR 11788 --- [eureka] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
 
 ***************************
 APPLICATION FAILED TO START
@@ -34,28 +34,543 @@ Action:
 
 Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
 
-2026-04-25T00:15:57.066+02:00  INFO 16240 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 16240 (C:\Ordy\target\classes started by gabi in C:\Ordy)
-2026-04-25T00:15:57.068+02:00  INFO 16240 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
-2026-04-25T00:15:58.563+02:00  INFO 16240 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-04-25T00:15:58.585+02:00  INFO 16240 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-04-25T00:15:58.586+02:00  INFO 16240 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
-2026-04-25T00:15:58.644+02:00  INFO 16240 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-04-25T00:15:58.645+02:00  INFO 16240 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1532 ms
-2026-04-25T00:15:58.849+02:00  INFO 16240 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-04-25T00:15:58.992+02:00  INFO 16240 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@489f62a3
-2026-04-25T00:15:58.994+02:00  INFO 16240 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-04-25T00:15:59.018+02:00  INFO 16240 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
-2026-04-25T00:15:59.026+02:00  WARN 16240 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
-2026-04-25T00:15:59.059+02:00  INFO 16240 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.025s)
-2026-04-25T00:15:59.097+02:00  INFO 16240 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
-2026-04-25T00:15:59.098+02:00  INFO 16240 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2026-04-25T00:15:59.890+02:00  INFO 16240 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
-2026-04-25T00:16:00.452+02:00  INFO 16240 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2026-04-25T00:16:00.463+02:00  INFO 16240 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 4.0 seconds (process running for 4.399)
-2026-04-25T00:16:04.571+02:00  INFO 16240 --- [eureka] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-04-25T00:16:04.572+02:00  INFO 16240 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-04-25T00:16:04.573+02:00  INFO 16240 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2026-04-25T00:36:56.744+02:00  INFO 16240 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2026-04-25T00:36:56.747+02:00  INFO 16240 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2026-04-25T00:36:56.764+02:00  INFO 16240 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-04-25T00:36:56.766+02:00  INFO 16240 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-26T00:32:50.083+02:00  INFO 14368 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 14368 (C:\Ordy\target\classes started by gabi in C:\Ordy)
+2026-04-26T00:32:50.086+02:00  INFO 14368 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-26T00:32:51.583+02:00  INFO 14368 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-26T00:32:51.609+02:00  INFO 14368 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-26T00:32:51.609+02:00  INFO 14368 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-26T00:32:51.674+02:00  INFO 14368 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-26T00:32:51.674+02:00  INFO 14368 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1544 ms
+2026-04-26T00:32:51.894+02:00  INFO 14368 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-26T00:32:52.042+02:00  INFO 14368 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@18e4551
+2026-04-26T00:32:52.043+02:00  INFO 14368 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-26T00:32:52.065+02:00  INFO 14368 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-04-26T00:32:52.072+02:00  WARN 14368 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-04-26T00:32:52.101+02:00  INFO 14368 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.020s)
+2026-04-26T00:32:52.163+02:00  INFO 14368 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-04-26T00:32:52.165+02:00  INFO 14368 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-04-26T00:32:52.888+02:00  INFO 14368 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-26T00:32:53.419+02:00  INFO 14368 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-26T00:32:53.429+02:00  INFO 14368 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 3.865 seconds (process running for 4.272)
+2026-04-26T00:33:00.570+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-26T00:33:00.571+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-26T00:33:00.572+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-26T00:33:15.100+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-5] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: ivan
+2026-04-26T00:33:15.203+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-5] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: ivan
+2026-04-26T00:33:54.456+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-6] c.e.e.o.d.OrderDispatchServiceImpl       : Slanje narudžbe — orderId: 63
+2026-04-26T00:33:56.921+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-6] c.e.e.o.d.OrderDispatchServiceImpl       : Narudžba uspješno poslana — orderId: 63, companyId: 5, supplierId: 1
+2026-04-26T00:47:37.825+02:00 ERROR 14368 --- [eureka] [http-nio-8080-exec-4] c.e.e.exception.GlobalExceptionHandler   : RuntimeException: 
+### Error updating database.  Cause: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (19, 11, null, 1).
+### The error may exist in com/example/eureka/quickList/QuickListItemMapper.java (best guess)
+### The error may involve com.example.eureka.quickList.QuickListItemMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO quick_list_items (quick_list_id, catalogue_item_id, quantity) VALUES (?, ?, ?)
+### Cause: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (19, 11, null, 1).
+; ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (19, 11, null, 1).
+
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (19, 11, null, 1).
+### The error may exist in com/example/eureka/quickList/QuickListItemMapper.java (best guess)
+### The error may involve com.example.eureka.quickList.QuickListItemMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO quick_list_items (quick_list_id, catalogue_item_id, quantity) VALUES (?, ?, ?)
+### Cause: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (19, 11, null, 1).
+; ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (19, 11, null, 1).
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:258) ~[spring-jdbc-6.2.12.jar:6.2.12]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.2.12.jar:6.2.12]
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:95) ~[mybatis-spring-3.0.5.jar:3.0.5]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347) ~[mybatis-spring-3.0.5.jar:3.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy89.insert(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.5.jar:3.0.5]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.19.jar:3.5.19]
+	at jdk.proxy2/jdk.proxy2.$Proxy126.insert(Unknown Source) ~[na:na]
+	at com.example.eureka.quickList.QuickListServiceImpl.lambda$create$0(QuickListServiceImpl.java:36) ~[classes/:na]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at com.example.eureka.quickList.QuickListServiceImpl.create(QuickListServiceImpl.java:34) ~[classes/:na]
+	at com.example.eureka.quickList.QuickListController.create(QuickListController.java:35) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.48.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.48.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at com.example.eureka.auth.jwt.JwtFilter.doFilterInternal(JwtFilter.java:59) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at com.example.eureka.config.RateLimitFilter.doFilterInternal(RateLimitFilter.java:72) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319) ~[spring-security-config-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240) ~[spring-security-config-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (19, 11, null, 1).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2736) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:525) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:435) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:182) ~[postgresql-42.7.8.jar:42.7.8]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184) ~[mybatis-3.5.19.jar:3.5.19]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333) ~[mybatis-spring-3.0.5.jar:3.0.5]
+	... 123 common frames omitted
+
+2026-04-26T00:47:39.369+02:00 ERROR 14368 --- [eureka] [http-nio-8080-exec-8] c.e.e.exception.GlobalExceptionHandler   : RuntimeException: 
+### Error updating database.  Cause: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (20, 12, null, 1).
+### The error may exist in com/example/eureka/quickList/QuickListItemMapper.java (best guess)
+### The error may involve com.example.eureka.quickList.QuickListItemMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO quick_list_items (quick_list_id, catalogue_item_id, quantity) VALUES (?, ?, ?)
+### Cause: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (20, 12, null, 1).
+; ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (20, 12, null, 1).
+
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (20, 12, null, 1).
+### The error may exist in com/example/eureka/quickList/QuickListItemMapper.java (best guess)
+### The error may involve com.example.eureka.quickList.QuickListItemMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO quick_list_items (quick_list_id, catalogue_item_id, quantity) VALUES (?, ?, ?)
+### Cause: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (20, 12, null, 1).
+; ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (20, 12, null, 1).
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:258) ~[spring-jdbc-6.2.12.jar:6.2.12]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.2.12.jar:6.2.12]
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:95) ~[mybatis-spring-3.0.5.jar:3.0.5]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347) ~[mybatis-spring-3.0.5.jar:3.0.5]
+	at jdk.proxy2/jdk.proxy2.$Proxy89.insert(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.5.jar:3.0.5]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.19.jar:3.5.19]
+	at jdk.proxy2/jdk.proxy2.$Proxy126.insert(Unknown Source) ~[na:na]
+	at com.example.eureka.quickList.QuickListServiceImpl.lambda$create$0(QuickListServiceImpl.java:36) ~[classes/:na]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at com.example.eureka.quickList.QuickListServiceImpl.create(QuickListServiceImpl.java:34) ~[classes/:na]
+	at com.example.eureka.quickList.QuickListController.create(QuickListController.java:35) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.48.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.48.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at com.example.eureka.auth.jwt.JwtFilter.doFilterInternal(JwtFilter.java:59) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at com.example.eureka.config.RateLimitFilter.doFilterInternal(RateLimitFilter.java:72) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319) ~[spring-security-config-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267) ~[spring-webmvc-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240) ~[spring-security-config-6.5.6.jar:6.5.6]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.12.jar:6.2.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.48.jar:10.1.48]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: null value in column "catalogue_item_id" of relation "quick_list_items" violates not-null constraint
+  Detail: Failing row contains (20, 12, null, 1).
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2736) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:525) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:435) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.8.jar:42.7.8]
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:182) ~[postgresql-42.7.8.jar:42.7.8]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:48) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:75) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.19.jar:3.5.19]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184) ~[mybatis-3.5.19.jar:3.5.19]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333) ~[mybatis-spring-3.0.5.jar:3.0.5]
+	... 123 common frames omitted
+
+2026-04-26T00:49:05.537+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-6] c.e.e.quickList.QuickListServiceImpl     : Brza lista obrisana — id: 12
+2026-04-26T00:49:06.491+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-3] c.e.e.quickList.QuickListServiceImpl     : Brza lista obrisana — id: 11
+2026-04-26T01:23:13.092+02:00  INFO 14368 --- [eureka] [http-nio-8080-exec-5] c.e.e.quickList.QuickListServiceImpl     : Brza lista kreirana — id: 13, name: mohor, companyId: 5
+2026-04-26T01:23:22.996+02:00  INFO 14368 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-26T01:23:23.000+02:00  INFO 14368 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-26T01:23:23.014+02:00  INFO 14368 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-26T01:23:23.016+02:00  INFO 14368 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-26T01:23:26.099+02:00  INFO 5080 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 5080 (C:\Ordy\target\classes started by gabi in C:\Ordy)
+2026-04-26T01:23:26.102+02:00  INFO 5080 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-26T01:23:27.543+02:00  INFO 5080 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-26T01:23:27.563+02:00  INFO 5080 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-26T01:23:27.563+02:00  INFO 5080 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-26T01:23:27.618+02:00  INFO 5080 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-26T01:23:27.619+02:00  INFO 5080 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1471 ms
+2026-04-26T01:23:27.811+02:00  INFO 5080 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-26T01:23:27.949+02:00  INFO 5080 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54329480
+2026-04-26T01:23:27.951+02:00  INFO 5080 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-26T01:23:27.977+02:00  INFO 5080 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-04-26T01:23:27.983+02:00  WARN 5080 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-04-26T01:23:28.016+02:00  INFO 5080 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.023s)
+2026-04-26T01:23:28.067+02:00  INFO 5080 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-04-26T01:23:28.070+02:00  INFO 5080 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-04-26T01:23:28.822+02:00  INFO 5080 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-26T01:23:29.357+02:00  INFO 5080 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-26T01:23:29.367+02:00  INFO 5080 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 3.759 seconds (process running for 4.126)
+2026-04-26T01:23:31.911+02:00  INFO 5080 --- [eureka] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-26T01:23:31.911+02:00  INFO 5080 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-26T01:23:31.912+02:00  INFO 5080 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-26T01:23:32.062+02:00  INFO 5080 --- [eureka] [http-nio-8080-exec-1] c.e.e.quickList.QuickListServiceImpl     : Brza lista obrisana — id: 13
+2026-04-26T01:23:46.386+02:00  INFO 5080 --- [eureka] [http-nio-8080-exec-5] c.e.e.quickList.QuickListServiceImpl     : Brza lista kreirana — id: 14, name: mohor, companyId: 5
+2026-04-26T01:24:54.224+02:00  INFO 5080 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-26T01:24:54.228+02:00  INFO 5080 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-26T01:24:54.244+02:00  INFO 5080 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-26T01:24:54.246+02:00  INFO 5080 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-26T01:24:57.660+02:00  INFO 40736 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 40736 (C:\Ordy\target\classes started by gabi in C:\Ordy)
+2026-04-26T01:24:57.662+02:00  INFO 40736 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-26T01:24:59.196+02:00  INFO 40736 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-26T01:24:59.224+02:00  INFO 40736 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-26T01:24:59.224+02:00  INFO 40736 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-26T01:24:59.284+02:00  INFO 40736 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-26T01:24:59.284+02:00  INFO 40736 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1580 ms
+2026-04-26T01:24:59.475+02:00  INFO 40736 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-26T01:24:59.624+02:00  INFO 40736 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a4af081
+2026-04-26T01:24:59.625+02:00  INFO 40736 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-26T01:24:59.650+02:00  INFO 40736 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-04-26T01:24:59.656+02:00  WARN 40736 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-04-26T01:24:59.687+02:00  INFO 40736 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.023s)
+2026-04-26T01:24:59.728+02:00  INFO 40736 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-04-26T01:24:59.730+02:00  INFO 40736 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-04-26T01:25:00.543+02:00  INFO 40736 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-26T01:25:01.236+02:00  INFO 40736 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-26T01:25:01.246+02:00  INFO 40736 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 4.1 seconds (process running for 4.453)
+2026-04-26T01:25:17.823+02:00  INFO 40736 --- [eureka] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-26T01:25:17.823+02:00  INFO 40736 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-26T01:25:17.824+02:00  INFO 40736 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-26T01:25:18.000+02:00  INFO 40736 --- [eureka] [http-nio-8080-exec-3] c.e.e.quickList.QuickListServiceImpl     : Brza lista obrisana — id: 14
+2026-04-26T01:25:36.398+02:00  INFO 40736 --- [eureka] [http-nio-8080-exec-5] c.e.e.quickList.QuickListServiceImpl     : Brza lista kreirana — id: 15, name: mohor, companyId: 5
+2026-04-26T01:30:57.629+02:00  INFO 40736 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-26T01:30:57.633+02:00  INFO 40736 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-26T01:30:57.649+02:00  INFO 40736 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-26T01:30:57.652+02:00  INFO 40736 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-26T01:31:00.912+02:00  INFO 24964 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 24964 (C:\Ordy\target\classes started by gabi in C:\Ordy)
+2026-04-26T01:31:00.915+02:00  INFO 24964 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-26T01:31:02.462+02:00  INFO 24964 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-26T01:31:02.481+02:00  INFO 24964 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-26T01:31:02.482+02:00  INFO 24964 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-26T01:31:02.547+02:00  INFO 24964 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-26T01:31:02.548+02:00  INFO 24964 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1580 ms
+2026-04-26T01:31:02.742+02:00  INFO 24964 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-26T01:31:02.889+02:00  INFO 24964 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a4af081
+2026-04-26T01:31:02.891+02:00  INFO 24964 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-26T01:31:02.917+02:00  INFO 24964 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-04-26T01:31:02.924+02:00  WARN 24964 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-04-26T01:31:02.958+02:00  INFO 24964 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.024s)
+2026-04-26T01:31:03.000+02:00  INFO 24964 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-04-26T01:31:03.003+02:00  INFO 24964 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-04-26T01:31:03.754+02:00  INFO 24964 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-26T01:31:04.311+02:00  INFO 24964 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-26T01:31:04.320+02:00  INFO 24964 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 3.977 seconds (process running for 4.355)
+2026-04-26T01:31:11.458+02:00  INFO 24964 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-26T01:31:11.458+02:00  INFO 24964 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-26T01:31:11.459+02:00  INFO 24964 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-26T01:31:11.593+02:00  INFO 24964 --- [eureka] [http-nio-8080-exec-2] c.e.e.quickList.QuickListServiceImpl     : Brza lista obrisana — id: 15
+2026-04-26T01:31:22.686+02:00  INFO 24964 --- [eureka] [http-nio-8080-exec-4] c.e.e.quickList.QuickListServiceImpl     : Brza lista kreirana — id: 16, name: mohor, companyId: 5
+2026-04-26T01:33:01.439+02:00  INFO 24964 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-26T01:33:01.442+02:00  INFO 24964 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-26T01:33:01.458+02:00  INFO 24964 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-26T01:33:01.461+02:00  INFO 24964 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-26T01:33:03.258+02:00  INFO 41160 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 41160 (C:\Ordy\target\classes started by gabi in C:\Ordy)
+2026-04-26T01:33:03.261+02:00  INFO 41160 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-26T01:33:04.770+02:00  INFO 41160 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-26T01:33:04.783+02:00  INFO 41160 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-26T01:33:04.783+02:00  INFO 41160 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-26T01:33:04.840+02:00  INFO 41160 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-26T01:33:04.841+02:00  INFO 41160 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1534 ms
+2026-04-26T01:33:05.042+02:00  INFO 41160 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-26T01:33:05.190+02:00  INFO 41160 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@18026052
+2026-04-26T01:33:05.192+02:00  INFO 41160 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-26T01:33:05.213+02:00  INFO 41160 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-04-26T01:33:05.219+02:00  WARN 41160 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-04-26T01:33:05.249+02:00  INFO 41160 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.022s)
+2026-04-26T01:33:05.298+02:00  INFO 41160 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-04-26T01:33:05.300+02:00  INFO 41160 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-04-26T01:33:06.029+02:00  INFO 41160 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-26T01:33:06.576+02:00  INFO 41160 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-26T01:33:06.586+02:00  INFO 41160 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 3.906 seconds (process running for 4.325)
+2026-04-26T01:33:40.254+02:00  INFO 41160 --- [eureka] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-26T01:33:40.254+02:00  INFO 41160 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-26T01:33:40.255+02:00  INFO 41160 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-26T01:34:36.271+02:00  INFO 41160 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-26T01:34:36.275+02:00  INFO 41160 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-26T01:34:36.292+02:00  INFO 41160 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-26T01:34:36.298+02:00  INFO 41160 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-26T01:34:39.191+02:00  INFO 32544 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 32544 (C:\Ordy\target\classes started by gabi in C:\Ordy)
+2026-04-26T01:34:39.193+02:00  INFO 32544 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-26T01:34:40.694+02:00  INFO 32544 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-26T01:34:40.714+02:00  INFO 32544 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-26T01:34:40.715+02:00  INFO 32544 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-26T01:34:40.774+02:00  INFO 32544 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-26T01:34:40.774+02:00  INFO 32544 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1538 ms
+2026-04-26T01:34:40.976+02:00  INFO 32544 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-26T01:34:41.123+02:00  INFO 32544 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@18026052
+2026-04-26T01:34:41.124+02:00  INFO 32544 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-26T01:34:41.148+02:00  INFO 32544 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-04-26T01:34:41.154+02:00  WARN 32544 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-04-26T01:34:41.187+02:00  INFO 32544 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.024s)
+2026-04-26T01:34:41.238+02:00  INFO 32544 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-04-26T01:34:41.242+02:00  INFO 32544 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-04-26T01:34:41.997+02:00  INFO 32544 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-26T01:34:42.610+02:00  INFO 32544 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-26T01:34:42.620+02:00  INFO 32544 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 3.94 seconds (process running for 4.311)
+2026-04-26T01:34:43.891+02:00  INFO 32544 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-26T01:34:43.892+02:00  INFO 32544 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-26T01:34:43.893+02:00  INFO 32544 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-26T01:39:19.736+02:00  INFO 32544 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-26T01:39:19.739+02:00  INFO 32544 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-26T01:39:19.756+02:00  INFO 32544 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-26T01:39:19.758+02:00  INFO 32544 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-26T01:46:02.816+02:00  INFO 12676 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 22.0.2 with PID 12676 (C:\Ordy\target\classes started by gabi in C:\Ordy)
+2026-04-26T01:46:02.818+02:00  INFO 12676 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-04-26T01:46:04.264+02:00  INFO 12676 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-04-26T01:46:04.283+02:00  INFO 12676 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-26T01:46:04.284+02:00  INFO 12676 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-04-26T01:46:04.339+02:00  INFO 12676 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-26T01:46:04.339+02:00  INFO 12676 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1475 ms
+2026-04-26T01:46:04.530+02:00  INFO 12676 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-26T01:46:04.674+02:00  INFO 12676 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@18026052
+2026-04-26T01:46:04.675+02:00  INFO 12676 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-26T01:46:04.699+02:00  INFO 12676 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-04-26T01:46:04.705+02:00  WARN 12676 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-04-26T01:46:04.732+02:00  INFO 12676 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.019s)
+2026-04-26T01:46:04.771+02:00  INFO 12676 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-04-26T01:46:04.773+02:00  INFO 12676 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-04-26T01:46:05.486+02:00  INFO 12676 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-04-26T01:46:06.034+02:00  INFO 12676 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-04-26T01:46:06.044+02:00  INFO 12676 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 3.744 seconds (process running for 4.118)
+2026-04-26T01:46:09.327+02:00  INFO 12676 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-26T01:46:09.327+02:00  INFO 12676 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-26T01:46:09.328+02:00  INFO 12676 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-26T01:46:09.426+02:00  INFO 12676 --- [eureka] [http-nio-8080-exec-2] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: mic
+2026-04-26T01:46:09.584+02:00  INFO 12676 --- [eureka] [http-nio-8080-exec-2] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: mic
+2026-04-26T01:46:20.161+02:00  INFO 12676 --- [eureka] [http-nio-8080-exec-8] c.e.eureka.auth.ApiAuthServiceImpl       : Switch company pokušaj — korisnik: mic, companyId: 16
+2026-04-26T01:46:20.164+02:00  INFO 12676 --- [eureka] [http-nio-8080-exec-8] c.e.eureka.auth.ApiAuthServiceImpl       : Switch company uspješan — korisnik: mic, companyId: 16
+2026-04-26T01:46:30.581+02:00  INFO 12676 --- [eureka] [http-nio-8080-exec-1] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: ivan
+2026-04-26T01:46:30.641+02:00  INFO 12676 --- [eureka] [http-nio-8080-exec-1] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: ivan
+2026-04-26T01:53:10.096+02:00  INFO 12676 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-04-26T01:53:10.099+02:00  INFO 12676 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-04-26T01:53:10.115+02:00  INFO 12676 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-26T01:53:10.118+02:00  INFO 12676 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

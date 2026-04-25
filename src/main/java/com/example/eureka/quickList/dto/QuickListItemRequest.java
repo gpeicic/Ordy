@@ -4,9 +4,18 @@ import java.math.BigDecimal;
 
 public class QuickListItemRequest {
     private Long catalogueItemId;
+    private String productName;
     private BigDecimal quantity;
 
     public QuickListItemRequest(){}
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
     public Long getCatalogueItemId() {
         return catalogueItemId;
