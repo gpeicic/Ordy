@@ -13,11 +13,11 @@ public enum BlockedSupplierKeyword {
     ELEKTRA(List.of("elektra", "hep", "ELEKTRONIČKI", "elektronički")),
     PLIN(List.of("plin")),
     VODOOPSKRBA(List.of("vodoopskrba")),
-
+    DELIVERY(List.of("Wolt","DPD")),
     HRT(List.of("hrt")),
     TEHNICKI(List.of("tehnički", "tehnicki")),
     AUTO(List.of("auto", "vozilo", "vozila")),
-    GOSPODARSTVO(List.of("gospodarstvo","PROJECT TOURIST d.o.o."));
+    GOSPODARSTVO(List.of("gospodarstvo","PROJECT TOURIST d.o.o.","bank"));
 
     private final List<String> keywords;
 
@@ -34,7 +34,7 @@ public enum BlockedSupplierKeyword {
 
         for (BlockedSupplierKeyword keyword : values()) {
             for (String k : keyword.keywords) {
-                if (lower.contains(k)) {
+                if (lower.contains(k.toLowerCase())) {
                     return true;
                 }
             }
