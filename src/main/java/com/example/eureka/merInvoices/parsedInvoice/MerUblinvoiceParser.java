@@ -58,7 +58,7 @@ public class MerUblinvoiceParser implements InvoiceParser {
 
     private Document buildDocument(byte[] xmlBytes) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setNamespaceAware(true);
+        factory.setNamespaceAware(false);
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.parse(new ByteArrayInputStream(xmlBytes));
         doc.getDocumentElement().normalize();
@@ -173,8 +173,19 @@ public class MerUblinvoiceParser implements InvoiceParser {
 
     private ParsedInvoiceItem parseInvoiceItem(Element line) {
         String productName = safeGetFirstText(line, "cbc:Name");
+        if (productName == null || productName.isBlank()) {
+
+            NodeList itemNodes = line.getElementsByTagName("cac:Item");
+            if (itemNodes.getLength() > 0) {
+                productName = safeGetFirstText((Element) itemNodes.item(0), "cbc:Name");
+            }
+        }
+        if (productName == null || productName.isBlank()) {
+            throw new ValidationException("Naziv proizvoda nije pronađen u InvoiceLine ID: "
+                    + safeGetFirstText(line, "cbc:ID"));
+        }
         BigDecimal price = new BigDecimal(safeGetFirstText(line, "cbc:PriceAmount"));
-        BigDecimal amount = new BigDecimal(safeGetFirstText(line, "cbc:BaseQuantity"));
+        BigDecimal amount = new BigDecimal(safeGetFirstText(line, "cbc:InvoicedQuantity"));
         BigDecimal discount = extractDiscount(line);
         return new ParsedInvoiceItem(productName, price, discount, amount);
     }

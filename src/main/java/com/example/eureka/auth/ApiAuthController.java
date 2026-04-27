@@ -31,6 +31,7 @@ public class ApiAuthController {
     public ResponseEntity<ApiRegisterResponse> register(@Valid @RequestBody ApiRegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
     }
+
     @PostMapping("/switch-company/{companyId}")
     public ResponseEntity<ApiLoginResponse> switchCompany(@PathVariable Long companyId, HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");

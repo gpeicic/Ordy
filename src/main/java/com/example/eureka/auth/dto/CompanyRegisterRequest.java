@@ -17,12 +17,50 @@ public class CompanyRegisterRequest {
 
     @NotBlank(message = "MER lozinka je obavezna")
     private String merPassword;
+    @NotBlank(message = "OiB je obavezan")
+    private String oib;
+    @NotBlank(message = "Adresa je obavezna")
+    private String address;
+    @NotBlank(message = "Grad je obavezan")
+    private String city;
+    @NotBlank(message = "Postanski broj je obavezan")
+    private String postalCode;
 
     @NotEmpty(message = "Potreban je najmanje jedan objekt")
     @Valid
     private List<VenueRegisterRequest> venues;
 
+    public String getAddress() {
+        return address;
+    }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getOib() {
+        return oib;
+    }
+
+    public void setOib(String oib) {
+        this.oib = oib;
+    }
 
     public String getCompanyName() { return companyName; }
     public void setCompanyName(String companyName) { this.companyName = companyName; }

@@ -6,14 +6,15 @@ import com.example.eureka.auth.dto.VenueRegisterRequest;
 import com.example.eureka.company.Company;
 import com.example.eureka.company.CompanyMapper;
 import com.example.eureka.company.UserCompaniesMapper;
-import com.example.eureka.exception.ValidationException;
+import com.example.eureka.merInvoices.CompanyRegisteredEvent;
 import com.example.eureka.user.User;
 import com.example.eureka.user.UserMapper;
-import com.example.eureka.user.role.RoleType;
 import com.example.eureka.venue.Venue;
 import com.example.eureka.venue.VenueMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,21 +26,26 @@ import java.util.List;
 public class RegistrationService {
 
     private static final Logger log = LoggerFactory.getLogger(RegistrationService.class);
+    private final TextEncryptor encryptor;
     private final Long DEFAULT_ROLE_ID = 2L;
     private final UserMapper userMapper;
     private final CompanyMapper companyMapper;
     private final UserCompaniesMapper userCompaniesMapper;
     private final VenueMapper venueMapper;
     private final PasswordEncoder passwordEncoder;
+    private final ApplicationEventPublisher eventPublisher;
 
     public RegistrationService(UserMapper userMapper, CompanyMapper companyMapper,
                                UserCompaniesMapper userCompaniesMapper, VenueMapper venueMapper,
-                               PasswordEncoder passwordEncoder) {
+                               PasswordEncoder passwordEncoder,
+                               ApplicationEventPublisher eventPublisher, TextEncryptor encryptor) {
         this.userMapper = userMapper;
         this.companyMapper = companyMapper;
         this.userCompaniesMapper = userCompaniesMapper;
         this.venueMapper = venueMapper;
         this.passwordEncoder = passwordEncoder;
+        this.eventPublisher = eventPublisher;
+        this.encryptor = encryptor;
     }
 
     @Transactional
@@ -54,6 +60,8 @@ public class RegistrationService {
             userCompaniesMapper.insertUserCompany(user.getId(), company.getId());
             log.info("Company kreirana — companyId: {}, name: {}, userId: {}", company.getId(), company.getName(), user.getId());
             createVenues(companyReq.getVenues(), company.getId(), user.getId());
+
+            eventPublisher.publishEvent(new CompanyRegisteredEvent(company.getId()));
         }
         return user;
     }
@@ -71,7 +79,11 @@ public class RegistrationService {
         Company company = new Company();
         company.setName(request.getCompanyName());
         company.setMerEmail(request.getMerEmail());
-        company.setMerPassword(request.getMerPassword());
+        company.setMerPassword(encryptor.encrypt(request.getMerPassword()));
+        company.setOib(request.getOib());
+        company.setAddress(request.getAddress());
+        company.setCity(request.getCity());
+        company.setPostalCode(request.getPostalCode());
         companyMapper.insert(company);
         return company;
     }

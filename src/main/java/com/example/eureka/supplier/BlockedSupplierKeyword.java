@@ -6,18 +6,18 @@ public enum BlockedSupplierKeyword {
 
     OSIGURANJE(List.of("osiguranje", "insurance")),
     LEASING(List.of("leasing")),
-    TELEKOM(List.of("telekom", "telecommunications","telemach")),
+    TELEKOM(List.of("telekom", "telecommunications","telemach","iStyle d.o.o.")),
 
     BANK(List.of("bank")), // pokriva bank, banka, banking
 
-    ELEKTRA(List.of("elektra", "hep")),
+    ELEKTRA(List.of("elektra", "hep", "ELEKTRONIČKI", "elektronički")),
     PLIN(List.of("plin")),
     VODOOPSKRBA(List.of("vodoopskrba")),
 
     HRT(List.of("hrt")),
     TEHNICKI(List.of("tehnički", "tehnicki")),
     AUTO(List.of("auto", "vozilo", "vozila")),
-    GOSPODARSTVO(List.of("gospodarstvo"));
+    GOSPODARSTVO(List.of("gospodarstvo","PROJECT TOURIST d.o.o."));
 
     private final List<String> keywords;
 

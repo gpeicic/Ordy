@@ -15,6 +15,8 @@ import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,11 +48,41 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
     @Override
     public List<InvoiceSummary> getReceivedInvoices(Long companyId) {
         log.info("Dohvaćanje računa s MER-a za kompaniju: {}", companyId);
-        SessionToken token = findTokenOrThrow(companyId);
-        SearchReceivedRequest request = buildDefaultSearchRequest();
-        List<InvoiceSummary> invoices = merInvoiceClient.searchReceived(token.getAccessToken(), request);
+        List<InvoiceSummary> invoices = getReceivedInvoicesPage(companyId, 1, 50);
         log.info("Dohvaćeno {} računa za kompaniju: {}", invoices.size(), companyId);
         return invoices;
+    }
+
+    @Override
+    public void firstSync(Long companyId) {
+        log.info("Pokretanje first sync-a za kompaniju: {}", companyId);
+        merAuthService.loginCompany(companyId);
+
+        List<InvoiceSummary> invoices = getAllReceivedInvoices(companyId);
+        log.info("First sync — dohvaćeno {} računa za kompaniju: {}", invoices.size(), companyId);
+        int imported = 0;
+        int skipped = 0;
+        int failed = 0;
+
+        for (InvoiceSummary invoiceSummary : invoices) {
+            Long documentId = invoiceSummary.getId();
+            if (documentId == null) {
+                skipped++;
+                log.warn("Preskačem invoice bez documentId za kompaniju: {}", companyId);
+                continue;
+            }
+
+            try {
+                downloadXml(companyId, documentId);
+                imported++;
+            } catch (Exception ex) {
+                failed++;
+                log.error("Neuspješan import invoice-a — companyId: {}, documentId: {}", companyId, documentId, ex);
+            }
+        }
+
+        log.info("First sync završen — companyId: {}, ukupno: {}, importano: {}, preskočeno: {}, greške: {}",
+                companyId, invoices.size(), imported, skipped, failed);
     }
 
 
@@ -91,13 +123,28 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
 
     private boolean isTokenExpired(SessionToken token) {
         return token.getExpiration() == null ||
-                LocalDateTime.now().isAfter(token.getExpiration().minusMinutes(5));
+                LocalDateTime.now(ZoneOffset.UTC).isAfter(token.getExpiration().minusMinutes(5));
     }
 
-    private SearchReceivedRequest buildDefaultSearchRequest() {
+    private List<InvoiceSummary> getAllReceivedInvoices(Long companyId) {
+        List<InvoiceSummary> invoices = getReceivedInvoicesPage(companyId, 1, 200);
+        log.info("First sync — MER vratio ukupno {} računa za kompaniju: {}", invoices.size(), companyId);
+        return invoices;
+    }
+
+    private List<InvoiceSummary> getReceivedInvoicesPage(Long companyId, int pageNumber, int pageSize) {
+        SessionToken token = findTokenOrThrow(companyId);
+        log.info("Pozivam MER searchReceived — companyId: {}, page: {}", companyId, pageNumber);
+        SearchReceivedRequest request = buildDefaultSearchRequest(pageNumber, pageSize);
+        List<InvoiceSummary> invoices = merInvoiceClient.searchReceived(token.getAccessToken(), request);
+        log.info("MER searchReceived vratio {} računa", invoices == null ? "null" : invoices.size());
+        return invoices == null ? List.of() : invoices;
+    }
+
+    private SearchReceivedRequest buildDefaultSearchRequest(int pageNumber, int pageSize) {
         SearchReceivedRequest request = new SearchReceivedRequest();
-        request.setPageNumber(1);
-        request.setPageSize(50);
+        request.setPageNumber(pageNumber);
+        request.setPageSize(pageSize);
         request.setDocumentStatuses(List.of());
         request.setDocumentTypes(List.of());
         request.setSearchText("");

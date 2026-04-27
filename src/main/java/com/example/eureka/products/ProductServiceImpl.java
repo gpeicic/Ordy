@@ -62,6 +62,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private Set<String> tokenize(String name) {
+        if (name == null || name.isBlank()) return Set.of();
         return Set.of(name.split(" "));
     }
 
