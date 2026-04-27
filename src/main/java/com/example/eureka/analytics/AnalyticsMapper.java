@@ -72,4 +72,14 @@ public interface AnalyticsMapper {
     })
     List<ProductSpendingDTO> getProductBreakdownForSupplier(@Param("companyId") Long companyId,
                                                             @Param("supplierId") Long supplierId);
+
+    @Select("""
+    SELECT 
+        SUM(ii.amount * ii.unit_price) as current_month_spending
+    FROM invoice_items ii
+    JOIN invoices i ON ii.invoice_id = i.id
+    WHERE i.company_id = #{companyId}
+      AND DATE_TRUNC('month', i.invoice_datetime) = DATE_TRUNC('month', CURRENT_DATE)
+""")
+    BigDecimal getCurrentMonthSpendingForCompany(@Param("companyId") Long companyId);
 }

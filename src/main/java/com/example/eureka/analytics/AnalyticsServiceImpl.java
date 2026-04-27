@@ -27,7 +27,15 @@ public class AnalyticsServiceImpl implements AnalyticsService{
             supplier.setTopProducts(products);
         }
 
+        suppliers.sort((a, b) -> b.getCurrentMonthSpending().compareTo(a.getCurrentMonthSpending()));
+
         return suppliers;
+    }
+
+    @Override
+    public BigDecimal getCurrentMonthSpendingForCompany(Long companyId) {
+        BigDecimal currentMonthSpending = analyticsMapper.getCurrentMonthSpendingForCompany(companyId);
+        return currentMonthSpending != null ? currentMonthSpending : BigDecimal.ZERO;
     }
 
 }

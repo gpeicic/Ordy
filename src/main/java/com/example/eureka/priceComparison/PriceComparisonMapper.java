@@ -79,6 +79,7 @@ public interface PriceComparisonMapper {
               AND i3.invoice_datetime <= NOW() - INTERVAL '14 days'
             ORDER BY i3.invoice_datetime DESC
             LIMIT 1
+            OFFSET 1
         ) AS previousPrice
     FROM invoice_items ii
     JOIN invoices i ON ii.invoice_id = i.id
