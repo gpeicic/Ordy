@@ -130,10 +130,15 @@ public class MerUblinvoiceParser implements InvoiceParser {
     }
 
     private boolean isBlockedSupplier(String oib, String supplierName) {
+        if (oib == null || oib.length() != 11 || !oib.matches("\\d{11}")) {
+            System.out.println("invalid oib: " + oib);
+            return true;
+        }
         if (blockedSupplierMapper.existsByOib(oib)) {
             System.out.println("blacklist supplier");
             return true;
         }
+
         if (BlockedSupplierKeyword.matches(supplierName)) {
             System.out.println("keyword supplier");
             blockedSupplierMapper.insert(oib, supplierName);
