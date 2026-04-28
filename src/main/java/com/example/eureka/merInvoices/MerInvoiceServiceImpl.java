@@ -11,6 +11,7 @@ import com.example.eureka.sessionToken.SessionToken;
 import com.example.eureka.sessionToken.SessionTokenMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
 import java.nio.charset.StandardCharsets;
@@ -101,6 +102,38 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
         }
 
         return new String(xmlBytes, StandardCharsets.UTF_8);
+    }
+
+    @Async
+    @Override
+    public void syncNewInvoices(Long companyId) {
+        log.info("Sync novih računa — companyId: {}", companyId);
+        merAuthService.loginCompany(companyId);
+
+        Long maxKnownId = invoiceService.getMaxExternalDocumentId(companyId);
+        log.info("Sync — max poznati externalDocumentId: {} za companyId: {}", maxKnownId, companyId);
+
+        List<InvoiceSummary> allSummaries = getAllReceivedInvoices(companyId);
+
+        List<Long> toDownload = allSummaries.stream()
+                .map(InvoiceSummary::getId)
+                .filter(id -> id != null && (maxKnownId == null || id > maxKnownId))
+                .toList();
+
+        log.info("Sync — ukupno s MER-a: {}, za download: {}", allSummaries.size(), toDownload.size());
+
+        int imported = 0, failed = 0;
+        for (Long documentId : toDownload) {
+            try {
+                downloadXml(companyId, documentId);
+                imported++;
+            } catch (Exception ex) {
+                failed++;
+                log.error("Sync — neuspješan download — companyId: {}, documentId: {}", companyId, documentId, ex);
+            }
+        }
+
+        log.info("Sync završen — companyId: {}, importano: {}, greške: {}", companyId, imported, failed);
     }
 
     private SessionToken findTokenOrThrow(Long companyId) {

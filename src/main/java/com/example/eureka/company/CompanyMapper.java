@@ -34,6 +34,10 @@ public interface CompanyMapper {
     """)
     List<Company> findAll();
 
+    @Select("""
+            SELECT id FROM companies""")
+    List<Long> findAllIds();
+
     @Insert("""
         INSERT INTO companies(name, mer_email, mer_password,oib, address,city,postal_code)
         VALUES(#{name}, #{merEmail}, #{merPassword}, #{oib}, #{address},#{city},#{postalCode})

@@ -36,10 +36,18 @@ public class MerUblinvoiceParser implements InvoiceParser {
         }
         try {
             Document doc = buildDocument(xmlBytes);
-            String oib = extractOib(doc);
             String supplierName = extractSupplierName(doc);
 
-            if (isBlockedSupplier(oib, supplierName)) {
+            if (BlockedSupplierKeyword.matches(supplierName)) {
+                tryInsertBlockedSupplier(doc, supplierName);
+                return null;
+            }
+            String oib = extractOib(doc);
+
+            if (blockedSupplierMapper.existsByOib(oib)) {
+                return null;
+            }
+            if (oib.length() != 11 || !oib.matches("\\d{11}")) {
                 return null;
             }
 
@@ -112,15 +120,15 @@ public class MerUblinvoiceParser implements InvoiceParser {
     }
 
     private String extractOibFromLegalEntity(Document doc) {
-        NodeList legalEntities = doc.getElementsByTagName("cac:PartyLegalEntity");
-        if (legalEntities.getLength() == 0) return null;
+        NodeList supplierParties = doc.getElementsByTagName("cac:AccountingSupplierParty");
+        if (supplierParties.getLength() == 0) return null;
 
-        Element legalEntity = (Element) legalEntities.item(0);
-        String oib = safeGetFirstText(legalEntity, "cbc:CompanyID");
-        if (isNullOrEmpty(oib)) {
-            oib = safeGetFirstText(legalEntity, "cbc:EndpointID");
-        }
-        return oib;
+        Element supplierParty = (Element) supplierParties.item(0);
+        NodeList parties = supplierParty.getElementsByTagName("cac:Party");
+        if (parties.getLength() == 0) return null;
+
+        Element party = (Element) parties.item(0);
+        return safeGetFirstText(party, "cbc:EndpointID");
     }
 
     private String extractOibFromSellerContact(Document doc) {
@@ -129,28 +137,12 @@ public class MerUblinvoiceParser implements InvoiceParser {
         return safeGetFirstText((Element) sellerContacts.item(0), "cbc:ID");
     }
 
-    private boolean isBlockedSupplier(String oib, String supplierName) {
-        if (oib == null || oib.length() != 11 || !oib.matches("\\d{11}")) {
-            System.out.println("invalid oib: " + oib);
-            return true;
-        }
-        if (blockedSupplierMapper.existsByOib(oib)) {
-            System.out.println("blacklist supplier");
-            return true;
-        }
-
-        if (BlockedSupplierKeyword.matches(supplierName)) {
-            System.out.println("keyword supplier");
-            blockedSupplierMapper.insert(oib, supplierName);
-            return true;
-        }
-        return false;
-    }
 
     private LocalDateTime extractInvoiceDateTime(Document doc) {
         String issueDate = safeGetTextContent(doc, "cbc:IssueDate");
         String issueTime = safeGetTextContent(doc, "cbc:IssueTime");
         assert issueDate != null;
+        assert issueTime != null;
         return LocalDateTime.of(LocalDate.parse(issueDate), LocalTime.parse(issueTime));
     }
 
@@ -240,5 +232,16 @@ public class MerUblinvoiceParser implements InvoiceParser {
             return text != null ? text.trim() : null;
         }
         return null;
+    }
+
+    private void tryInsertBlockedSupplier(Document doc, String supplierName) {
+        try {
+            String oib = extractOib(doc);
+            if (!isNullOrEmpty(oib) && oib.matches("\\d{11}")) {
+                blockedSupplierMapper.insert(oib, supplierName);
+            }
+        } catch (Exception ignored) {
+            // nema OIB-a, ne spremamo
+        }
     }
 }

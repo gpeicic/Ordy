@@ -80,6 +80,11 @@ public class InvoiceServiceImpl implements  InvoiceService {
         return invoiceMapper.findTopSupplierBySpending(companyId);
     }
 
+    @Override
+    public Long getMaxExternalDocumentId(Long companyId){
+        return invoiceMapper.findMaxExternalDocumentId(companyId);
+    }
+
     private Supplier findOrCreateSupplier(ParsedInvoice parsed) {
         Supplier supplier = supplierMapper.findByOib(parsed.getOib());
         if (supplier != null) {

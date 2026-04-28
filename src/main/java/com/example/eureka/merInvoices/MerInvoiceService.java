@@ -8,4 +8,5 @@ public interface MerInvoiceService {
     List<InvoiceSummary> getReceivedInvoices(Long companyId);
     String downloadXml(Long companyId, Long documentId);
     void firstSync(Long companyId);
+    void syncNewInvoices(Long companyId);
 }

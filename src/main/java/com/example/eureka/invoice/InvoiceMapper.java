@@ -35,4 +35,10 @@ public interface InvoiceMapper {
 """)
     Long findTopSupplierBySpending(@Param("companyId") Long companyId);
 
+    @Select("""
+    SELECT MAX(external_document_id) FROM invoices
+    WHERE company_id = #{companyId}
+""")
+    Long findMaxExternalDocumentId(@Param("companyId") Long companyId);
+
 }
