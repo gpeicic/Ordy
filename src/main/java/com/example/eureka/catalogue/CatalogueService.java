@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CatalogueService {
     int importFromPdf(Long supplierId, byte[] pdfBytes) throws IOException;
-    List<CatalogueItem> getBySupplier(Long supplierId);
+    List<CatalogueItem> getBySupplierPaged(Long supplierId, String search, int page, int size);
     List<SearchItemForOrderDTO> fuzzySearchByName(Long supplierId, String name);
     @CacheEvict(value = "catalogue", key = "#item.supplierId")
     void upsert(CatalogueItem item);

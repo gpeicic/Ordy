@@ -20,8 +20,15 @@ public class CatalogueController {
 
     @GetMapping("/{supplierId}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<List<CatalogueItem>> getBySupplier(@PathVariable Long supplierId) {
-        return ResponseEntity.ok(catalogueService.getBySupplier(supplierId));
+    public ResponseEntity<List<CatalogueItem>> getBySupplier(
+            @PathVariable Long supplierId,
+            @RequestParam(defaultValue = "") String search,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "50") int size
+    ) {
+        return ResponseEntity.ok(
+                catalogueService.getBySupplierPaged(supplierId, search, page, size)
+        );
     }
 
     @PostMapping

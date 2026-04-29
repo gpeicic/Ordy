@@ -9,11 +9,10 @@ import java.util.List;
 public interface CatalogueItemMapper {
 
     @Insert("""
-        INSERT INTO catalogue_items (supplier_id, code, category, name, price)
-        VALUES (#{supplierId}, #{code}, #{category}, #{name}, #{price})
+        INSERT INTO catalogue_items (supplier_id, code, name, price)
+        VALUES (#{supplierId}, #{code}, #{name}, #{price})
         ON CONFLICT (supplier_id, code)
         DO UPDATE SET
-            category = EXCLUDED.category,
             name = EXCLUDED.name,
             price = EXCLUDED.price,
             updated_at = NOW()
@@ -47,6 +46,47 @@ public interface CatalogueItemMapper {
     })
     List<SearchItemForOrderDTO> fuzzySearchByName(Long supplierId, String name);
 
+    @Select("""
+                SELECT *
+                FROM catalogue_items
+                WHERE supplier_id = #{supplierId}
+                ORDER BY name
+                LIMIT #{limit}
+                OFFSET #{offset}
+            """)
+    @Results(value = {
+            @Result(property = "supplierId", column = "supplier_id"),
+            @Result(property = "createdAt", column = "created_at"),
+            @Result(property = "updatedAt", column = "updated_at")
+    })
+    List<CatalogueItem> findBySupplierIdPaged(
+            Long supplierId,
+            int limit,
+            int offset
+    );
+    @Select("""
+                SELECT *
+                FROM catalogue_items
+                WHERE supplier_id = #{supplierId}
+                  AND (
+                      name ILIKE CONCAT('%', #{search}, '%')
+                      OR code ILIKE CONCAT('%', #{search}, '%')
+                  )
+                ORDER BY name
+                LIMIT #{limit}
+                OFFSET #{offset}
+            """)
+    @Results(value = {
+            @Result(property = "supplierId", column = "supplier_id"),
+            @Result(property = "createdAt", column = "created_at"),
+            @Result(property = "updatedAt", column = "updated_at")
+    })
+    List<CatalogueItem> searchBySupplierPaged(
+            Long supplierId,
+            String search,
+            int limit,
+            int offset
+    );
     @Delete("DELETE FROM catalogue_items WHERE id = #{id}")
     void deleteById(Long id);
 }

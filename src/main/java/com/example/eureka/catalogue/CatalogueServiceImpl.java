@@ -43,8 +43,19 @@ public class CatalogueServiceImpl implements CatalogueService {
 
     @Cacheable(value = "catalogue", key = "#supplierId")
     @Override
-    public List<CatalogueItem> getBySupplier(Long supplierId) {
-        return catalogueItemMapper.findBySupplierId(supplierId);
+    public List<CatalogueItem> getBySupplierPaged(Long supplierId, String search, int page, int size) {
+        int offset = page * size;
+
+        if (search == null || search.isBlank()) {
+            return catalogueItemMapper.findBySupplierIdPaged(supplierId, size, offset);
+        }
+
+        return catalogueItemMapper.searchBySupplierPaged(
+                supplierId,
+                search == null ? "" : search,
+                size,
+                offset
+        );
     }
 
     @Override
