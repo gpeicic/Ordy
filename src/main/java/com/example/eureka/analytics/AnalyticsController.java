@@ -3,6 +3,7 @@ package com.example.eureka.analytics;
 import com.example.eureka.analytics.dto.SupplierSpendingDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ public class AnalyticsController {
     }
 
     @GetMapping("/supplier-spending")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVIDER')")
     public ResponseEntity<List<SupplierSpendingDTO>> getSupplierSpending(
             @RequestParam Long companyId
     ) {
@@ -27,6 +29,7 @@ public class AnalyticsController {
     }
 
     @GetMapping("/current-month-spending/{companyId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVIDER')")
     public ResponseEntity<BigDecimal> getCurrentMonthSpendingForCompany(
             @PathVariable Long companyId
     ) {

@@ -27,7 +27,8 @@ public class RegistrationService {
 
     private static final Logger log = LoggerFactory.getLogger(RegistrationService.class);
     private final TextEncryptor encryptor;
-    private final Long DEFAULT_ROLE_ID = 2L;
+    private final Long PROVIDER_ROLE_ID = 5L;
+    private final Long USER_ROLE_ID = 2L;
     private final UserMapper userMapper;
     private final CompanyMapper companyMapper;
     private final UserCompaniesMapper userCompaniesMapper;
@@ -52,27 +53,38 @@ public class RegistrationService {
     public User register(ApiRegisterRequest request) {
 
         log.info("Registracija — kreiranje usera: {}", request.getUsername());
-        User user = createUser(request);
-        log.info("User kreiran — userId: {}, username: {}", user.getId(), user.getUsername());
+        User owner = createUser(request);
+        log.info("Owner kreiran — userId: {}, username: {}", owner.getId(), owner.getUsername());
+       // User employee = createEmployeeUser(request);
+       // log.info("Owner kreiran — userId: {}, username: {}", employee.getId(), employee.getUsername());
 
         for (CompanyRegisterRequest companyReq : request.getCompanies()) {
             Company company = createCompany(companyReq);
-            userCompaniesMapper.insertUserCompany(user.getId(), company.getId());
-            log.info("Company kreirana — companyId: {}, name: {}, userId: {}", company.getId(), company.getName(), user.getId());
-            createVenues(companyReq.getVenues(), company.getId(), user.getId());
+            userCompaniesMapper.insertUserCompany(owner.getId(), company.getId());
+        //    userCompaniesMapper.insertUserCompany(employee.getId(), company.getId());
+            log.info("Company kreirana — companyId: {}, name: {}, userId: {}", company.getId(), company.getName(), owner.getId());
+            createVenues(companyReq.getVenues(), company.getId(), owner.getId());
 
             eventPublisher.publishEvent(new CompanyRegisteredEvent(company.getId()));
         }
-        return user;
+        return owner;
     }
 
     private User createUser(ApiRegisterRequest request) {
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole_id(DEFAULT_ROLE_ID);
-        userMapper.insert(user);
-        return user;
+        User owner = new User();
+        owner.setUsername(request.getUsername());
+        owner.setPassword(passwordEncoder.encode(request.getPassword()));
+        owner.setRole_id(PROVIDER_ROLE_ID);
+        userMapper.insert(owner);
+        return owner;
+    }
+    private User createEmployeeUser(ApiRegisterRequest request) {
+        User employee = new User();
+        employee.setUsername(request.getUsername() + "_zaposlenik");
+        employee.setPassword(passwordEncoder.encode(request.getPassword()));
+        employee.setRole_id(USER_ROLE_ID);
+        userMapper.insert(employee);
+        return employee;
     }
 
     private Company createCompany(CompanyRegisterRequest request) {

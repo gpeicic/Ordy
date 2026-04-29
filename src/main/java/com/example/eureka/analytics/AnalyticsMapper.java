@@ -9,7 +9,6 @@ import java.util.List;
 
 @Mapper
 public interface AnalyticsMapper {
-
     @Select("""
         SELECT 
             i.supplier_id,

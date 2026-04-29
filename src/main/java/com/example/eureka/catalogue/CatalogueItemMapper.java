@@ -46,4 +46,7 @@ public interface CatalogueItemMapper {
             @Result(property = "code", column = "code"),
     })
     List<SearchItemForOrderDTO> fuzzySearchByName(Long supplierId, String name);
+
+    @Delete("DELETE FROM catalogue_items WHERE id = #{id}")
+    void deleteById(Long id);
 }

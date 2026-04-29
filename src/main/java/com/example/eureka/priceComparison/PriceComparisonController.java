@@ -21,6 +21,7 @@ public class PriceComparisonController {
         this.priceComparisonService = priceComparisonService;
     }
     @GetMapping("/allProducts")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVIDER')")
     public ResponseEntity<List<PriceComparisonItem>> getSupplierComparisonForAllProducts(
             @RequestParam Long companyId,
             @RequestParam Long supplierId
@@ -31,6 +32,7 @@ public class PriceComparisonController {
     }
 
     @GetMapping("/supplier")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVIDER')")
     public ResponseEntity<List<PriceComparisonItem>> getSupplierComparisonForTopFive(
             @RequestParam Long companyId,
             @RequestParam Long supplierId
@@ -41,7 +43,7 @@ public class PriceComparisonController {
     }
 
     @GetMapping("/product")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<PriceComparisonItem>> getProductComparison(
             @RequestParam Long productId
     ) {
@@ -50,6 +52,7 @@ public class PriceComparisonController {
         );
     }
     @GetMapping("/acrossCompanies")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<List<PriceComparisonItem>> getPriceComparisonAcrossCompanies(
             @RequestParam List<Long> companyIds,
             @RequestParam Long supplierId

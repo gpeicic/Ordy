@@ -54,4 +54,17 @@ public class CatalogueServiceImpl implements CatalogueService {
         }
         return catalogueItemMapper.fuzzySearchByName(supplierId, name);
     }
+    @CacheEvict(value = "catalogue", key = "#item.supplierId")
+    @Override
+    @Transactional
+    public void upsert(CatalogueItem item) {
+        catalogueItemMapper.upsert(item);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        catalogueItemMapper.deleteById(id);
+    }
+
 }

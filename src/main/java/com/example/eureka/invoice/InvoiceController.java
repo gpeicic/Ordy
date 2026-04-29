@@ -22,7 +22,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/{companyId}/top-supplier")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVIDER')")
     public ResponseEntity<Long> getTopSupplier(@PathVariable Long companyId) {
         Long supplierId = invoiceService.getTopSupplierId(companyId);
         if (supplierId == null) {
@@ -32,7 +32,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/{companyId}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVIDER')")
     public ResponseEntity<BigDecimal> getMonthlySpending(@PathVariable Long companyId) {
         return ResponseEntity.ok(invoiceService.getMonthlySpending(companyId));
     }

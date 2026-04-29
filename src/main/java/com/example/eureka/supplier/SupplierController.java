@@ -2,6 +2,7 @@ package com.example.eureka.supplier;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,16 +20,19 @@ public class SupplierController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public ResponseEntity<List<Supplier>> getAllSuppliers() {
        return ResponseEntity.ok(supplierService.getAllSuppliers());
     }
 
     @GetMapping("/company/{companyId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVIDER','ROLE_USER')")
     public ResponseEntity<List<Supplier>> getSuppliersByCompany(@PathVariable Long companyId) {
         return ResponseEntity.ok(supplierService.getSuppliersByCompany(companyId));
     }
 
     @GetMapping("/company-with-catalogue/{companyId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_PROVIDER','ROLE_USER')")
     public ResponseEntity<List<Supplier>> getSuppliersWithCatalogue(@PathVariable Long companyId){
         return ResponseEntity.ok(supplierService.findSuppliersWithCatalogue(companyId));
     }
