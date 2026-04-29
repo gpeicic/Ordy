@@ -12,7 +12,7 @@ public interface OrderQueryService {
     List<Order> getOrdersByUser(Long userId);
     List<Order> getOrdersByCompany(Long companyId);
     List<OrderItem> getOrderItems(Long orderId);
-    OrderWithSupplierNameDTO findLatestByCompanyId(Long companyId);
+    OrderWithSupplierNameDTO getLatestByCompanyId(Long companyId);
     List<OrderSummary> getOrderSummariesByCompany(Long companyId);
     List<SearchItemForOrderDTO> fuzzySearchByName(Long supplierId,Long companyId, String name);
 }

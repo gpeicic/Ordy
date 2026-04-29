@@ -47,7 +47,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
     }
 
     @Override
-    public OrderWithSupplierNameDTO findLatestByCompanyId(Long companyId) {
+    public OrderWithSupplierNameDTO getLatestByCompanyId(Long companyId) {
         return orderMapper.findLatestByCompanyId(companyId);
     }
 

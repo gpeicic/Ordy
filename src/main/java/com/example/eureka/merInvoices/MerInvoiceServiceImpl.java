@@ -31,19 +31,22 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
     private final MerUblinvoiceParser ublInvoiceParser;
     private final InvoiceService invoiceService;
     private final TextEncryptor encryptor;
+    private final MerTokenProvider merTokenProvider;
 
     public MerInvoiceServiceImpl(SessionTokenMapper sessionTokenMapper,
                                  MerInvoiceClient merInvoiceClient,
                                  MerUblinvoiceParser ublInvoiceParser,
                                  InvoiceService invoiceService,
                                  TextEncryptor encryptor,
-                                 MerAuthService merAuthService) {
+                                 MerAuthService merAuthService,
+                                 MerTokenProvider merTokenProvider) {
         this.sessionTokenMapper = sessionTokenMapper;
         this.merInvoiceClient = merInvoiceClient;
         this.ublInvoiceParser = ublInvoiceParser;
         this.invoiceService = invoiceService;
         this.encryptor = encryptor;
         this.merAuthService = merAuthService;
+        this.merTokenProvider = merTokenProvider;
     }
 
     @Override
@@ -90,7 +93,7 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
     @Override
     public String downloadXml(Long companyId, Long documentId) {
         log.info("Download XML računa — companyId: {}, documentId: {}", companyId, documentId);
-        SessionToken token = findTokenOrThrow(companyId);
+        SessionToken token = merTokenProvider.getValidToken(companyId);
         byte[] xmlBytes = merInvoiceClient.downloadXml(token.getAccessToken(), documentId);
         ParsedInvoice parsed = ublInvoiceParser.parse(xmlBytes);
 
@@ -108,8 +111,6 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
     @Override
     public void syncNewInvoices(Long companyId) {
         log.info("Sync novih računa — companyId: {}", companyId);
-        merAuthService.loginCompany(companyId);
-
         Long maxKnownId = invoiceService.getMaxExternalDocumentId(companyId);
         log.info("Sync — max poznati externalDocumentId: {} za companyId: {}", maxKnownId, companyId);
 
@@ -136,29 +137,6 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
         log.info("Sync završen — companyId: {}, importano: {}, greške: {}", companyId, imported, failed);
     }
 
-    private SessionToken findTokenOrThrow(Long companyId) {
-        SessionToken token = sessionTokenMapper.findByCompanyId(companyId);
-        if (token == null) {
-            log.error("MER token nije pronađen za kompaniju: {}", companyId);
-            throw new ResourceNotFoundException("MER token nije pronađen za kompaniju: " + companyId);
-        }
-
-        if (isTokenExpired(token)) {
-            log.info("MER token istekao za kompaniju: {}, refresham...", companyId);
-            merAuthService.loginCompany(companyId);
-            token = sessionTokenMapper.findByCompanyId(companyId);
-            log.info("MER token refreshan za kompaniju: {}", companyId);
-        }
-
-        token.setAccessToken(encryptor.decrypt(token.getAccessToken()));
-        return token;
-    }
-
-    private boolean isTokenExpired(SessionToken token) {
-        return token.getExpiration() == null ||
-                LocalDateTime.now(ZoneOffset.UTC).isAfter(token.getExpiration().minusMinutes(5));
-    }
-
     private List<InvoiceSummary> getAllReceivedInvoices(Long companyId) {
         List<InvoiceSummary> invoices = getReceivedInvoicesPage(companyId, 1, 200);
         log.info("First sync — MER vratio ukupno {} računa za kompaniju: {}", invoices.size(), companyId);
@@ -166,7 +144,7 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
     }
 
     private List<InvoiceSummary> getReceivedInvoicesPage(Long companyId, int pageNumber, int pageSize) {
-        SessionToken token = findTokenOrThrow(companyId);
+        SessionToken token = merTokenProvider.getValidToken(companyId);
         log.info("Pozivam MER searchReceived — companyId: {}, page: {}", companyId, pageNumber);
         SearchReceivedRequest request = buildDefaultSearchRequest(pageNumber, pageSize);
         List<InvoiceSummary> invoices = merInvoiceClient.searchReceived(token.getAccessToken(), request);

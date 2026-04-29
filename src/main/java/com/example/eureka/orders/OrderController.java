@@ -70,7 +70,7 @@ public class OrderController {
 
     @GetMapping("/lastOrder/{companyId}")
     public ResponseEntity<OrderWithSupplierNameDTO> getLastOrder(@PathVariable Long companyId) {
-        OrderWithSupplierNameDTO order = orderQueryService.findLatestByCompanyId(companyId);
+        OrderWithSupplierNameDTO order = orderQueryService.getLatestByCompanyId(companyId);
 
         if (order == null) {
             return ResponseEntity.notFound().build();
