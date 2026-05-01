@@ -41,7 +41,7 @@ public class CatalogueServiceImpl implements CatalogueService {
         return items.size();
     }
 
-    @Cacheable(value = "catalogue", key = "#supplierId")
+
     @Override
     public List<CatalogueItem> getBySupplierPaged(Long supplierId, String search, int page, int size) {
         int offset = page * size;
@@ -63,8 +63,10 @@ public class CatalogueServiceImpl implements CatalogueService {
         if (name == null || name.isBlank()) {
             throw new ValidationException("Naziv za pretragu je obavezan");
         }
+
         return catalogueItemMapper.fuzzySearchByName(supplierId, name);
     }
+
     @CacheEvict(value = "catalogue", key = "#item.supplierId")
     @Override
     @Transactional

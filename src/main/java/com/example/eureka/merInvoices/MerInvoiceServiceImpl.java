@@ -1,6 +1,6 @@
 package com.example.eureka.merInvoices;
 
-import com.example.eureka.exception.ResourceNotFoundException;
+
 import com.example.eureka.invoice.InvoiceService;
 import com.example.eureka.merAuth.MerAuthService;
 import com.example.eureka.merInvoices.dto.InvoiceSummary;
@@ -8,16 +8,12 @@ import com.example.eureka.merInvoices.dto.SearchReceivedRequest;
 import com.example.eureka.merInvoices.parsedInvoice.MerUblinvoiceParser;
 import com.example.eureka.merInvoices.parsedInvoice.dto.ParsedInvoice;
 import com.example.eureka.sessionToken.SessionToken;
-import com.example.eureka.sessionToken.SessionTokenMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,7 +21,6 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
 
     private static final Logger log = LoggerFactory.getLogger(MerInvoiceServiceImpl.class);
 
-    private final SessionTokenMapper sessionTokenMapper;
     private final MerAuthService merAuthService;
     private final MerInvoiceClient merInvoiceClient;
     private final MerUblinvoiceParser ublInvoiceParser;
@@ -33,14 +28,12 @@ public class MerInvoiceServiceImpl implements MerInvoiceService {
     private final TextEncryptor encryptor;
     private final MerTokenProvider merTokenProvider;
 
-    public MerInvoiceServiceImpl(SessionTokenMapper sessionTokenMapper,
-                                 MerInvoiceClient merInvoiceClient,
+    public MerInvoiceServiceImpl(MerInvoiceClient merInvoiceClient,
                                  MerUblinvoiceParser ublInvoiceParser,
                                  InvoiceService invoiceService,
                                  TextEncryptor encryptor,
                                  MerAuthService merAuthService,
                                  MerTokenProvider merTokenProvider) {
-        this.sessionTokenMapper = sessionTokenMapper;
         this.merInvoiceClient = merInvoiceClient;
         this.ublInvoiceParser = ublInvoiceParser;
         this.invoiceService = invoiceService;

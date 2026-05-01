@@ -57,8 +57,8 @@ public class InvoiceServiceImpl implements  InvoiceService {
 
         Supplier supplier = findOrCreateSupplier(parsed);
 
-        if (invoiceAlreadyExists(supplier.getId(), parsed.getInterniBroj())) {
-            log.warn("Invoice već postoji — skippen — supplierId: {}, invoiceNumber: {}", supplier.getId(), parsed.getInterniBroj());
+        if (invoiceAlreadyExists(supplier.getId(), parsed.getInterniBroj(), companyId)) {
+            log.warn("Invoice već postoji — skippen — supplierId: {}, invoiceNumber: {}", supplier.getId(), parsed.getInterniBroj(), companyId);
             return;
         }
 
@@ -104,8 +104,8 @@ public class InvoiceServiceImpl implements  InvoiceService {
         return supplier;
     }
 
-    private boolean invoiceAlreadyExists(Long supplierId, String invoiceNumber) {
-        return invoiceMapper.findExisting(supplierId, invoiceNumber) != null;
+    private boolean invoiceAlreadyExists(Long supplierId, String invoiceNumber, Long companyId) {
+        return invoiceMapper.findExisting(supplierId, invoiceNumber, companyId) != null;
     }
 
     private void linkSupplierToCompanyIfMissing(Long companyId, Long supplierId) {

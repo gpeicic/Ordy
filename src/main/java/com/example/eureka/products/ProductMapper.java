@@ -1,5 +1,6 @@
 package com.example.eureka.products;
 
+import com.example.eureka.products.dto.ProductSearch;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -38,5 +39,14 @@ public interface ProductMapper {
     @Insert("INSERT INTO products (canonical_name) VALUES (#{canonicalName})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Product product);
+
+    @Select("""
+    SELECT id, canonical_name AS name
+    FROM products
+    WHERE canonical_name ILIKE CONCAT('%', #{name}, '%')
+    ORDER BY canonical_name
+    LIMIT 15
+""")
+    List<ProductSearch> searchByName(@Param("name") String name);
 
 }

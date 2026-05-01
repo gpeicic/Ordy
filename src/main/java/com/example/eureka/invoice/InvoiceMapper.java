@@ -6,14 +6,15 @@ import org.apache.ibatis.annotations.*;
 public interface InvoiceMapper {
 
     @Select("""
-        SELECT * FROM invoices
-        WHERE supplier_id = #{supplierId}
-        AND invoice_number = #{invoiceNumber}
-    """)
-    Invoice findExisting(
-            Long supplierId,
-            String invoiceNumber
-    );
+                SELECT id FROM invoices
+                WHERE supplier_id = #{supplierId}
+                  AND invoice_number = #{invoiceNumber}
+                  AND company_id = #{companyId}
+                LIMIT 1
+            """)
+    Invoice findExisting(@Param("supplierId") Long supplierId,
+                         @Param("invoiceNumber") String invoiceNumber,
+                         @Param("companyId") Long companyId);
 
     @Insert("""
         INSERT INTO invoices

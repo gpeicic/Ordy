@@ -62,10 +62,10 @@ public class OrderQueryServiceImpl implements OrderQueryService {
     public List<SearchItemForOrderDTO> fuzzySearchByName(Long supplierId, Long companyId, String name) {
         List<CatalogueItem> catalogueItems = catalogueItemMapper.findBySupplierId(supplierId);
 
-        if(!catalogueItems.isEmpty()){
+        if (!catalogueItems.isEmpty()) {
             return catalogueItemMapper.fuzzySearchByName(supplierId, name);
         }
-        return invoiceItemMapper.findDistinctItemsBySupplierAndCompany(supplierId,companyId,name);
+        return invoiceItemMapper.findDistinctItemsBySupplierAndCompany(supplierId, companyId, name);
     }
 
     private List<OrderItemDetail> buildItemDetails(Long orderId) {

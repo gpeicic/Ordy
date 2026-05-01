@@ -32,19 +32,27 @@ public interface CatalogueItemMapper {
     CatalogueItem findNameCodeById(Long id);
 
     @Select("""
-    SELECT id, name, code,'CATALOGUE' as source
-    FROM catalogue_items
-    WHERE supplier_id = #{supplierId}
-      AND name ILIKE CONCAT('%', #{name}, '%')
-    ORDER BY name
-    LIMIT 20
+    SELECT id, name, code, 'CATALOGUE' as source
+                FROM catalogue_items
+                WHERE supplier_id = #{supplierId}
+                  AND (
+                    name ILIKE CONCAT(#{name}, '%')
+                    OR name ILIKE CONCAT('%', #{name}, '%')
+                  )
+                ORDER BY
+                    CASE WHEN name ILIKE CONCAT(#{name}, '%') THEN 0 ELSE 1 END,
+                    name
+                LIMIT 10
 """)
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "name", column = "name"),
             @Result(property = "code", column = "code"),
     })
-    List<SearchItemForOrderDTO> fuzzySearchByName(Long supplierId, String name);
+    List<SearchItemForOrderDTO> fuzzySearchByName(
+            @Param("supplierId") Long supplierId,
+            @Param("name") String name
+    );
 
     @Select("""
                 SELECT *

@@ -1,8 +1,11 @@
 package com.example.eureka.products;
 
 import com.example.eureka.exception.ValidationException;
+import com.example.eureka.products.dto.ProductSearch;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -41,6 +44,11 @@ public class ProductServiceImpl implements ProductService {
         }
 
         return insertNewProduct(normalized);
+    }
+
+    @Override
+    public List<ProductSearch> searchByName(String name){
+        return searchByName(name);
     }
 
     private Long insertNewProduct(String normalizedName) {
@@ -87,4 +95,5 @@ public class ProductServiceImpl implements ProductService {
                 .filter(t -> t.matches(".*\\d+.*"))
                 .collect(Collectors.toSet());
     }
+
 }

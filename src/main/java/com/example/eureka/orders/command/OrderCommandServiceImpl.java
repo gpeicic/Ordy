@@ -2,6 +2,7 @@ package com.example.eureka.orders.command;
 
 import com.example.eureka.exception.ValidationException;
 import com.example.eureka.orders.*;
+import com.example.eureka.userActivity.UserActivityMapper;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -11,10 +12,12 @@ import java.time.LocalDateTime;
 public class OrderCommandServiceImpl implements OrderCommandService {
     private final OrderMapper orderMapper;
     private final OrderItemMapper orderItemMapper;
+    private final UserActivityMapper userActivityMapper;
 
-    public OrderCommandServiceImpl(OrderMapper orderMapper, OrderItemMapper orderItemMapper) {
+    public OrderCommandServiceImpl(OrderMapper orderMapper, OrderItemMapper orderItemMapper, UserActivityMapper userActivityMapper) {
         this.orderMapper = orderMapper;
         this.orderItemMapper = orderItemMapper;
+        this.userActivityMapper = userActivityMapper;
     }
 
     @Override
@@ -30,6 +33,7 @@ public class OrderCommandServiceImpl implements OrderCommandService {
         order.setCreatedAt(LocalDateTime.now());
         order.setStatus(String.valueOf(OrderStatus.KREIRANO));
         orderMapper.insert(order);
+        userActivityMapper.log(userId, companyId, "ORDER_CREATED");
         return order;
     }
 

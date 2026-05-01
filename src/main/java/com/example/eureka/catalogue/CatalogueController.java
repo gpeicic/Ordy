@@ -1,5 +1,6 @@
 package com.example.eureka.catalogue;
 
+import com.example.eureka.catalogue.dto.SearchItemForOrderDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,6 +30,15 @@ public class CatalogueController {
         return ResponseEntity.ok(
                 catalogueService.getBySupplierPaged(supplierId, search, page, size)
         );
+    }
+
+    @GetMapping("/{supplierId}/search")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<List<SearchItemForOrderDTO>> search(
+            @PathVariable Long supplierId,
+            @RequestParam String name
+    ) {
+        return ResponseEntity.ok(catalogueService.fuzzySearchByName(supplierId, name));
     }
 
     @PostMapping
