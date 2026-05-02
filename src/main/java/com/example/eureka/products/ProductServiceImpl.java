@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductSearch> searchByName(String name){
-        return searchByName(name);
+        return productMapper.searchByName(name);
     }
 
     private Long insertNewProduct(String normalizedName) {

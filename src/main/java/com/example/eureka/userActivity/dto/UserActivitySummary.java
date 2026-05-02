@@ -4,12 +4,10 @@ import java.time.LocalDateTime;
 
 public class UserActivitySummary {
     private Long userId;
-    private String firstName;
-    private String lastName;
+    private String username;
     private Long totalActions;
     private Long orderCount;
     private LocalDateTime lastSeen;
-
     public UserActivitySummary(){}
 
 
@@ -21,20 +19,12 @@ public class UserActivitySummary {
         this.userId = userId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getTotalActions() {

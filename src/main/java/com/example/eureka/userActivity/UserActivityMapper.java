@@ -17,23 +17,21 @@ public interface UserActivityMapper {
              @Param("action") String action);
 
     @Select("""
-        SELECT
-            u.id AS userId,
-            u.first_name AS firstName,
-            u.last_name AS lastName,
-            COUNT(*) AS totalActions,
-            COUNT(CASE WHEN action = 'ORDER_CREATED' THEN 1 END) AS orderCount,
-            MAX(created_at) AS lastSeen
-        FROM user_activity_log l
-        JOIN users u ON l.user_id = u.id
-        WHERE l.company_id = #{companyId}
-        GROUP BY u.id, u.first_name, u.last_name
-        ORDER BY totalActions DESC
-    """)
+    SELECT
+        u.id AS userId,
+        u.username AS username,
+        COUNT(*) AS totalActions,
+        COUNT(CASE WHEN action = 'ORDER_CREATED' THEN 1 END) AS orderCount,
+        MAX(l.created_at) AS lastSeen
+    FROM user_activity_log l
+    JOIN users u ON l.user_id = u.id
+    WHERE l.company_id = #{companyId}
+    GROUP BY u.id, u.username
+    ORDER BY totalActions DESC
+""")
     @Results({
             @Result(property = "userId", column = "userId"),
-            @Result(property = "firstName", column = "firstName"),
-            @Result(property = "lastName", column = "lastName"),
+            @Result(property = "username", column = "username"),
             @Result(property = "totalActions", column = "totalActions"),
             @Result(property = "orderCount", column = "orderCount"),
             @Result(property = "lastSeen", column = "lastSeen")

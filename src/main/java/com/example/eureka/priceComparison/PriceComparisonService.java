@@ -7,5 +7,5 @@ public interface PriceComparisonService {
     List<PriceComparisonItem> getSupplierPriceComparisonForTopFive(Long companyId, Long supplierId);
     List<PriceComparisonItem> getProductPriceAcrossSuppliers(Long productId);
     List<PriceComparisonItem> getPriceComparisonAcrossCompanies(List<Long> companyIds, Long supplierId);
-
+    List<PriceComparisonItem> getProductPriceAcrossSuppliersAndCompanies(Long productId);
 }

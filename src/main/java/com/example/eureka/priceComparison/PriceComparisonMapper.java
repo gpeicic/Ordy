@@ -185,4 +185,47 @@ public interface PriceComparisonMapper {
             @Param("companyIds") String companyIds,
             @Param("supplierId") Long supplierId
     );
+
+    @Select("""
+    SELECT
+        p.canonical_name AS canonicalName,
+        s.name AS supplierName,
+        c.name AS companyName,
+        i.company_id AS companyId,
+        (
+            SELECT ii2.unit_price
+            FROM invoice_items ii2
+            JOIN invoices i2 ON ii2.invoice_id = i2.id
+            WHERE ii2.product_id = ii.product_id
+              AND i2.supplier_id = i.supplier_id
+            ORDER BY i2.invoice_datetime DESC
+            LIMIT 1
+        ) AS latestPrice,
+        (
+            SELECT ii3.unit_price
+            FROM invoice_items ii3
+            JOIN invoices i3 ON ii3.invoice_id = i3.id
+            WHERE ii3.product_id = ii.product_id
+              AND i3.supplier_id = i.supplier_id
+              AND i3.invoice_datetime <= NOW() - INTERVAL '7 days'
+            ORDER BY i3.invoice_datetime DESC
+            LIMIT 1
+        ) AS previousPrice
+    FROM invoice_items ii
+    JOIN invoices i ON ii.invoice_id = i.id
+    JOIN products p ON ii.product_id = p.id
+    JOIN suppliers s ON i.supplier_id = s.id
+    JOIN companies c ON i.company_id = c.id
+    WHERE ii.product_id = #{productId}
+    GROUP BY p.canonical_name, s.name, c.name, i.company_id, i.supplier_id, ii.product_id
+    ORDER BY s.name, latestPrice ASC
+""")
+    @Results({
+            @Result(property = "canonicalName", column = "canonicalName"),
+            @Result(property = "supplierName", column = "supplierName"),
+            @Result(property = "companyId", column = "companyId"),
+            @Result(property = "latestPrice", column = "latestPrice"),
+            @Result(property = "previousPrice", column = "previousPrice")
+    })
+    List<PriceComparisonItem> getProductPriceAcrossSuppliersAndCompanies(@Param("productId") Long productId);
 }

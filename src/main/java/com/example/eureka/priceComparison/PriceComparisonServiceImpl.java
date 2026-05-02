@@ -21,6 +21,12 @@ public class PriceComparisonServiceImpl implements PriceComparisonService {
         }
         return priceComparisonMapper.getPriceComparisonForAllProducts(companyId, supplierId);
     }
+    @Override
+    public List<PriceComparisonItem> getProductPriceAcrossSuppliersAndCompanies(Long productId) {
+        if (productId == null) throw new ValidationException("productId je obavezan");
+        return priceComparisonMapper.getProductPriceAcrossSuppliersAndCompanies(productId);
+    }
+
 
     @Override
     public List<PriceComparisonItem> getSupplierPriceComparisonForTopFive(Long companyId, Long supplierId) {
@@ -51,4 +57,5 @@ public class PriceComparisonServiceImpl implements PriceComparisonService {
                 .collect(Collectors.joining(","));
         return priceComparisonMapper.getPriceComparisonAcrossCompanies(ids, supplierId);
     }
+
 }

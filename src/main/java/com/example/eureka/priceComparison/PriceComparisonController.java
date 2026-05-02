@@ -61,4 +61,14 @@ public class PriceComparisonController {
                 priceComparisonService.getPriceComparisonAcrossCompanies(companyIds, supplierId)
         );
     }
+
+    @GetMapping("/product/full")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<List<PriceComparisonItem>> getProductComparisonFull(
+            @RequestParam Long productId
+    ) {
+        return ResponseEntity.ok(
+                priceComparisonService.getProductPriceAcrossSuppliersAndCompanies(productId)
+        );
+    }
 }
