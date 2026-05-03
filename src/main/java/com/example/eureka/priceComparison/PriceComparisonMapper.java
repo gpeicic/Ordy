@@ -177,6 +177,7 @@ public interface PriceComparisonMapper {
             @Result(property = "canonicalName", column = "canonicalName"),
             @Result(property = "supplierName", column = "supplierName"),
             @Result(property = "companyId", column = "company_id"),
+            @Result(property = "companyName", column = "name"),
             @Result(property = "totalAmount", column = "totalAmount"),
             @Result(property = "latestPrice", column = "latestPrice"),
             @Result(property = "previousPrice", column = "previousPrice")
@@ -223,6 +224,7 @@ public interface PriceComparisonMapper {
     @Results({
             @Result(property = "canonicalName", column = "canonicalName"),
             @Result(property = "supplierName", column = "supplierName"),
+            @Result(property = "companyName", column = "companyName"),
             @Result(property = "companyId", column = "companyId"),
             @Result(property = "latestPrice", column = "latestPrice"),
             @Result(property = "previousPrice", column = "previousPrice")
