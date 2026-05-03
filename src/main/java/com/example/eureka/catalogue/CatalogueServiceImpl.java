@@ -1,10 +1,10 @@
 package com.example.eureka.catalogue;
 
 import com.example.eureka.catalogue.dto.SearchItemForOrderDTO;
-import com.example.eureka.catalogue.pdfParser.SupplierCataloguePdfParser;
+import com.example.eureka.catalogue.pdfParser.PremiumCataloguePdfParser;
+import com.example.eureka.catalogue.pdfParser.RotoPdfParser;
 import com.example.eureka.exception.ValidationException;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,22 +15,42 @@ import java.util.List;
 public class CatalogueServiceImpl implements CatalogueService {
 
     private final CatalogueItemMapper catalogueItemMapper;
-    private final SupplierCataloguePdfParser parser;
+    private final PremiumCataloguePdfParser premiumParser;
+    private final RotoPdfParser rotoParser;
 
     public CatalogueServiceImpl(CatalogueItemMapper catalogueItemMapper,
-                                SupplierCataloguePdfParser parser) {
+                                PremiumCataloguePdfParser parser, RotoPdfParser rotoParser) {
         this.catalogueItemMapper = catalogueItemMapper;
-        this.parser = parser;
+        this.premiumParser = parser;
+        this.rotoParser = rotoParser;
     }
 
     @CacheEvict(value = "catalogue", key = "#supplierId")
     @Override
     @Transactional
-    public int importFromPdf(Long supplierId, byte[] pdfBytes) throws IOException {
+    public int importPremiumFromPdf(Long supplierId, byte[] pdfBytes) throws IOException {
         if (pdfBytes == null || pdfBytes.length == 0) {
             throw new ValidationException("PDF je prazan");
         }
-        List<CatalogueItem> items = parser.parse(pdfBytes);
+        List<CatalogueItem> items = premiumParser.parse(pdfBytes);
+        if (items.isEmpty()) {
+            throw new ValidationException("Nije moguće parsirati artikle iz PDF-a");
+        }
+        items.forEach(item -> {
+            item.setSupplierId(supplierId);
+            catalogueItemMapper.upsert(item);
+        });
+        return items.size();
+    }
+
+    @CacheEvict(value = "catalogue", key = "#supplierId")
+    @Override
+    @Transactional
+    public int importRotoFromPdf(Long supplierId, byte[] pdfBytes) throws IOException {
+        if (pdfBytes == null || pdfBytes.length == 0) {
+            throw new ValidationException("PDF je prazan");
+        }
+        List<CatalogueItem> items = rotoParser.parse(pdfBytes);
         if (items.isEmpty()) {
             throw new ValidationException("Nije moguće parsirati artikle iz PDF-a");
         }

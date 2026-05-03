@@ -7,17 +7,24 @@ import com.example.eureka.orders.dto.OrderSummary;
 import com.example.eureka.orders.dto.OrderWithSupplierNameDTO;
 import com.example.eureka.orders.query.OrderQueryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @Tag(name = "Order", description = "Pristup narudzbenicama")
 @RequestMapping("/orders")
 public class OrderController {
+
+    @Value("${app.frontend-url}")
+    private String frontendBaseUrl;
 
     private final OrderDispatchService orderDispatchService;
     private final OrderQueryService orderQueryService;
@@ -27,6 +34,29 @@ public class OrderController {
         this.orderDispatchService = orderDispatchService;
         this.orderQueryService = orderQueryService;
         this.orderCommandService = orderCommandService;
+    }
+
+    @GetMapping(path = "/confirm/{id}",produces = "text/html")
+    public ResponseEntity<Void> confirmOrder(@PathVariable Long id) {
+        String status = orderDispatchService.confirmOrder(id);
+
+        String frontendStatus = switch (status) {
+            case "NOT_FOUND" -> "NOT_FOUND";
+            case "ALREADY_CONFIRMED" -> "ALREADY_CONFIRMED";
+            default -> "CONFIRMED";
+        };
+
+        URI redirectUri = UriComponentsBuilder
+                .fromHttpUrl(frontendBaseUrl)
+                .path("/order-confirmation")
+                .queryParam("status", frontendStatus)
+                .queryParam("orderId", id)
+                .build()
+                .toUri();
+
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .location(redirectUri)
+                .build();
     }
 
     @PostMapping
@@ -89,18 +119,6 @@ public class OrderController {
         return ResponseEntity.ok(orderQueryService.getOrderItems(orderId));
     }
 
-    @GetMapping(value = "/confirm/{id}", produces = "text/html")
-    public ResponseEntity<String> confirmOrder(@PathVariable Long id) {
-        String status = orderDispatchService.confirmOrder(id);
-
-        String html = switch (status) {
-            case "NOT_FOUND" -> "<html>...<h2>❌ Narudžba nije pronađena</h2>...</html>";
-            case "ALREADY_CONFIRMED" -> "<html>...<h2>⚠️ Već potvrđeno</h2>...</html>";
-            default -> "<html>...<h1>✅ Potvrđeno!</h1><script>setTimeout(() => window.close(), 2000);</script>...</html>";
-        };
-
-        return ResponseEntity.ok(html);
-    }
     @GetMapping("/{supplierId}/available-items")
     public ResponseEntity<List<SearchItemForOrderDTO>> getAvailableItems(
             @PathVariable Long supplierId,

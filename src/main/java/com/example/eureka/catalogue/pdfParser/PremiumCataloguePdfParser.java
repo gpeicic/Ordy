@@ -15,8 +15,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class SupplierCataloguePdfParser {
-
+public class PremiumCataloguePdfParser implements PdfParser{
+    @Override
     public List<CatalogueItem> parse(byte[] pdfBytes) throws IOException {
         if (pdfBytes == null || pdfBytes.length == 0) {
             throw new ValidationException("PDF bytes su prazni");

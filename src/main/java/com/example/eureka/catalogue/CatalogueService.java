@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.util.List;
 
 public interface CatalogueService {
-    int importFromPdf(Long supplierId, byte[] pdfBytes) throws IOException;
+    int importPremiumFromPdf(Long supplierId, byte[] pdfBytes) throws IOException;
+    int importRotoFromPdf(Long supplierId, byte[] pdfBytes) throws IOException;
     List<CatalogueItem> getBySupplierPaged(Long supplierId, String search, int page, int size);
     List<SearchItemForOrderDTO> fuzzySearchByName(Long supplierId, String name);
-    @CacheEvict(value = "catalogue", key = "#item.supplierId")
     void upsert(CatalogueItem item);
     void delete(Long id);
 }

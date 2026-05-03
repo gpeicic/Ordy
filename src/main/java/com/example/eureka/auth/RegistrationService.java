@@ -55,13 +55,13 @@ public class RegistrationService {
         log.info("Registracija — kreiranje usera: {}", request.getUsername());
         User owner = createUser(request);
         log.info("Owner kreiran — userId: {}, username: {}", owner.getId(), owner.getUsername());
-       // User employee = createEmployeeUser(request);
-       // log.info("Owner kreiran — userId: {}, username: {}", employee.getId(), employee.getUsername());
+        User employee = createEmployeeUser(request);
+        log.info("Owner kreiran — userId: {}, username: {}", employee.getId(), employee.getUsername());
 
         for (CompanyRegisterRequest companyReq : request.getCompanies()) {
             Company company = createCompany(companyReq);
             userCompaniesMapper.insertUserCompany(owner.getId(), company.getId());
-        //    userCompaniesMapper.insertUserCompany(employee.getId(), company.getId());
+            userCompaniesMapper.insertUserCompany(employee.getId(), company.getId());
             log.info("Company kreirana — companyId: {}, name: {}, userId: {}", company.getId(), company.getName(), owner.getId());
             createVenues(companyReq.getVenues(), company.getId(), owner.getId());
 
@@ -113,5 +113,4 @@ public class RegistrationService {
             log.info("Venue kreiran — venueId: {}, name: {}, companyId: {}", venue.getId(), venue.getName(), companyId);
         }
     }
-
 }

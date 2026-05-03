@@ -2380,3 +2380,324 @@ Caused by: org.postgresql.util.PSQLException: ERROR: column "ii.unit_price" must
 2026-05-03T04:04:32.972+02:00  INFO 19400 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
 2026-05-03T04:04:32.974+02:00  INFO 19400 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 38, importano: 0, greške: 0
 2026-05-03T04:04:32.973+02:00  INFO 19400 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 36, importano: 0, greške: 0
+2026-05-03T04:07:50.887+02:00  INFO 19400 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-03T04:07:50.899+02:00  INFO 19400 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-05-03T04:07:52.939+02:00  INFO 19400 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-03T04:07:52.952+02:00  INFO 19400 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-03T20:56:00.554+02:00  INFO 2552 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 2552 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-05-03T20:56:00.560+02:00  INFO 2552 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-03T20:56:06.997+02:00  INFO 2552 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-03T20:56:07.020+02:00  INFO 2552 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-03T20:56:07.021+02:00  INFO 2552 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-05-03T20:56:07.143+02:00  INFO 2552 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-03T20:56:07.144+02:00  INFO 2552 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6368 ms
+2026-05-03T20:56:07.745+02:00  INFO 2552 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-03T20:56:08.205+02:00  INFO 2552 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@59262a90
+2026-05-03T20:56:08.209+02:00  INFO 2552 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-03T20:56:08.288+02:00  INFO 2552 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-05-03T20:56:08.383+02:00  WARN 2552 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-05-03T20:56:08.505+02:00  INFO 2552 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.093s)
+2026-05-03T20:56:08.530+02:00  INFO 2552 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-05-03T20:56:08.537+02:00  INFO 2552 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-05-03T20:56:10.871+02:00  INFO 2552 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-05-03T20:56:12.216+02:00  INFO 2552 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-05-03T20:56:12.246+02:00  INFO 2552 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 13.05 seconds (process running for 16.319)
+2026-05-03T20:57:02.566+02:00  INFO 2552 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-03T20:57:02.566+02:00  INFO 2552 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-03T20:57:02.568+02:00  INFO 2552 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-03T20:57:02.961+02:00  INFO 2552 --- [eureka] [http-nio-8080-exec-3] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: horeca
+2026-05-03T20:57:03.097+02:00  INFO 2552 --- [eureka] [http-nio-8080-exec-3] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: horeca
+2026-05-03T20:58:12.264+02:00  INFO 2552 --- [eureka] [scheduling-1] c.e.eureka.invoice.InvoiceSyncScheduler  : Scheduled sync pokrenut — 2 kompanija
+2026-05-03T20:58:12.267+02:00  INFO 2552 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 38
+2026-05-03T20:58:12.267+02:00  INFO 2552 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 36
+2026-05-03T20:58:12.275+02:00  INFO 2552 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 36
+2026-05-03T20:58:12.275+02:00  INFO 2552 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 38
+2026-05-03T20:58:12.282+02:00  INFO 2552 --- [eureka] [task-2] c.e.eureka.merInvoices.MerTokenProvider  : MER token istekao za kompaniju: 38, refresham...
+2026-05-03T20:58:12.282+02:00  INFO 2552 --- [eureka] [task-1] c.e.eureka.merInvoices.MerTokenProvider  : MER token istekao za kompaniju: 36, refresham...
+2026-05-03T20:58:12.283+02:00  INFO 2552 --- [eureka] [task-2] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login pokušaj za kompaniju: 38
+2026-05-03T20:58:12.283+02:00  INFO 2552 --- [eureka] [task-1] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login pokušaj za kompaniju: 36
+2026-05-03T20:58:14.214+02:00  INFO 2552 --- [eureka] [task-2] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login uspješan za kompaniju: 38, token ističe: 2026-05-03T19:28:13.118347900
+2026-05-03T20:58:14.217+02:00  INFO 2552 --- [eureka] [task-1] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login uspješan za kompaniju: 36, token ističe: 2026-05-03T19:28:13.103817800
+2026-05-03T20:58:14.220+02:00  INFO 2552 --- [eureka] [task-2] c.e.eureka.merInvoices.MerTokenProvider  : MER token refreshan za kompaniju: 38
+2026-05-03T20:58:14.220+02:00  INFO 2552 --- [eureka] [task-1] c.e.eureka.merInvoices.MerTokenProvider  : MER token refreshan za kompaniju: 36
+2026-05-03T20:58:14.222+02:00  INFO 2552 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 38, page: 1
+2026-05-03T20:58:14.224+02:00  INFO 2552 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 36, page: 1
+2026-05-03T20:58:14.402+02:00  INFO 2552 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T20:58:14.403+02:00  INFO 2552 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 36
+2026-05-03T20:58:14.403+02:00  INFO 2552 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T20:58:14.405+02:00  INFO 2552 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 38
+2026-05-03T20:58:14.409+02:00  INFO 2552 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T20:58:14.409+02:00  INFO 2552 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T20:58:14.411+02:00  INFO 2552 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 36, importano: 0, greške: 0
+2026-05-03T20:58:14.411+02:00  INFO 2552 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 38, importano: 0, greške: 0
+2026-05-03T21:52:57.541+02:00  INFO 2552 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-03T21:52:57.561+02:00  INFO 2552 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-05-03T21:52:59.649+02:00  INFO 2552 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-03T21:52:59.655+02:00  INFO 2552 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-03T22:04:25.223+02:00  INFO 14620 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 14620 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-05-03T22:04:25.226+02:00  INFO 14620 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-03T22:04:29.005+02:00  INFO 14620 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-03T22:04:29.022+02:00  INFO 14620 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-03T22:04:29.024+02:00  INFO 14620 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-05-03T22:04:29.249+02:00  INFO 14620 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-03T22:04:29.250+02:00  INFO 14620 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3836 ms
+2026-05-03T22:04:29.698+02:00  INFO 14620 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-03T22:04:30.035+02:00  INFO 14620 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@25214797
+2026-05-03T22:04:30.037+02:00  INFO 14620 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-03T22:04:30.088+02:00  INFO 14620 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-05-03T22:04:30.117+02:00  WARN 14620 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-05-03T22:04:30.165+02:00  INFO 14620 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.029s)
+2026-05-03T22:04:30.250+02:00  INFO 14620 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-05-03T22:04:30.257+02:00  INFO 14620 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-05-03T22:04:32.473+02:00  INFO 14620 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-05-03T22:04:33.880+02:00  INFO 14620 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-05-03T22:04:33.918+02:00  INFO 14620 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 9.827 seconds (process running for 11.571)
+2026-05-03T22:04:38.118+02:00  INFO 14620 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-03T22:04:38.120+02:00  INFO 14620 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-03T22:04:38.133+02:00  INFO 14620 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2026-05-03T22:05:07.752+02:00  INFO 14620 --- [eureka] [http-nio-8080-exec-2] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: horeca
+2026-05-03T22:05:08.046+02:00  INFO 14620 --- [eureka] [http-nio-8080-exec-2] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: horeca
+2026-05-03T22:06:33.934+02:00  INFO 14620 --- [eureka] [scheduling-1] c.e.eureka.invoice.InvoiceSyncScheduler  : Scheduled sync pokrenut — 2 kompanija
+2026-05-03T22:06:33.937+02:00  INFO 14620 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 36
+2026-05-03T22:06:33.937+02:00  INFO 14620 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 38
+2026-05-03T22:06:33.943+02:00  INFO 14620 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 36
+2026-05-03T22:06:33.943+02:00  INFO 14620 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 38
+2026-05-03T22:06:33.947+02:00  INFO 14620 --- [eureka] [task-2] c.e.eureka.merInvoices.MerTokenProvider  : MER token istekao za kompaniju: 38, refresham...
+2026-05-03T22:06:33.947+02:00  INFO 14620 --- [eureka] [task-1] c.e.eureka.merInvoices.MerTokenProvider  : MER token istekao za kompaniju: 36, refresham...
+2026-05-03T22:06:33.947+02:00  INFO 14620 --- [eureka] [task-2] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login pokušaj za kompaniju: 38
+2026-05-03T22:06:33.947+02:00  INFO 14620 --- [eureka] [task-1] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login pokušaj za kompaniju: 36
+2026-05-03T22:06:35.592+02:00  INFO 14620 --- [eureka] [task-1] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login uspješan za kompaniju: 36, token ističe: 2026-05-03T20:36:34.496831500
+2026-05-03T22:06:35.593+02:00  INFO 14620 --- [eureka] [task-1] c.e.eureka.merInvoices.MerTokenProvider  : MER token refreshan za kompaniju: 36
+2026-05-03T22:06:35.593+02:00  INFO 14620 --- [eureka] [task-2] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login uspješan za kompaniju: 38, token ističe: 2026-05-03T20:36:34.497330900
+2026-05-03T22:06:35.594+02:00  INFO 14620 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 36, page: 1
+2026-05-03T22:06:35.595+02:00  INFO 14620 --- [eureka] [task-2] c.e.eureka.merInvoices.MerTokenProvider  : MER token refreshan za kompaniju: 38
+2026-05-03T22:06:35.595+02:00  INFO 14620 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 38, page: 1
+2026-05-03T22:06:35.760+02:00  INFO 14620 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:06:35.760+02:00  INFO 14620 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:06:35.760+02:00  INFO 14620 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 36
+2026-05-03T22:06:35.761+02:00  INFO 14620 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 38
+2026-05-03T22:06:35.761+02:00  INFO 14620 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:06:35.761+02:00  INFO 14620 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:06:35.761+02:00  INFO 14620 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 38, importano: 0, greške: 0
+2026-05-03T22:06:35.761+02:00  INFO 14620 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 36, importano: 0, greške: 0
+2026-05-03T22:07:09.462+02:00  INFO 14620 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-03T22:07:09.477+02:00  INFO 14620 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-05-03T22:07:11.552+02:00  INFO 14620 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-03T22:07:11.595+02:00  INFO 14620 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-03T22:09:32.294+02:00  INFO 16640 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 16640 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-05-03T22:09:32.296+02:00  INFO 16640 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-03T22:09:35.622+02:00  INFO 16640 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-03T22:09:35.644+02:00  INFO 16640 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-03T22:09:35.644+02:00  INFO 16640 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-05-03T22:09:35.769+02:00  INFO 16640 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-03T22:09:35.769+02:00  INFO 16640 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3300 ms
+2026-05-03T22:09:36.220+02:00  INFO 16640 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-03T22:09:36.608+02:00  INFO 16640 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@23e2c1ca
+2026-05-03T22:09:36.610+02:00  INFO 16640 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-03T22:09:36.635+02:00  INFO 16640 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-05-03T22:09:36.648+02:00  WARN 16640 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-05-03T22:09:36.707+02:00  INFO 16640 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.027s)
+2026-05-03T22:09:36.827+02:00  INFO 16640 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-05-03T22:09:36.834+02:00  INFO 16640 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-05-03T22:09:38.503+02:00  INFO 16640 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-05-03T22:09:39.809+02:00  INFO 16640 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-05-03T22:09:39.821+02:00  INFO 16640 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 8.533 seconds (process running for 9.721)
+2026-05-03T22:09:41.649+02:00  INFO 16640 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-03T22:09:41.650+02:00  INFO 16640 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-03T22:09:41.651+02:00  INFO 16640 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-03T22:09:41.872+02:00  INFO 16640 --- [eureka] [http-nio-8080-exec-3] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: horeca
+2026-05-03T22:09:42.140+02:00  INFO 16640 --- [eureka] [http-nio-8080-exec-3] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: horeca
+2026-05-03T22:11:39.838+02:00  INFO 16640 --- [eureka] [scheduling-1] c.e.eureka.invoice.InvoiceSyncScheduler  : Scheduled sync pokrenut — 2 kompanija
+2026-05-03T22:11:39.842+02:00  INFO 16640 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 38
+2026-05-03T22:11:39.842+02:00  INFO 16640 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 36
+2026-05-03T22:11:39.844+02:00  INFO 16640 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 38
+2026-05-03T22:11:39.844+02:00  INFO 16640 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 36
+2026-05-03T22:11:39.849+02:00  INFO 16640 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 36, page: 1
+2026-05-03T22:11:39.849+02:00  INFO 16640 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 38, page: 1
+2026-05-03T22:11:40.831+02:00  INFO 16640 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:11:40.831+02:00  INFO 16640 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:11:40.832+02:00  INFO 16640 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 38
+2026-05-03T22:11:40.832+02:00  INFO 16640 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 36
+2026-05-03T22:11:40.832+02:00  INFO 16640 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:11:40.832+02:00  INFO 16640 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:11:40.833+02:00  INFO 16640 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 38, importano: 0, greške: 0
+2026-05-03T22:11:40.833+02:00  INFO 16640 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 36, importano: 0, greške: 0
+2026-05-03T22:27:51.929+02:00  INFO 16640 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-03T22:27:51.945+02:00  INFO 16640 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-05-03T22:27:53.983+02:00  INFO 16640 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-03T22:27:53.986+02:00  INFO 16640 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-03T22:28:11.229+02:00  INFO 16708 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 16708 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-05-03T22:28:11.232+02:00  INFO 16708 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-03T22:28:15.012+02:00  INFO 16708 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-03T22:28:15.060+02:00  INFO 16708 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-03T22:28:15.061+02:00  INFO 16708 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-05-03T22:28:15.295+02:00  INFO 16708 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-03T22:28:15.296+02:00  INFO 16708 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3954 ms
+2026-05-03T22:28:15.671+02:00  INFO 16708 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-03T22:28:15.915+02:00  INFO 16708 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@c212536
+2026-05-03T22:28:15.918+02:00  INFO 16708 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-03T22:28:15.946+02:00  INFO 16708 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-05-03T22:28:15.976+02:00  WARN 16708 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-05-03T22:28:16.047+02:00  INFO 16708 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.057s)
+2026-05-03T22:28:16.125+02:00  INFO 16708 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-05-03T22:28:16.134+02:00  INFO 16708 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-05-03T22:28:18.163+02:00  INFO 16708 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-05-03T22:28:19.769+02:00  INFO 16708 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-05-03T22:28:19.821+02:00  INFO 16708 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 9.752 seconds (process running for 11.561)
+2026-05-03T22:28:51.383+02:00  INFO 16708 --- [eureka] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-03T22:28:51.384+02:00  INFO 16708 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-03T22:28:51.386+02:00  INFO 16708 --- [eureka] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-03T22:28:51.776+02:00  INFO 16708 --- [eureka] [http-nio-8080-exec-2] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: horeca
+2026-05-03T22:28:52.050+02:00  INFO 16708 --- [eureka] [http-nio-8080-exec-2] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: horeca
+2026-05-03T22:29:19.464+02:00  INFO 16708 --- [eureka] [http-nio-8080-exec-5] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: horeca
+2026-05-03T22:29:19.617+02:00  INFO 16708 --- [eureka] [http-nio-8080-exec-5] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: horeca
+2026-05-03T22:30:19.855+02:00  INFO 16708 --- [eureka] [scheduling-1] c.e.eureka.invoice.InvoiceSyncScheduler  : Scheduled sync pokrenut — 2 kompanija
+2026-05-03T22:30:19.860+02:00  INFO 16708 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 38
+2026-05-03T22:30:19.860+02:00  INFO 16708 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 36
+2026-05-03T22:30:19.863+02:00  INFO 16708 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 38
+2026-05-03T22:30:19.863+02:00  INFO 16708 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 36
+2026-05-03T22:30:19.874+02:00  INFO 16708 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 38, page: 1
+2026-05-03T22:30:19.874+02:00  INFO 16708 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 36, page: 1
+2026-05-03T22:30:21.281+02:00  INFO 16708 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:30:21.281+02:00  INFO 16708 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:30:21.282+02:00  INFO 16708 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 36
+2026-05-03T22:30:21.282+02:00  INFO 16708 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 38
+2026-05-03T22:30:21.284+02:00  INFO 16708 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:30:21.284+02:00  INFO 16708 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:30:21.285+02:00  INFO 16708 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 38, importano: 0, greške: 0
+2026-05-03T22:30:21.285+02:00  INFO 16708 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 36, importano: 0, greške: 0
+2026-05-03T22:31:59.449+02:00  INFO 16708 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-03T22:31:59.461+02:00  INFO 16708 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-05-03T22:32:01.524+02:00  INFO 16708 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-03T22:32:01.546+02:00  INFO 16708 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-03T22:32:09.960+02:00  INFO 13744 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 13744 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-05-03T22:32:09.963+02:00  INFO 13744 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-03T22:32:12.672+02:00  INFO 13744 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-03T22:32:12.686+02:00  INFO 13744 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-03T22:32:12.686+02:00  INFO 13744 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-05-03T22:32:12.819+02:00  INFO 13744 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-03T22:32:12.822+02:00  INFO 13744 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2793 ms
+2026-05-03T22:32:13.207+02:00  INFO 13744 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-03T22:32:13.502+02:00  INFO 13744 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@23e2c1ca
+2026-05-03T22:32:13.510+02:00  INFO 13744 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-03T22:32:13.543+02:00  INFO 13744 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-05-03T22:32:13.576+02:00  WARN 13744 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-05-03T22:32:13.613+02:00  INFO 13744 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.022s)
+2026-05-03T22:32:13.722+02:00  INFO 13744 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-05-03T22:32:13.726+02:00  INFO 13744 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-05-03T22:32:15.232+02:00  INFO 13744 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-05-03T22:32:16.468+02:00  INFO 13744 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-05-03T22:32:16.490+02:00  INFO 13744 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 7.237 seconds (process running for 7.982)
+2026-05-03T22:32:20.193+02:00  INFO 13744 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-03T22:32:20.193+02:00  INFO 13744 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-03T22:32:20.195+02:00  INFO 13744 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-03T22:34:16.521+02:00  INFO 13744 --- [eureka] [scheduling-1] c.e.eureka.invoice.InvoiceSyncScheduler  : Scheduled sync pokrenut — 2 kompanija
+2026-05-03T22:34:16.530+02:00  INFO 13744 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 38
+2026-05-03T22:34:16.530+02:00  INFO 13744 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 36
+2026-05-03T22:34:16.533+02:00  INFO 13744 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 38
+2026-05-03T22:34:16.533+02:00  INFO 13744 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 36
+2026-05-03T22:34:16.533+02:00  INFO 13744 --- [eureka] [task-1] c.e.eureka.merInvoices.MerTokenProvider  : MER token istekao za kompaniju: 36, refresham...
+2026-05-03T22:34:16.533+02:00  INFO 13744 --- [eureka] [task-2] c.e.eureka.merInvoices.MerTokenProvider  : MER token istekao za kompaniju: 38, refresham...
+2026-05-03T22:34:16.533+02:00  INFO 13744 --- [eureka] [task-1] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login pokušaj za kompaniju: 36
+2026-05-03T22:34:16.533+02:00  INFO 13744 --- [eureka] [task-2] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login pokušaj za kompaniju: 38
+2026-05-03T22:34:17.590+02:00  INFO 13744 --- [eureka] [task-2] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login uspješan za kompaniju: 38, token ističe: 2026-05-03T21:04:16.509620800
+2026-05-03T22:34:17.592+02:00  INFO 13744 --- [eureka] [task-2] c.e.eureka.merInvoices.MerTokenProvider  : MER token refreshan za kompaniju: 38
+2026-05-03T22:34:17.592+02:00  INFO 13744 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 38, page: 1
+2026-05-03T22:34:17.592+02:00  INFO 13744 --- [eureka] [task-1] c.e.eureka.merAuth.MerAuthServiceImpl    : MER login uspješan za kompaniju: 36, token ističe: 2026-05-03T21:04:16.510389600
+2026-05-03T22:34:17.592+02:00  INFO 13744 --- [eureka] [task-1] c.e.eureka.merInvoices.MerTokenProvider  : MER token refreshan za kompaniju: 36
+2026-05-03T22:34:17.592+02:00  INFO 13744 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 36, page: 1
+2026-05-03T22:34:17.771+02:00  INFO 13744 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:34:17.771+02:00  INFO 13744 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:34:17.771+02:00  INFO 13744 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 36
+2026-05-03T22:34:17.771+02:00  INFO 13744 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 38
+2026-05-03T22:34:17.771+02:00  INFO 13744 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:34:17.771+02:00  INFO 13744 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:34:17.771+02:00  INFO 13744 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 38, importano: 0, greške: 0
+2026-05-03T22:34:17.771+02:00  INFO 13744 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 36, importano: 0, greške: 0
+2026-05-03T22:36:31.617+02:00  INFO 13744 --- [eureka] [http-nio-8080-exec-7] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: horeca
+2026-05-03T22:36:31.807+02:00  INFO 13744 --- [eureka] [http-nio-8080-exec-7] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: horeca
+2026-05-03T22:38:02.899+02:00  INFO 13744 --- [eureka] [http-nio-8080-exec-4] c.e.e.o.d.OrderDispatchServiceImpl       : Slanje narudžbe — orderId: 71
+2026-05-03T22:38:05.606+02:00  INFO 13744 --- [eureka] [http-nio-8080-exec-4] c.e.e.o.d.OrderDispatchServiceImpl       : Narudžba uspješno poslana — orderId: 71, companyId: 38, supplierId: 6
+2026-05-03T22:38:19.550+02:00  INFO 13744 --- [eureka] [http-nio-8080-exec-10] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 71
+2026-05-03T22:38:19.553+02:00  INFO 13744 --- [eureka] [http-nio-8080-exec-10] c.e.e.o.d.OrderDispatchServiceImpl       : Narudžba potvrđena — orderId: 71
+2026-05-03T22:38:59.307+02:00  INFO 13744 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-03T22:38:59.315+02:00  INFO 13744 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-05-03T22:39:01.387+02:00  INFO 13744 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-03T22:39:01.394+02:00  INFO 13744 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-03T22:49:03.905+02:00  INFO 8128 --- [eureka] [main] com.example.eureka.EurekaApplication     : Starting EurekaApplication using Java 25.0.2 with PID 8128 (C:\Users\Zdravko\Desktop\eureka\target\classes started by Zdravko in C:\Users\Zdravko\Desktop\eureka)
+2026-05-03T22:49:03.907+02:00  INFO 8128 --- [eureka] [main] com.example.eureka.EurekaApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-03T22:49:07.345+02:00  INFO 8128 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-03T22:49:07.398+02:00  INFO 8128 --- [eureka] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-03T22:49:07.398+02:00  INFO 8128 --- [eureka] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-05-03T22:49:07.548+02:00  INFO 8128 --- [eureka] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-03T22:49:07.548+02:00  INFO 8128 --- [eureka] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3563 ms
+2026-05-03T22:49:07.989+02:00  INFO 8128 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-03T22:49:08.352+02:00  INFO 8128 --- [eureka] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1b0e031b
+2026-05-03T22:49:08.354+02:00  INFO 8128 --- [eureka] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-03T22:49:08.383+02:00  INFO 8128 --- [eureka] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://localhost:5432/eureka (PostgreSQL 18.3)
+2026-05-03T22:49:08.410+02:00  WARN 8128 --- [eureka] [main] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: PostgreSQL 18.3 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 17.
+2026-05-03T22:49:08.479+02:00  INFO 8128 --- [eureka] [main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.051s)
+2026-05-03T22:49:08.543+02:00  INFO 8128 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+2026-05-03T22:49:08.548+02:00  INFO 8128 --- [eureka] [main] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2026-05-03T22:49:10.456+02:00  INFO 8128 --- [eureka] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-05-03T22:49:11.875+02:00  INFO 8128 --- [eureka] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-05-03T22:49:11.894+02:00  INFO 8128 --- [eureka] [main] com.example.eureka.EurekaApplication     : Started EurekaApplication in 9.177 seconds (process running for 10.472)
+2026-05-03T22:49:48.231+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-03T22:49:48.232+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-03T22:49:48.237+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2026-05-03T22:50:01.098+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-8] c.e.e.o.d.OrderDispatchServiceImpl       : Slanje narudžbe — orderId: 72
+2026-05-03T22:50:03.504+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-8] c.e.e.o.d.OrderDispatchServiceImpl       : Narudžba uspješno poslana — orderId: 72, companyId: 38, supplierId: 6
+2026-05-03T22:50:06.719+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-1] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:50:06.725+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-1] c.e.e.o.d.OrderDispatchServiceImpl       : Narudžba potvrđena — orderId: 72
+2026-05-03T22:50:16.820+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-5] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:50:16.831+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-5] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:50:55.708+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-9] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:50:55.709+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-9] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:51:11.914+02:00  INFO 8128 --- [eureka] [scheduling-1] c.e.eureka.invoice.InvoiceSyncScheduler  : Scheduled sync pokrenut — 2 kompanija
+2026-05-03T22:51:11.917+02:00  INFO 8128 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 38
+2026-05-03T22:51:11.917+02:00  INFO 8128 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync novih računa — companyId: 36
+2026-05-03T22:51:11.920+02:00  INFO 8128 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 38
+2026-05-03T22:51:11.921+02:00  INFO 8128 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — max poznati externalDocumentId: 145831190 za companyId: 36
+2026-05-03T22:51:11.926+02:00  INFO 8128 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 36, page: 1
+2026-05-03T22:51:11.926+02:00  INFO 8128 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Pozivam MER searchReceived — companyId: 38, page: 1
+2026-05-03T22:51:12.716+02:00  INFO 8128 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:51:12.716+02:00  INFO 8128 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : MER searchReceived vratio 76 računa
+2026-05-03T22:51:12.716+02:00  INFO 8128 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 38
+2026-05-03T22:51:12.717+02:00  INFO 8128 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : First sync — MER vratio ukupno 76 računa za kompaniju: 36
+2026-05-03T22:51:12.717+02:00  INFO 8128 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:51:12.717+02:00  INFO 8128 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync — ukupno s MER-a: 76, za download: 0
+2026-05-03T22:51:12.717+02:00  INFO 8128 --- [eureka] [task-2] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 38, importano: 0, greške: 0
+2026-05-03T22:51:12.717+02:00  INFO 8128 --- [eureka] [task-1] c.e.e.merInvoices.MerInvoiceServiceImpl  : Sync završen — companyId: 36, importano: 0, greške: 0
+2026-05-03T22:52:16.259+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-4] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:52:16.262+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-4] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:53:32.715+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-9] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:53:32.717+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-9] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:54:49.607+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-7] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:54:49.610+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-7] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:54:57.981+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-10] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:54:57.983+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-10] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:55:27.948+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-1] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:55:27.949+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-1] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:56:16.683+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-6] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:56:16.685+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-6] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:56:24.582+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-3] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:56:24.586+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-3] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:56:34.423+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-2] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:56:34.424+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-2] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:57:06.893+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-4] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:57:06.894+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-4] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:57:29.824+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-5] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:57:29.826+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-5] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:57:53.987+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-5] c.e.e.o.d.OrderDispatchServiceImpl       : Slanje narudžbe — orderId: 73
+2026-05-03T22:57:55.482+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-5] c.e.e.o.d.OrderDispatchServiceImpl       : Narudžba uspješno poslana — orderId: 73, companyId: 38, supplierId: 5
+2026-05-03T22:58:06.720+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-7] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 72
+2026-05-03T22:58:06.722+02:00  WARN 8128 --- [eureka] [http-nio-8080-exec-7] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda odbijena — narudžba već potvrđena: 72
+2026-05-03T22:58:12.292+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-1] c.e.e.o.d.OrderDispatchServiceImpl       : Potvrda narudžbe — orderId: 73
+2026-05-03T22:58:12.312+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-1] c.e.e.o.d.OrderDispatchServiceImpl       : Narudžba potvrđena — orderId: 73
+2026-05-03T23:20:56.836+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-7] c.e.eureka.auth.ApiAuthServiceImpl       : Login pokušaj za korisnika: ivan_zaposlenik
+2026-05-03T23:20:56.969+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-7] c.e.eureka.auth.ApiAuthServiceImpl       : Login uspješan za korisnika: ivan_zaposlenik
+2026-05-03T23:21:37.513+02:00  INFO 8128 --- [eureka] [http-nio-8080-exec-9] c.e.e.quickList.QuickListServiceImpl     : Brza lista kreirana — id: 17, name: cocaCola, companyId: 36
+2026-05-03T23:34:26.301+02:00  INFO 8128 --- [eureka] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-03T23:34:26.309+02:00  INFO 8128 --- [eureka] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-05-03T23:34:28.360+02:00  INFO 8128 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-03T23:34:28.379+02:00  INFO 8128 --- [eureka] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

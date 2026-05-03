@@ -1,11 +1,15 @@
 package com.example.eureka.catalogue;
 
 import com.example.eureka.catalogue.dto.SearchItemForOrderDTO;
+import com.example.eureka.exception.ValidationException;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -29,6 +33,44 @@ public class CatalogueController {
     ) {
         return ResponseEntity.ok(
                 catalogueService.getBySupplierPaged(supplierId, search, page, size)
+        );
+    }
+
+    @PostMapping(value = "/premium/{supplierId}/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> importPremiumPdf(
+            @PathVariable Long supplierId,
+            @RequestParam("file") MultipartFile file) throws IOException {
+
+        if (file.isEmpty()) {
+            throw new ValidationException("PDF file je prazan");
+        }
+
+        int importedCount = catalogueService.importPremiumFromPdf(
+                supplierId,
+                file.getBytes()
+        );
+
+        return ResponseEntity.ok(
+                "Premium katalog uspješno importan. Broj artikala: " + importedCount
+        );
+    }
+
+    @PostMapping(value = "/roto/{supplierId}/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> importRotoPdf(
+            @PathVariable Long supplierId,
+            @RequestParam("file") MultipartFile file) throws IOException {
+
+        if (file.isEmpty()) {
+            throw new ValidationException("PDF file je prazan");
+        }
+
+        int importedCount = catalogueService.importRotoFromPdf(
+                supplierId,
+                file.getBytes()
+        );
+
+        return ResponseEntity.ok(
+                "Roto katalog uspješno importan. Broj artikala: " + importedCount
         );
     }
 
