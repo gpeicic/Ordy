@@ -54,7 +54,15 @@ public interface AnalyticsMapper {
         SELECT 
             ii.product_name,
             SUM(ii.amount) as total_quantity,
-            SUM(ii.amount * ii.unit_price) as total_spent
+            SUM(ii.amount * ii.unit_price) as total_spent,
+            (SELECT ii2.unit_price 
+             FROM invoice_items ii2 
+             JOIN invoices i2 ON ii2.invoice_id = i2.id
+             WHERE ii2.product_name = ii.product_name
+               AND i2.company_id = #{companyId}
+               AND i2.supplier_id = #{supplierId}
+             ORDER BY i2.invoice_datetime DESC 
+             LIMIT 1) AS unitPrice
         FROM invoice_items ii
         JOIN invoices i ON ii.invoice_id = i.id
         WHERE i.company_id = #{companyId}
