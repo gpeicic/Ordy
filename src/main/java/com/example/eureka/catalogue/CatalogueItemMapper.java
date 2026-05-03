@@ -38,6 +38,7 @@ public interface CatalogueItemMapper {
                   AND (
                     name ILIKE CONCAT(#{name}, '%')
                     OR name ILIKE CONCAT('%', #{name}, '%')
+                    OR code ILIKE CONCAT(#{name}, '%')
                   )
                 ORDER BY
                     CASE WHEN name ILIKE CONCAT(#{name}, '%') THEN 0 ELSE 1 END,
