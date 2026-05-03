@@ -7,9 +7,18 @@ public class PriceComparisonItem {
     private String canonicalName;
     private String supplierName;
     private Long companyId;
+    private String companyName;
     private BigDecimal totalAmount;
     private BigDecimal latestPrice;
     private BigDecimal previousPrice;
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
     public Long getCompanyId() {
         return companyId;
