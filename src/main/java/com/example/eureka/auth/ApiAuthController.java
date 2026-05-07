@@ -1,5 +1,7 @@
 package com.example.eureka.auth;
 
+import com.example.eureka.auth.credentials.CredentialSetupService;
+import com.example.eureka.auth.credentials.dto.CredentialSetupRequest;
 import com.example.eureka.auth.dto.ApiLoginRequest;
 import com.example.eureka.auth.dto.ApiLoginResponse;
 import com.example.eureka.auth.dto.ApiRegisterRequest;
@@ -17,9 +19,10 @@ import org.springframework.web.bind.annotation.*;
 public class ApiAuthController {
 
     private final ApiAuthService authService;
-
-    public ApiAuthController(ApiAuthService authService) {
+    private final CredentialSetupService setupService;
+    public ApiAuthController(ApiAuthService authService,CredentialSetupService setupService) {
         this.authService = authService;
+        this.setupService = setupService;
     }
 
     @PostMapping("/login")
@@ -30,6 +33,12 @@ public class ApiAuthController {
     @PostMapping("/register")
     public ResponseEntity<ApiRegisterResponse> register(@Valid @RequestBody ApiRegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
+    }
+
+    @PostMapping("/setup-credentials")
+    public ResponseEntity<String> setup(@Valid @RequestBody CredentialSetupRequest request) {
+        setupService.setupCredentials(request);
+        return ResponseEntity.ok("Korisničko ime i lozinka uspješno promijenjeni. Možete se prijaviti.");
     }
 
     @PostMapping("/switch-company/{companyId}")

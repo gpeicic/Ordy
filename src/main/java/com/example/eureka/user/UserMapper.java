@@ -25,9 +25,20 @@ public interface UserMapper {
         User findById(Long id);
 
         @Insert("""
-        INSERT INTO users(username, password, role_id)
-        VALUES(#{username}, #{password}, #{role_id})
+        INSERT INTO users(username, password,email, role_id)
+        VALUES(#{username}, #{password},#{email}, #{role_id})
     """)
         @Options(useGeneratedKeys = true, keyProperty = "id")
         void insert(User user);
+
+        @Update("""
+        UPDATE users SET username = #{username}, password = #{password}
+        WHERE id = #{id}
+    """)
+        void updateUsernameAndPassword(@Param("id") Long id,
+                                       @Param("username") String username,
+                                       @Param("password") String password);
+
+        @Select("SELECT email FROM users WHERE id = #{id}")
+        String findEmailById(Long id);
 }

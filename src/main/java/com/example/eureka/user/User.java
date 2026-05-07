@@ -4,17 +4,18 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private String email;
     private Long role_id;
     private Long company_id;
 
     public User(){}
 
-    public User(Long id, String username, String password, Long role_id, Long company_id) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.role_id = role_id;
-        this.company_id = company_id;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {

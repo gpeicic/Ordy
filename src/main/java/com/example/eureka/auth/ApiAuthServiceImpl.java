@@ -54,14 +54,10 @@ public class ApiAuthServiceImpl implements ApiAuthService {
 
     @Override
     public ApiRegisterResponse register(ApiRegisterRequest request) {
-        log.info("Registracija pokušaj za korisnika: {}", request.getUsername());
-        if (userMapper.findByUsername(request.getUsername()) != null) {
-            log.warn("Registracija odbijena — korisničko ime već postoji: {}", request.getUsername());
-            throw new ValidationException("Korisničko ime već postoji");
-        }
+        log.info("Registracija pokušaj");
         User user = registrationService.register(request);
         String token = tokenFactory.generateFor(user);
-        log.info("Registracija uspješna za korisnika: {}, userId: {}", request.getUsername(), user.getId());
+        log.info("Registracija uspješna, userId: {}", user.getId());
         return new ApiRegisterResponse(token);
     }
 

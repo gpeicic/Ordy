@@ -4,11 +4,9 @@ import com.example.eureka.catalogue.CatalogueItem;
 import com.example.eureka.exception.ValidationException;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.stereotype.Component;
 
-import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,33 +15,50 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Parser za Roto cjenik PDF (dvo-kolumni layout, A4).
+ * Parser za Roto cjenik PDF (dvo-kolumni layout, A4, ~120 stranica).
  *
- * PDF struktura:
- *  - Svaka stranica ima dvije kolumne (lijeva / desna).
- *  - Svaki artikl: KOD (3-8 znamenki) ... NAZIV ... CIJENA (format X,XX).
- *  - Naziv može biti u redu iznad ili ispod koda — parser parsira
- *    svaku kolumnu zasebno, liniju po liniju, i prati pending naziv.
- *  - Kategorija: all-caps red bez kodova i cijena.
- *  - Footer (y > 790pt) se ignorira.
+ * Ključni insights:
+ *
+ * 1. ITEM LINIJA: indent točno 5 razmaka, pa odmah digit (šifra artikla).
+ *    NAME LINIJA: sve ostalo (indent >= 11 razmaka).
+ *
+ * 2. PRAVA CIJENA vs LITRAŽA/VOLUMEN u nazivu:
+ *    Regex koristi lookahead — cijena je X,XX koji je ankoriziran sljedećim
+ *    kodom ili krajem linije:
+ *      (\d{3,8})\s+(.+?)\s+(\d{1,4},\d{2})(?=\s+\d{3,8}|\s*$)
+ *    Tako "GIN PANAREA ISLAND 0,7 (6)* 6,64" parsira "0,7" kao dio naziva,
+ *    a "6,64" (praćen krajem linije) kao cijenu. ✓
+ *
+ * 3. KOLUMNA SPLIT: char pozicija 38 unutar content-a (nakon maknutih 5 razmaka
+ *    indenta). Lijeva kolumna = [0..38), desna = [38..).
+ *
+ * 4. PENDING NAME: naziv može biti u liniji IZNAD koda (pending_L/R)
+ *    ili ISPOD koda (bare_L/R index u items listi).
+ *
+ * 5. KATEGORIJA: all-caps linija bez standalone koda (\b\d{3,8}\b)
+ *    i bez standalone cijene (\b\d{1,4},\d{2}\b).
+ *    Kategorija-headeri tipa "BAČVA (30,50….)" prolaze jer "30,50" nije
+ *    praćen word boundary s obje strane.
  */
 @Component
 public class RotoPdfParser implements PdfParser {
 
-    // PDF koordinate (pt), izmjerene iz layouta — A4 = 595 x 842 pt
-    private static final Rectangle2D LEFT_COL  = new Rectangle2D.Float(28,  60, 258, 730);
-    private static final Rectangle2D RIGHT_COL = new Rectangle2D.Float(286, 60, 260, 730);
-
-    // KOD: 3-8 znamenki na početku tokena
-    private static final Pattern CODE_RE  = Pattern.compile("^\\d{3,8}$");
-    // CIJENA: decimalni broj s dvije decimale (zarez)
-    private static final Pattern PRICE_RE = Pattern.compile("^\\d{1,4},\\d{2}$");
-
-    // Linija-item: CODE ... PRICE (price je zadnji PRICE_RE token u liniji)
-    // Koristimo za parsiranje jedne kolumne-linije.
-    private static final Pattern LINE_RE  = Pattern.compile(
-            "(\\d{3,8})\\s+(.*?)\\s+(\\d{1,4},\\d{2})\\s*$"
+    // Cijena ankorizirana sljedećim kodom ili krajem linije
+    private static final Pattern ITEM_RE = Pattern.compile(
+            "(\\d{3,8})\\s+(.+?)\\s+(\\d{1,4},\\d{2})(?=\\s+\\d{3,8}|\\s*$)"
     );
+    // Artikl bez inline naziva (samo KOD ... CIJENA)
+    private static final Pattern BARE_RE = Pattern.compile(
+            "(\\d{3,8})\\s+(\\d{1,4},\\d{2})(?=\\s+\\d{3,8}|\\s*$)"
+    );
+
+    // Standalone kod i cijena — za čišćenje name fragmenata
+    private static final Pattern STANDALONE_CODE  = Pattern.compile("(?<!\\w)\\d{3,8}(?!\\w)");
+    private static final Pattern STANDALONE_PRICE = Pattern.compile("(?<!\\w)\\d{1,4},\\d{2}(?!\\w)");
+
+    // Char pozicija split L/R kolumne (unutar content-a, već bez 5-razmačnog indenta)
+    private static final int COL_SPLIT = 38;
+
     @Override
     public List<CatalogueItem> parse(byte[] pdfBytes) throws IOException {
         if (pdfBytes == null || pdfBytes.length == 0) {
@@ -53,181 +68,188 @@ public class RotoPdfParser implements PdfParser {
         List<CatalogueItem> items = new ArrayList<>();
 
         try (PDDocument doc = Loader.loadPDF(pdfBytes)) {
-            for (int pageIdx = 0; pageIdx < doc.getNumberOfPages(); pageIdx++) {
-                PDPage page = doc.getPage(pageIdx);
-                String leftText  = extractColumn(doc, page, LEFT_COL);
-                String rightText = extractColumn(doc, page, RIGHT_COL);
+            PDFTextStripper stripper = new PDFTextStripper();
+            stripper.setSortByPosition(true);
+            String fullText = stripper.getText(doc);
 
-                String[] leftLines  = leftText.split("\\n");
-                String[] rightLines = rightText.split("\\n");
+            String currentCategory = null;
+            String pendingL = "";
+            String pendingR = "";
+            int bareL = -1;   // index u items[] koji čeka naziv ispod
+            int bareR = -1;
 
-                // Parsiramo svaku kolumnu zasebno; kategorija se dijeli između kolumni
-                // ali je uvijek u lijevoj kolumni (header ima x < 250)
-                String[] categoryHolder = { null };
+            for (String rawLine : fullText.split("\n")) {
+                String line    = rawLine.stripTrailing();
+                String trimmed = line.strip();
 
-                parseColumn(leftLines,  categoryHolder, items);
-                parseColumn(rightLines, categoryHolder, items);
+                if (trimmed.isEmpty()) continue;
+
+                // --- Kategorija ---
+                if (isCategory(trimmed)) {
+                    currentCategory = trimmed.length() > 80 ? trimmed.substring(0, 80) : trimmed;
+                    pendingL = pendingR = "";
+                    bareL = bareR = -1;
+                    continue;
+                }
+
+                // --- Item linija (indent=5, šesti znak je digit) ---
+                if (isItemLine(line)) {
+                    String content = line.length() > 5 ? line.substring(5) : line.strip();
+
+                    String leftPart  = content.length() > COL_SPLIT
+                            ? content.substring(0, COL_SPLIT).strip()
+                            : content.strip();
+                    String rightPart = content.length() > COL_SPLIT
+                            ? content.substring(COL_SPLIT).strip()
+                            : "";
+
+                    // Lijeva kolumna
+                    ParseResult resL = parseItemPart(leftPart, pendingL, items, currentCategory);
+                    if (resL != null) {
+                        pendingL = "";
+                        bareL = resL.bareIndex;
+                    }
+
+                    // Desna kolumna
+                    ParseResult resR = parseItemPart(rightPart, pendingR, items, currentCategory);
+                    if (resR != null) {
+                        pendingR = "";
+                        bareR = resR.bareIndex;
+                    }
+
+                    // Ako nije bilo matcha ni u jednoj kolumni, ne resetiraj pending
+
+                } else {
+                    // --- Name-only linija ---
+                    String content = line.length() > 5 ? line.substring(5) : trimmed;
+
+                    String leftFrag  = content.length() > COL_SPLIT
+                            ? content.substring(0, COL_SPLIT).strip()
+                            : content.strip();
+                    String rightFrag = content.length() > COL_SPLIT
+                            ? content.substring(COL_SPLIT).strip()
+                            : "";
+
+                    // Lijeva strana
+                    String lf = stripArtefacts(leftFrag);
+                    if (!lf.isEmpty()) {
+                        if (bareL >= 0 && items.get(bareL).getName().isEmpty()) {
+                            items.get(bareL).setName(lf);
+                        } else {
+                            pendingL = pendingL.isEmpty() ? lf : pendingL + " " + lf;
+                        }
+                    }
+
+                    // Desna strana
+                    String rf = stripArtefacts(rightFrag);
+                    if (!rf.isEmpty()) {
+                        if (bareR >= 0 && items.get(bareR).getName().isEmpty()) {
+                            items.get(bareR).setName(rf);
+                        } else {
+                            pendingR = pendingR.isEmpty() ? rf : pendingR + " " + rf;
+                        }
+                    }
+                }
             }
         }
 
         return items;
     }
 
-    private String extractColumn(PDDocument doc, PDPage page, Rectangle2D region) throws IOException {
-        PDFTextStripperByArea stripper = new PDFTextStripperByArea();
-        stripper.setSortByPosition(true);
-        stripper.addRegion("col", region);
-        stripper.extractRegions(page);
-        return stripper.getTextForRegion("col");
-    }
+    // -------------------------------------------------------------------------
 
-    /**
-     * Parsira linije jedne kolumne.
-     *
-     * Logika:
-     * - All-caps linija bez koda/cijene = kategorija (ažurira categoryHolder)
-     * - Linija s kodom+cijenom = artikl; inline naziv je između koda i cijene
-     * - Linija bez koda/cijene = pendingName (naziv koji je iznad koda)
-     * - Linija bez inline naziva + postoji pendingName => koristi pending
-     * - Linija bez inline naziva + nema pending => sljedeća ne-anchor linija
-     *   je "nastavak" (naziv ispod koda) — hvatamo je ako je item prethodan
-     */
-    private void parseColumn(String[] lines, String[] categoryHolder, List<CatalogueItem> items) {
-        String pendingName = null;
-        CatalogueItem pendingItem = null;  // item koji čeka naziv ispod
+    private ParseResult parseItemPart(String part, String pending,
+                                      List<CatalogueItem> items, String category) {
+        if (part.isEmpty()) return null;
 
-        for (String raw : lines) {
-            String line = raw.trim();
-            if (line.isEmpty()) {
-                continue;
+        // Pokušaj ITEM_RE (kod + naziv + cijena)
+        Matcher m = ITEM_RE.matcher(part);
+        boolean found = false;
+        int lastBare = -1;
+
+        while (m.find()) {
+            found = true;
+            String code  = m.group(1);
+            String name  = cleanName(m.group(2));
+            String price = m.group(3);
+
+            if (name.isEmpty() && !pending.isEmpty()) {
+                name = pending;
+            } else if (!name.isEmpty() && !pending.isEmpty()) {
+                name = (pending + " " + name).strip();
             }
-
-            // Pokušaj parsirati kao item liniju
-            ItemLine parsed = tryParseItemLine(line);
-
-            if (parsed == null) {
-                // Nije item linija
-                if (isCategory(line)) {
-                    categoryHolder[0] = line;
-                    pendingName = null;
-                    pendingItem = null;
-                } else {
-                    // Može biti naziv iznad sljedećeg koda (pending)
-                    // ili nastavak naziva ispod prethodnog koda
-                    String nameFrag = extractNameFragment(line);
-                    if (!nameFrag.isEmpty()) {
-                        if (pendingItem != null && (pendingItem.getName() == null || pendingItem.getName().isEmpty())) {
-                            // Naziv ispod koda — dopuni prethodni item
-                            pendingItem.setName(nameFrag);
-                            pendingItem = null;
-                        } else {
-                            // Naziv iznad sljedećeg koda
-                            pendingName = pendingName == null
-                                    ? nameFrag
-                                    : pendingName + " " + nameFrag;
-                            pendingItem = null;
-                        }
-                    }
-                }
-                continue;
-            }
-
-            // Je item linija
-            String name = parsed.inlineName;
-
-            if (name.isEmpty() && pendingName != null) {
-                name = pendingName;
-            }
-
-            pendingName = null;
 
             CatalogueItem item = new CatalogueItem();
-            item.setCode(parsed.code);
+            item.setCode(code);
             item.setName(name);
-            item.setPrice(parsePrice(parsed.price));
-
+            item.setPrice(toDecimal(price));
             items.add(item);
 
-            // Ako i dalje nema naziva, možda će doći u sljedećoj liniji
-            pendingItem = name.isEmpty() ? item : null;
+            lastBare = name.isEmpty() ? items.size() - 1 : -1;
         }
+
+        if (found) return new ParseResult(lastBare);
+
+        // Pokušaj BARE_RE (kod + cijena, bez naziva)
+        Matcher bm = BARE_RE.matcher(part);
+        while (bm.find()) {
+            found = true;
+            String code  = bm.group(1);
+            String price = bm.group(2);
+            String name  = pending;
+
+            CatalogueItem item = new CatalogueItem();
+            item.setCode(code);
+            item.setName(name);
+            item.setPrice(toDecimal(price));
+            items.add(item);
+
+            lastBare = name.isEmpty() ? items.size() - 1 : -1;
+        }
+
+        return found ? new ParseResult(lastBare) : null;
+    }
+
+    // -------------------------------------------------------------------------
+
+    /** Indent točno 5 razmaka, šesti znak je digit. */
+    private boolean isItemLine(String line) {
+        return line.length() > 6
+                && line.charAt(0) == ' ' && line.charAt(1) == ' '
+                && line.charAt(2) == ' ' && line.charAt(3) == ' '
+                && line.charAt(4) == ' '
+                && Character.isDigit(line.charAt(5));
     }
 
     /**
-     * Pokušava parsirati liniju kao "KOD [naziv] CIJENA".
-     * Cijena mora biti zadnji token koji matchira PRICE_RE.
-     * Kod mora biti prvi token koji matchira CODE_RE, lijevo od cijene.
-     */
-    private ItemLine tryParseItemLine(String line) {
-        String[] tokens = line.split("\\s+");
-        if (tokens.length < 2) return null;
-
-        // Nađi zadnji price token
-        int priceIdx = -1;
-        for (int i = tokens.length - 1; i >= 0; i--) {
-            if (PRICE_RE.matcher(tokens[i]).matches()) {
-                priceIdx = i;
-                break;
-            }
-        }
-        if (priceIdx < 0) return null;
-
-        // Nađi zadnji code token lijevo od cijene
-        int codeIdx = -1;
-        for (int i = priceIdx - 1; i >= 0; i--) {
-            if (CODE_RE.matcher(tokens[i]).matches()) {
-                codeIdx = i;
-                break;
-            }
-        }
-        if (codeIdx < 0) return null;
-
-        String code  = tokens[codeIdx];
-        String price = tokens[priceIdx];
-
-        // Inline naziv: tokeni između koda i cijene, bez ugniježđenih cijena i kodova
-        StringBuilder nameSb = new StringBuilder();
-        for (int i = codeIdx + 1; i < priceIdx; i++) {
-            String t = tokens[i];
-            if (PRICE_RE.matcher(t).matches()) continue;  // ukloni volumene tipa 30,00
-            if (CODE_RE.matcher(t).matches())  continue;  // ukloni strane kodove
-            if (!nameSb.isEmpty()) nameSb.append(' ');
-            nameSb.append(t);
-        }
-
-        return new ItemLine(code, nameSb.toString().trim(), price);
-    }
-
-    /**
-     * All-caps linija bez kodova i cijena = kategorija.
+     * All-caps linija bez standalone koda i bez standalone cijene.
+     * "BAČVA (30,50….)" prođe jer "30,50" nije word-boundary isolated.
      */
     private boolean isCategory(String line) {
-        if (!line.equals(line.toUpperCase())) return false;
-        if (line.length() < 3) return false;
-        for (String token : line.split("\\s+")) {
-            if (PRICE_RE.matcher(token).matches()) return false;
-            if (CODE_RE.matcher(token).matches())  return false;
-        }
-        return true;
+        if (line.length() < 3 || line.length() > 100) return false;
+        if (STANDALONE_CODE.matcher(line).find())  return false;
+        if (STANDALONE_PRICE.matcher(line).find()) return false;
+        return line.equals(line.toUpperCase());
     }
 
-    /**
-     * Izvuci tekst koji nije kod ni cijena (potencijalni naziv fragment).
-     */
-    private String extractNameFragment(String line) {
-        StringBuilder sb = new StringBuilder();
-        for (String token : line.split("\\s+")) {
-            if (PRICE_RE.matcher(token).matches()) continue;
-            if (CODE_RE.matcher(token).matches())  continue;
-            if (!sb.isEmpty()) sb.append(' ');
-            sb.append(token);
-        }
-        return sb.toString().trim();
+    /** Makni ugniježđene kodove iz naziva (artefakt dvo-kolumnog layouta). */
+    private String cleanName(String raw) {
+        String cleaned = STANDALONE_CODE.matcher(raw).replaceAll("").strip();
+        return cleaned.replaceAll("\\s+", " ").strip().replaceAll("^[.,; ]+|[.,; ]+$", "");
     }
 
-    private BigDecimal parsePrice(String raw) {
+    /** Makni i kodove i cijene iz name fragmenta (za name-only linije). */
+    private String stripArtefacts(String text) {
+        String s = STANDALONE_CODE.matcher(text).replaceAll("");
+        s = STANDALONE_PRICE.matcher(s).replaceAll("");
+        return s.replaceAll("\\s+", " ").strip().replaceAll("^[.,; ]+|[.,; ]+$", "");
+    }
+
+    private BigDecimal toDecimal(String raw) {
         return new BigDecimal(raw.replace(',', '.'));
     }
 
-    private record ItemLine(String code, String inlineName, String price) {}
+    // -------------------------------------------------------------------------
+
+    private record ParseResult(int bareIndex) {}
 }
