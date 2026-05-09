@@ -1,6 +1,6 @@
-ALTER TABLE credential_setup_tokens ADD COLUMN IF NOT EXISTS owner_username          VARCHAR(255);
-ALTER TABLE credential_setup_tokens ADD COLUMN IF NOT EXISTS owner_plain_password    VARCHAR(255);
-ALTER TABLE credential_setup_tokens ADD COLUMN IF NOT EXISTS employee_username       VARCHAR(255);
-ALTER TABLE credential_setup_tokens ADD COLUMN IF NOT EXISTS employee_plain_password VARCHAR(255);
-ALTER TABLE credential_setup_tokens ADD COLUMN IF NOT EXISTS email_sent              BOOLEAN NOT NULL DEFAULT FALSE;
-ALTER TABLE credential_setup_tokens ADD COLUMN IF NOT EXISTS send_after              TIMESTAMP;
+ALTER TABLE credential_setup_tokens ADD COLUMN owner_username          VARCHAR(255);
+ALTER TABLE credential_setup_tokens ADD COLUMN owner_plain_password    VARCHAR(255);
+ALTER TABLE credential_setup_tokens ADD COLUMN employee_username       VARCHAR(255);
+ALTER TABLE credential_setup_tokens ADD COLUMN employee_plain_password VARCHAR(255);
+ALTER TABLE credential_setup_tokens ADD COLUMN email_sent              TINYINT(1) NOT NULL DEFAULT 0;
+ALTER TABLE credential_setup_tokens ADD COLUMN send_after              DATETIME;

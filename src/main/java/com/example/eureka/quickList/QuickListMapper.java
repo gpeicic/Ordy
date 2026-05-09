@@ -12,7 +12,7 @@ public interface QuickListMapper {
     void insert(QuickList quickList);
 
     @Select("""
-        SELECT ql.id, 
+        SELECT ql.id,
                ql.name, 
                ql.company_id AS companyId, 
                ql.user_id AS userId, 

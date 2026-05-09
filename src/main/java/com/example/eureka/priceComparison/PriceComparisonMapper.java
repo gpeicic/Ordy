@@ -28,7 +28,7 @@ public interface PriceComparisonMapper {
             WHERE ii3.product_id = ii.product_id
               AND i3.company_id = #{companyId}
               AND i3.supplier_id = #{supplierId}
-              AND i3.invoice_datetime <= NOW() - INTERVAL '14 days'
+              AND i3.invoice_datetime <= NOW() - INTERVAL 14 DAY
             ORDER BY i3.invoice_datetime DESC
             LIMIT 1
         ) AS previousPrice
@@ -76,7 +76,7 @@ public interface PriceComparisonMapper {
             WHERE ii3.product_id = ii.product_id
               AND i3.company_id = #{companyId}
               AND i3.supplier_id = #{supplierId}
-              AND i3.invoice_datetime <= NOW() - INTERVAL '14 days'
+              AND i3.invoice_datetime <= NOW() - INTERVAL 14 DAY
             ORDER BY i3.invoice_datetime DESC
             LIMIT 1
             OFFSET 1
@@ -122,7 +122,7 @@ public interface PriceComparisonMapper {
             JOIN invoices i3 ON ii3.invoice_id = i3.id
             WHERE ii3.product_id = ii.product_id
               AND i3.supplier_id = i.supplier_id
-              AND i3.invoice_datetime <= NOW() - INTERVAL '7 days'
+              AND i3.invoice_datetime <= NOW() - INTERVAL 7 DAY
             ORDER BY i3.invoice_datetime DESC
             LIMIT 1
         ) AS previousPrice
@@ -159,7 +159,7 @@ public interface PriceComparisonMapper {
             WHERE ii3.product_id = ii.product_id
               AND i3.company_id = i.company_id
               AND i3.supplier_id = #{supplierId}
-              AND i3.invoice_datetime <= NOW() - INTERVAL '14 days'
+              AND i3.invoice_datetime <= NOW() - INTERVAL 14 DAY
             ORDER BY i3.invoice_datetime DESC
             LIMIT 1
         ) AS previousPrice
@@ -208,7 +208,7 @@ public interface PriceComparisonMapper {
             JOIN invoices i3 ON ii3.invoice_id = i3.id
             WHERE ii3.product_id = ii.product_id
               AND i3.supplier_id = i.supplier_id
-              AND i3.invoice_datetime <= NOW() - INTERVAL '7 days'
+              AND i3.invoice_datetime <= NOW() - INTERVAL 7 DAY
             ORDER BY i3.invoice_datetime DESC
             LIMIT 1
         ) AS previousPrice
@@ -231,3 +231,4 @@ public interface PriceComparisonMapper {
     })
     List<PriceComparisonItem> getProductPriceAcrossSuppliersAndCompanies(@Param("productId") Long productId);
 }
+

@@ -25,11 +25,11 @@ public interface ProductMapper {
     List<Product> findByIds(@Param("ids") List<Long> ids);
 
     @Select("""
-        SELECT id, canonical_name,
-               similarity(canonical_name, #{name}) AS sim
+        SELECT id, canonical_name
         FROM products
-        WHERE similarity(canonical_name, #{name}) > #{threshold}
-        ORDER BY sim DESC
+        WHERE canonical_name LIKE CONCAT('%', #{name}, '%')
+        ORDER BY CASE WHEN canonical_name LIKE CONCAT(#{name}, '%') THEN 0 ELSE 1 END,
+                 canonical_name
         LIMIT 1
     """)
     Product findMostSimilar(@Param("name") String name,
@@ -43,7 +43,7 @@ public interface ProductMapper {
     @Select("""
     SELECT id, canonical_name AS name
     FROM products
-    WHERE canonical_name ILIKE CONCAT('%', #{name}, '%')
+    WHERE canonical_name LIKE CONCAT('%', #{name}, '%')
     ORDER BY canonical_name
     LIMIT 15
 """)

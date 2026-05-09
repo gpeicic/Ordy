@@ -17,12 +17,12 @@ public interface AnalyticsMapper {
         FROM (
             SELECT 
                 i.supplier_id,
-                DATE_TRUNC('month', i.invoice_datetime) as month,
+                DATE_FORMAT(i.invoice_datetime, '%Y-%m') as month,
                 SUM(ii.amount * ii.unit_price) as monthly_total
             FROM invoices i
             JOIN invoice_items ii ON ii.invoice_id = i.id
             WHERE i.company_id = #{companyId}
-            GROUP BY i.supplier_id, DATE_TRUNC('month', i.invoice_datetime)
+            GROUP BY i.supplier_id, DATE_FORMAT(i.invoice_datetime, '%Y-%m')
         ) monthly
         JOIN invoices i ON i.supplier_id = monthly.supplier_id
         JOIN suppliers s ON s.id = monthly.supplier_id
@@ -42,7 +42,7 @@ public interface AnalyticsMapper {
         JOIN invoices i ON ii.invoice_id = i.id
         WHERE i.company_id = #{companyId}
           AND i.supplier_id = #{supplierId}
-          AND DATE_TRUNC('month', i.invoice_datetime) = DATE_TRUNC('month', CURRENT_DATE)
+          AND DATE_FORMAT(i.invoice_datetime, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
     """)
     @Results({
             @Result(property = "currentMonthSpending", column = "current_month_spending")
@@ -67,7 +67,7 @@ public interface AnalyticsMapper {
         JOIN invoices i ON ii.invoice_id = i.id
         WHERE i.company_id = #{companyId}
           AND i.supplier_id = #{supplierId}
-          AND DATE_TRUNC('month', i.invoice_datetime) = DATE_TRUNC('month', CURRENT_DATE)
+          AND DATE_FORMAT(i.invoice_datetime, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
         GROUP BY ii.product_name
         ORDER BY total_spent DESC
         LIMIT 10
@@ -86,7 +86,7 @@ public interface AnalyticsMapper {
     FROM invoice_items ii
     JOIN invoices i ON ii.invoice_id = i.id
     WHERE i.company_id = #{companyId}
-      AND DATE_TRUNC('month', i.invoice_datetime) = DATE_TRUNC('month', CURRENT_DATE)
+      AND DATE_FORMAT(i.invoice_datetime, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
 """)
     BigDecimal getCurrentMonthSpendingForCompany(@Param("companyId") Long companyId);
 }

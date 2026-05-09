@@ -17,9 +17,9 @@ public interface SessionTokenMapper {
 
     @Insert("INSERT INTO session_tokens(company_id, access_token, refresh_token, expiration) " +
             "VALUES(#{companyId}, #{accessToken}, #{refreshToken}, #{expiration}) " +
-            "ON CONFLICT (company_id) DO UPDATE SET " +
-            "access_token = EXCLUDED.access_token, " +
-            "refresh_token = EXCLUDED.refresh_token, " +
-            "expiration = EXCLUDED.expiration")
+            "ON DUPLICATE KEY UPDATE " +
+            "access_token = VALUES(access_token), " +
+            "refresh_token = VALUES(refresh_token), " +
+            "expiration = VALUES(expiration)")
     void upsert(SessionToken token);
 }

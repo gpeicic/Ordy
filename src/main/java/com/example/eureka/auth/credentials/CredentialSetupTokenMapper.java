@@ -40,19 +40,19 @@ public interface CredentialSetupTokenMapper {
                used, email_sent AS emailSent, send_after AS sendAfter,
                expires_at AS expiresAt, created_at AS createdAt
         FROM credential_setup_tokens
-        WHERE email_sent = FALSE AND send_after <= NOW()
+        WHERE email_sent = 0 AND send_after <= NOW()
     """)
     List<CredentialSetupToken> findPendingEmailSends();
 
     @Update("""
         UPDATE credential_setup_tokens
-        SET email_sent = TRUE,
+        SET email_sent = 1,
             owner_plain_password = NULL,
             employee_plain_password = NULL
         WHERE id = #{id}
     """)
     void markEmailSent(Long id);
 
-    @Update("UPDATE credential_setup_tokens SET used = TRUE WHERE token = #{token}")
+    @Update("UPDATE credential_setup_tokens SET used = 1 WHERE token = #{token}")
     void markUsed(String token);
 }

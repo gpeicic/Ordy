@@ -37,7 +37,7 @@ public class RegistrationService {
     private static final SecureRandom RANDOM = new SecureRandom();
 
     private final TextEncryptor encryptor;
-    private final Long PROVIDER_ROLE_ID = 5L;
+    private final Long PROVIDER_ROLE_ID = 3L;
     private final Long USER_ROLE_ID = 2L;
     private final UserMapper userMapper;
     private final CompanyMapper companyMapper;

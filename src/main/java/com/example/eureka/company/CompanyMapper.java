@@ -51,8 +51,8 @@ public interface CompanyMapper {
             mer_email = #{merEmail},
             mer_password = #{merPassword},
             oib = #{oib},
-            address = #{address}
-            city = #{city}
+            address = #{address},
+            city = #{city},
             postal_code = #{postalCode}
         WHERE id = #{id}
     """)

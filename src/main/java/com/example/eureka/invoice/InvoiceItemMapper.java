@@ -25,7 +25,7 @@ public interface InvoiceItemMapper {
     FROM invoice_items ii
     JOIN invoices i ON ii.invoice_id = i.id
     WHERE i.company_id = #{companyId}
-      AND DATE_TRUNC('month', i.created_at) = DATE_TRUNC('month', CURRENT_DATE)
+      AND DATE_FORMAT(i.created_at, '%Y-%m') = DATE_FORMAT(CURDATE(), '%Y-%m')
 """)
     BigDecimal getMonthlySpending(@Param("companyId") Long companyId);
 
@@ -44,32 +44,30 @@ public interface InvoiceItemMapper {
 
     @Select("""
             SELECT product_name FROM invoice_items
-                WHERE id = {id}""")
-    InvoiceItem getInvoiceItemById(@Param("id")Long id);
-
+                WHERE id = #{id}""")
+    InvoiceItem getInvoiceItemById(@Param("id") Long id);
 
     @Select("""
-    SELECT DISTINCT ON (product_id) product_name
+    SELECT product_name
     FROM invoice_items ii
     JOIN invoices i ON ii.invoice_id = i.id
     WHERE ii.product_id = #{productId}
       AND i.supplier_id = #{supplierId}
-    ORDER BY product_id, i.invoice_datetime DESC
+    ORDER BY i.invoice_datetime DESC
+    LIMIT 1
 """)
     String findLatestProductNameBySupplier(@Param("productId") Long productId,
                                            @Param("supplierId") Long supplierId);
+
     @Select("""
-    SELECT DISTINCT ON (ii.product_name)
-        ii.product_id as id,
-        ii.product_name as name,
-        NULL as code,
-        'INVOICE' as source
+    SELECT ii.product_id as id, ii.product_name as name, NULL as code, 'INVOICE' as source
     FROM invoice_items ii
     JOIN invoices i ON ii.invoice_id = i.id
     WHERE i.supplier_id = #{supplierId}
       AND i.company_id = #{companyId}
-      AND ii.product_name ILIKE CONCAT('%', #{name}, '%')
-    ORDER BY ii.product_name, i.invoice_datetime DESC
+      AND ii.product_name LIKE CONCAT('%', #{name}, '%')
+    GROUP BY ii.product_id, ii.product_name
+    ORDER BY MAX(i.invoice_datetime) DESC
     LIMIT 20
 """)
     List<SearchItemForOrderDTO> findDistinctItemsBySupplierAndCompany(

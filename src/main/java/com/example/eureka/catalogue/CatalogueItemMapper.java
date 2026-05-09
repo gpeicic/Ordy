@@ -11,10 +11,9 @@ public interface CatalogueItemMapper {
     @Insert("""
         INSERT INTO catalogue_items (supplier_id, code, name, price)
         VALUES (#{supplierId}, #{code}, #{name}, #{price})
-        ON CONFLICT (supplier_id, code)
-        DO UPDATE SET
-            name = EXCLUDED.name,
-            price = EXCLUDED.price,
+        ON DUPLICATE KEY UPDATE
+            name = VALUES(name),
+            price = VALUES(price),
             updated_at = NOW()
     """)
     void upsert(CatalogueItem item);
@@ -36,12 +35,12 @@ public interface CatalogueItemMapper {
                 FROM catalogue_items
                 WHERE supplier_id = #{supplierId}
                   AND (
-                    name ILIKE CONCAT(#{name}, '%')
-                    OR name ILIKE CONCAT('%', #{name}, '%')
-                    OR code ILIKE CONCAT(#{name}, '%')
+                    name LIKE CONCAT(#{name}, '%')
+                    OR name LIKE CONCAT('%', #{name}, '%')
+                    OR code LIKE CONCAT(#{name}, '%')
                   )
                 ORDER BY
-                    CASE WHEN name ILIKE CONCAT(#{name}, '%') THEN 0 ELSE 1 END,
+                    CASE WHEN name LIKE CONCAT(#{name}, '%') THEN 0 ELSE 1 END,
                     name
                 LIMIT 10
 """)
@@ -78,8 +77,8 @@ public interface CatalogueItemMapper {
                 FROM catalogue_items
                 WHERE supplier_id = #{supplierId}
                   AND (
-                      name ILIKE CONCAT('%', #{search}, '%')
-                      OR code ILIKE CONCAT('%', #{search}, '%')
+                      name LIKE CONCAT('%', #{search}, '%')
+                      OR code LIKE CONCAT('%', #{search}, '%')
                   )
                 ORDER BY name
                 LIMIT #{limit}
